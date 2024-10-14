@@ -1,0 +1,1 @@
+export { AppInitialization } from './AppInitialization'

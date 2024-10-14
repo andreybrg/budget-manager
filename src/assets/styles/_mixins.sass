@@ -1,0 +1,78 @@
+@font-face
+    font-family: "Inter"
+    src: local("Inter"),
+    src: url("./../fonts/Inter-Regular.ttf") format('truetype')
+    font-weight: 400
+
+@font-face
+    font-family: "Inter"
+    src: local("Inter"),
+    src: url("./../fonts/Inter-Medium.ttf") format('truetype')
+    font-weight: 500
+
+@mixin fontInter($size: false, $color: false, $weight: false, $lh: false)
+    font-family: 'Inter', sans-serif
+    @if $size
+        font-size: $size
+    @if $color 
+        color: $color 
+    @if $weight
+        font-weight: $weight
+    @if $lh
+        line-height: $lh
+
+@mixin s900
+    @media screen and (max-width: 900px)
+        @content
+
+@mixin inputLabel
+    display: flex
+    flex-direction: column
+    position: relative
+    row-gap: 2px
+    width: 100%
+    &:has(>input:focus) .title,
+    &:has(>input:not(:placeholder-shown)) .title
+        background-color: var(--modal-content-bg-color)
+        bottom: auto
+        box-sizing: border-box
+        font-size: 10px
+        left: 12px
+        line-height: 100%
+        opacity: 1
+        padding: 0 3px
+        top: -5px
+    
+
+@mixin inputPlaceholder
+    @include fontInter(16px, var(--text-color), 400, 140%)
+    opacity: .4
+
+@mixin basicInput
+    background-color: var(--input-bg-color)
+    border: 1px solid var(--border-color)
+    border-radius: var(--main-border-radius)
+    box-sizing: border-box
+    @include fontInter(16px, var(--text-color), 400, 140%)
+    height: 50px
+    outline: none
+    padding: 0 15px
+    &::placeholder
+        @include inputPlaceholder
+
+@mixin inputTitle
+    bottom: 0
+    @include fontInter(16px, var(--text-color), 400, 140%)
+    height: fit-content
+    left: 15px
+    margin: auto
+    opacity: .4
+    pointer-events: none
+    position: absolute
+    right: auto
+    top: 0
+
+@mixin inputFieldError
+    @include fontInter(12px, var(--text-color), 400, 140%)
+    position: absolute
+    bottom: -19px

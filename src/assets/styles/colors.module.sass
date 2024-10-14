@@ -1,0 +1,8 @@
+@use '@assets/styles/functions' as f
+
+$main-colors: ("body-color" : #171717, "text-color" : #FFFFFF, "border-color" : #FFFFFF, "main-icon-color" : #FFFFFF, "input-bg-color" : #222222, "disabled-input-bg-color" : #222222, "theme-color" : #FFFFFF, "theme-content-color" : #171717, "main-button-bg-color" : #FFFFFF, "header-bg-color" : #222222)
+
+.darkTheme
+    @each $key, $value in $main-colors
+        --#{$key} : #{$value}
+        --rgb-#{$key} : #{f.HexToRGB($value)}

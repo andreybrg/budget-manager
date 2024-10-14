@@ -1,0 +1,67 @@
+{
+    "users": [
+        {
+            "email": "andreybrg@yandex.ru",
+            "password": "$2a$10$WC4Dqtyy6uwuFKWIa5LxnuhEGuEgRVg3xhZGf93KPiV/zfVWvXfS2",
+            "currencyId": 1,
+            "themeId": 1,
+            "id": 1
+        }
+    ],
+    "catrgories": [
+        {
+            "id": 1,
+            "userId": 1,
+            "postType": 1,
+            "name": "Зарплата"
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "postType": 2,
+            "name": "Ремонт"
+        }
+    ],
+    "currencies": [
+        {
+            "id": 1,
+            "name": "Российский рубль",
+            "sign": "₽"
+        },
+        {
+            "id": 2,
+            "name": "Доллар США",
+            "sign": "$"
+        },
+        {
+            "id": 3,
+            "name": "Японская иена",
+            "sign": "¥"
+        },
+        {
+            "id": 4,
+            "name": "Евро",
+            "sign": "€"
+        }
+    ],
+    "postTypes": [
+        {
+            "id": 1,
+            "name": "Доходы"
+        },
+        {
+            "id": 2,
+            "name": "Расходы"
+        }
+    ],
+    "themes": [
+        {
+            "id": 1,
+            "name": "Тёмная"
+        },
+        {
+            "id": 2,
+            "name": "Светлая"
+        }
+    ]
+}

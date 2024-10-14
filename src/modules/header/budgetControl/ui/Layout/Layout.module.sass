@@ -1,0 +1,13 @@
+@use '@assets/styles/mixins' as m
+    
+.container
+    display: flex
+    flex-direction: column
+    row-gap: 5px
+    align-items: center
+
+.title
+    @include m.fontInter(14px, var(--text-color), 400, 120%)
+    opacity: .4
+.amount
+    @include m.fontInter(26px, var(--text-color), 500, 120%)
