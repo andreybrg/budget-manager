@@ -1,8 +1,14 @@
+@use '@assets/styles/mixins' as m
+
 .header
     width: 100%
     padding: 20px 0
-    background-color: var(--header-bg-color)
     border-radius: 0 0 20px 20px
+    @include m.s900
+        background-color: var(--header-bg-color)
+    &_Unauthorized
+        padding: 20px 0 0 0
+        background: unset
     
 .headerContainer
     display: flex
@@ -19,8 +25,11 @@
             fill: var(--main-icon-color)
 
 .burger
+    display: none
     font-size: 0
     width: fit-content
+    @include m.s900
+        display: block
     svg
         width: 30px
         height: 30px
@@ -28,4 +37,23 @@
             fill: var(--main-icon-color)
 
 .budget
+    display: none
     width: fit-content
+    @include m.s900
+        display: block
+
+.authBtns
+    display: flex
+    align-items: center
+    column-gap: 10px
+    @include m.s900
+        display: none
+
+.logout
+    cursor: pointer
+    font-size: 0
+    @include m.s900
+        display: none
+    svg
+        path
+            fill: var(--main-icon-color)

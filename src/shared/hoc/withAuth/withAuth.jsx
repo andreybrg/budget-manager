@@ -1,8 +1,8 @@
-// import { useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 export const withAuth = (Component) => (props) => {
 
-    const isAuth = true
+    const isAuth = useSelector(store => store.auth.data.isAuth)
 
     const ComponentWithAuth = <Component {...props} isAuth={isAuth}/>
 

@@ -1,1 +1,1 @@
-export { Container as HeaderModule } from './ui/Layout/Container'
+export { ContainerWithAuth as HeaderModule } from './ui/Layout/Container'

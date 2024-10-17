@@ -1,0 +1,1 @@
+export { Layout as SignUp } from './ui/Layout/Layout'

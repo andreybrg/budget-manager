@@ -1,0 +1,31 @@
+@use '@assets/styles/mixins' as m
+    
+.toggleModeControls
+    margin: 40px 0 0 0
+    span
+        @include m.fontInter(16px, var(--text-color), 500, 140%)
+        opacity: .4
+    button
+        background: unset
+        border: none
+        padding: 0
+        margin: 0
+        cursor: pointer
+        span
+            transition: .3s
+            opacity: 1
+            @include m.fontInter(16px, var(--text-color), 500, 140%)
+        &:hover
+            span
+                text-decoration: underline
+                transition: .3s
+
+.container
+    width: 400px
+    margin: 0 auto
+    @include m.s900
+        width: 100%
+
+.title
+    @include m.fontInter(26px, var(--text-color), 500, 140%)
+    margin: 0 0 40px 0
