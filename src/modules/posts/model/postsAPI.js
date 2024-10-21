@@ -20,26 +20,6 @@ export const postsAPI = createApi({
                 }
             },
         }),
-
-        // userCreateProfile: builder.mutation({
-        //     query: ({ userId, token }) => {
-        //         return {
-        //             url: '/660/usersProfileData',
-        //             method: 'POST',
-        //             body: {
-        //                 id: userId,
-        //                 isProfileActivated: false,
-        //                 userId: userId,
-        //                 currencyId: null,
-        //                 budget: null,
-        //                 themeId: 1,
-        //             },
-        //             headers: { Authorization: `Bearer ${token}` },
-        //         }
-        //     },
-        // }),
-        
-        
     }),
 })
 

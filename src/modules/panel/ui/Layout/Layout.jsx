@@ -3,6 +3,7 @@ import style from './Layout.module.sass'
 import { BudgetControl } from '@modules/header/budgetControl'
 import { PanelTitle } from '@shared/titles'
 import { PostsModule } from '@modules/posts'
+import { FiltersModule } from '@modules/filters'
 
 export const Layout = () => {
 
@@ -15,7 +16,7 @@ export const Layout = () => {
                 <BudgetControl/>
             </div>
             <div className={style.filters}>
-            Фильтры
+                <FiltersModule/>
             </div>
             <div className={style.chart}>
             График

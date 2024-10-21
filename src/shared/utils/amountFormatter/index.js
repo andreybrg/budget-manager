@@ -1,1 +1,1 @@
-export { amountFormatter } from './amountFormatter'
+export { AmountFormatter } from './AmountFormatter'

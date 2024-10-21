@@ -5,6 +5,7 @@ import { appAPI } from "@app/model"
 import { firstStepsAPI, firstStepsSlice } from "@modules/firstSteps"
 import { burgerMenuSlice } from "@modules/burgerMenu"
 import { postsAPI, postsSlice } from "@modules/posts"
+import { filtersSlice } from "@modules/filters"
 
 
 const store = configureStore({
@@ -14,6 +15,7 @@ const store = configureStore({
         firstSteps: firstStepsSlice,
         burgerMenu: burgerMenuSlice,
         posts: postsSlice,
+        filters: filtersSlice,
         [authAPI.reducerPath]: authAPI.reducer,
         [appAPI.reducerPath]: appAPI.reducer,
         [firstStepsAPI.reducerPath]: firstStepsAPI.reducer,

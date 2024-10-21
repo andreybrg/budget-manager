@@ -34,11 +34,12 @@ export const userRegister = createAsyncThunk(
                 await Promise.all([
                     dispatch(userCreateAccountProfile({userId: response.data.user.id, token: response.data.accessToken})),
                     setAuthLocalStorage(response.data.accessToken, response.data.user.id),
-                    dispatch(setUserAuth()),
                     dispatch(getAuthorizedUserData())
                 ])
-                
-                return fulfillWithValue(true)
+                .then(() => {
+                    dispatch(setUserAuth())
+                    return fulfillWithValue(true)
+                })
             } else {
                 // response.error.data - сообщение
                 // response.error.status - статус ошибки
@@ -62,10 +63,10 @@ export const userLogin = createAsyncThunk(
             if(!response.error) {
                 await Promise.all([
                     setAuthLocalStorage(response.data.accessToken, response.data.user.id),
-                    dispatch(setUserAuth()),
                     dispatch(getAuthorizedUserData()),
                 ])
                 .then(() => {
+                    dispatch(setUserAuth())
                     return fulfillWithValue(true)
                 })
             } else {
@@ -130,11 +131,9 @@ export const getUserProfileData = createAsyncThunk(
 export const getUserCategories = createAsyncThunk(
     'auth/getUserCategories',
     async (_, {dispatch}) => {
-        const [ token, userId ] = getAuthLocalStorage()
         try {
             const response = await dispatch(authAPI.endpoints.getCategories.initiate({
-                token: token,
-                userId: userId
+                
             },
             {
                 subscribe: false, 
@@ -142,7 +141,6 @@ export const getUserCategories = createAsyncThunk(
             }))
             const categories = {data: response.data}
             dispatch(setUserCategories(categories))
-            console.log('categories setted')
             return response
         } catch (error) {
             console.log(error.message)
@@ -182,7 +180,8 @@ const authSlice = createSlice({
         },
         setUserProfileData(state, action) {
             state.data.profileData = {
-                ...action.payload.data
+                ...state.data.profileData,
+                ...action.payload.data,
             }
         },
         setUserCategories(state, action) {

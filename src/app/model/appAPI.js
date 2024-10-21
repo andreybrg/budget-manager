@@ -15,6 +15,11 @@ export const appAPI = createApi({
                 url: `/postTypes`,
             }),
         }),
+        getFilters: builder.query({
+            query: () => ({
+                url: `/filters`,
+            }),
+        }),
     }),
 })
 

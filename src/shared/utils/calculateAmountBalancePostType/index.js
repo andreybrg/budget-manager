@@ -1,0 +1,1 @@
+export { calculateAmountBalancePostType } from './calculateAmountBalancePostType'

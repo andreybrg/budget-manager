@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Layout.module.sass'
-import { amountFormatter } from '@shared/utils/amountFormatter'
+import { AmountFormatter } from '@shared/utils/amountFormatter'
 import SettingsSvg from '@assets/images/settings.svg?react'
 import cn from 'classnames'
 
@@ -17,7 +17,7 @@ export const Layout = ({
                     {/* <SettingsSvg/> */}
                 </div>
                 <div className={style.amount}>
-                    {amountFormatter(budgetAmount)}
+                    {<AmountFormatter amount={budgetAmount}/>}
                 </div>
             </div>
         </div>

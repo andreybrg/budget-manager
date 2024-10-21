@@ -1,24 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout } from './Layout'
-import { useGetPostsQuery } from '@modules/posts/model'
-import { getAuthLocalStorage } from '@shared/utils/localStorage'
 import { PostsPreloader } from '../PostsPreloader/PostsPreloader'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPostsList } from '@modules/posts/model'
 
 export const Container = () => {
 
-    const [ token, userId ] = getAuthLocalStorage()
+    const dispatch = useDispatch()
+    const postsData = useSelector(store => store.posts.data)
+    const postTypeActiveFilter = useSelector(store => store.filters.filtersData.postType)
 
-    const {
-        data: postsData
-    } = useGetPostsQuery({
-        token: token,
-        userId: userId,
-        postType: 1
-    })
+    useEffect(() => {
+        dispatch(getPostsList(
+            {
+                postType: postTypeActiveFilter
+            }
+        ))
+    }, [postTypeActiveFilter])
 
-    if(postsData) {
+    if(!postsData.isInit && postsData.postList) {
         return(
-            <Layout data={postsData}/>
+            <Layout 
+                isFetching={postsData.isFetching} 
+                postList={postsData.postList}
+                postTypeActiveFilter={postTypeActiveFilter}
+                />
         )
     } else {
         return(

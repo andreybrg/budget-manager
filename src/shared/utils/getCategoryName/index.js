@@ -1,1 +1,1 @@
-export { getCategoryName } from './getCategoryName'
+export { GetCategoryName } from './GetCategoryName'

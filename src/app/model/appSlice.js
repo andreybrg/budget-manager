@@ -23,8 +23,8 @@ export const checkAuthorization = createAsyncThunk(
                 id: id
             }))
             if(!response.error) {
-                dispatch(setUserAuth())
                 dispatch(getAuthorizedUserData())
+                dispatch(setUserAuth())
             } else {
                 dispatch(setUserUnauth())
                 removeAuthLocalStorage()
@@ -39,16 +39,17 @@ export const checkAuthorization = createAsyncThunk(
 export const getAppData = createAsyncThunk(
     'app/getAppData',
     async (_, {dispatch}) => {
-
         await Promise.all([
             dispatch(appAPI.endpoints.getCurrencies.initiate()),
             dispatch(appAPI.endpoints.getPostTypes.initiate()),
+            dispatch(appAPI.endpoints.getFilters.initiate()),
             dispatch(getUserProfileData())
         ])
-        .then(([currencies, postTypes, b]) => {
+        .then(([currencies, postTypes, filters, b]) => {
             dispatch(setAppData({
                 currencies: currencies.data,
                 postTypes: postTypes.data,
+                filters: filters.data
             }))
         })
     }
@@ -63,7 +64,6 @@ export const appInitialization = createAsyncThunk(
             ])
             .then(() => {
                 dispatch(setAppInit())
-                console.log('init app done')
             })
     }
 )

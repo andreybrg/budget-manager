@@ -7,16 +7,23 @@
     padding: 22px 0 0 0
     width: 50%
     @include m.s900
-        padding: 0
+        padding: 83px 0 0 0
+        width: 100%
 
 .budget
-
+    width: 100%
 .filters
-    
+    width: 100%
 .chart
     width: calc(50% - 110px)
     height: calc(100vh - 90px - 20px)
     right: 0
     top: 90px
     position: fixed
+    @include m.s900
+        position: relative
+        top: 0
+        width: 100%
+        height: fit-content
 .posts
+    width: 100%

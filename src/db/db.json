@@ -9,6 +9,16 @@
       "email": "b@b",
       "password": "$2a$10$pAXGLGa.fm/q/1c.ZCDX7ugNV1DN1kM6hPKFqNogACAOh1/PSpXTu",
       "id": 2
+    },
+    {
+      "email": "c@c",
+      "password": "$2a$10$xdflcZNPhNT9pI/aDGZ1Z.2UOb8Z.XHTwizS2zoIkjrpV7eOKyhRq",
+      "id": 3
+    },
+    {
+      "email": "d@d",
+      "password": "$2a$10$JlzPRS6ROBFAj3XlhrlSm.JsDlY2cmIKdi.w4PsJurKG6G1XjUk6e",
+      "id": 4
     }
   ],
   "usersProfileData": [
@@ -27,6 +37,22 @@
       "currencyId": null,
       "budget": null,
       "themeId": 1
+    },
+    {
+      "id": 3,
+      "isProfileActivated": true,
+      "userId": 3,
+      "currencyId": 3,
+      "budget": 10000,
+      "themeId": 1
+    },
+    {
+      "id": 4,
+      "isProfileActivated": true,
+      "userId": 4,
+      "currencyId": 1,
+      "budget": 0,
+      "themeId": 1
     }
   ],
   "catrgories": [
@@ -43,6 +69,7 @@
       "name": "Ремонт"
     }
   ],
+  "customCatrgories": [],
   "currencies": [
     {
       "id": 1,
@@ -89,6 +116,23 @@
       "name": "Светлая"
     }
   ],
+  "filters": [
+    {
+      "id": 1,
+      "name": "Баланс",
+      "postTypeId": 0
+    },
+    {
+      "id": 2,
+      "name": "Доходы",
+      "postTypeId": 1
+    },
+    {
+      "id": 3,
+      "name": "Расходы",
+      "postTypeId": 2
+    }
+  ],
   "posts": [
     {
       "id": 1,
@@ -104,6 +148,22 @@
       "postType": 1,
       "categoryId": 1,
       "volume": 2000,
+      "title": null
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 1,
+      "volume": 500,
+      "title": "Замена задней левой стойки в BMW Service S12"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 1,
+      "volume": 6000,
       "title": null
     }
   ]

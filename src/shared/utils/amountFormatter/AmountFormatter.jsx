@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 
-export const amountFormatter = (amount, currency) => {
+export const AmountFormatter = ({amount}) => {
 
     const currencyId = useSelector(store => store.auth.data.profileData.currencyId)
     const currencies = useSelector(store => store.app.data.appData.currencies)
