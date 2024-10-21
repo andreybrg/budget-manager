@@ -13,6 +13,19 @@ const initialState = {
 
 }
 
+export const appInitialization = createAsyncThunk(
+    'app/appInitialization',
+    async (_, {dispatch}) => {
+        await Promise.all([
+                dispatch(checkAuthorization()),
+                dispatch(getAppData()),
+            ])
+            .then(() => {
+                dispatch(setAppInit())
+            })
+    }
+)
+
 export const checkAuthorization = createAsyncThunk(
     'app/checkAuthorization',
     async (_, {dispatch}) => {
@@ -43,28 +56,30 @@ export const getAppData = createAsyncThunk(
             dispatch(appAPI.endpoints.getCurrencies.initiate()),
             dispatch(appAPI.endpoints.getPostTypes.initiate()),
             dispatch(appAPI.endpoints.getFilters.initiate()),
-            dispatch(getUserProfileData())
+            dispatch(appAPI.endpoints.getDayFilters.initiate()),
+            dispatch(getUserProfileData()),
+            dispatch(getCurrentDate())
         ])
-        .then(([currencies, postTypes, filters, b]) => {
+        .then(([currencies, postTypes, filters, dayFilters, b]) => {
             dispatch(setAppData({
-                currencies: currencies.data,
-                postTypes: postTypes.data,
-                filters: filters.data
+                data: {
+                    currencies: currencies.data,
+                    postTypes: postTypes.data,
+                    filters: filters.data,
+                    dayFilters: dayFilters.data
+                }
             }))
         })
     }
 )
 
-export const appInitialization = createAsyncThunk(
-    'app/appInitialization',
+export const getCurrentDate = createAsyncThunk(
+    'app/getCurrentDate',
     async (_, {dispatch}) => {
-        await Promise.all([
-                dispatch(checkAuthorization()),
-                dispatch(getAppData()),
-            ])
-            .then(() => {
-                dispatch(setAppInit())
-            })
+        const today = new Date().toISOString().split("T")[0]
+        dispatch(setCurrentDate({
+            data: today
+        }))
     }
 )
 
@@ -76,10 +91,19 @@ const appSlice = createSlice({
             state.data.isInit = true
         },
         setAppData(state, action) {
-            state.data.appData = action.payload
+            state.data.appData = {
+                ...state.data.appData,
+                ...action.payload.data
+            }
+        },
+        setCurrentDate(state, action) {
+            state.data.appData = {
+                ...state.data.appData,
+                todayDate: action.payload.data
+            }
         },
     }
 })
 
-export const { setAppInit, setAppData } = appSlice.actions
+export const { setAppInit, setAppData, setCurrentDate } = appSlice.actions
 export default appSlice.reducer

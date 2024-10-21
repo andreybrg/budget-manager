@@ -1,2 +1,3 @@
-export { filtersSlice } from './model'
-export { Container as FiltersModule } from './ui/Layout/Container'
+export { filtersSlice, setDayFilter } from './model'
+export { PostTypesFilters } from './postTypesFilters'
+export { DayFilters } from './dayFilters'

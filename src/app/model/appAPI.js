@@ -20,6 +20,11 @@ export const appAPI = createApi({
                 url: `/filters`,
             }),
         }),
+        getDayFilters: builder.query({
+            query: () => ({
+                url: `/dayFilters`,
+            }),
+        }),
     }),
 })
 

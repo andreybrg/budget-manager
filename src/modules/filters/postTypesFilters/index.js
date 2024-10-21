@@ -1,0 +1,1 @@
+export { Container as PostTypesFilters } from './ui/Layout/Container'

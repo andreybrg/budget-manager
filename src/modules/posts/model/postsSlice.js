@@ -14,14 +14,21 @@ export const postsListInit = createAsyncThunk(
 
 export const getPostsList = createAsyncThunk(
     'posts/getPostsList',
-    async (data, {dispatch, fulfillWithValue, rejectWithValue}) => {
+    async (data, {dispatch, getState, fulfillWithValue, rejectWithValue}) => {
 
         const [ token, userId ] = getAuthLocalStorage()
         try {
+            const todayDate = getState().app.data.appData.todayDate
+            const filters = getState().filters.filtersData
+            
             const response = await dispatch(postsAPI.endpoints.getPosts.initiate({
+                    todayDate: todayDate,
                     token: token, 
                     userId: userId, 
-                    postType: data.postType
+                    postType: filters.postType,
+                    dayFilter: filters.dayFilter,
+                    dateFilterFrom: filters.dateFrom,
+                    dateFilterTo: filters.dateTo,
                 },
                 {
                     subscribe: false, 
@@ -69,6 +76,9 @@ const postsSlice = createSlice({
         setPostList(state, action) {
             state.data.postList = action.payload.data
         },
+        resetPostList(state) {
+            state.data.postList = null
+        },
         setPostsListInit(state) {
             state.data.isInit = true
         }
@@ -92,5 +102,5 @@ const postsSlice = createSlice({
             })
 })
 
-export const { setPostList, setPostsListInit } = postsSlice.actions
+export const { setPostList, setPostsListInit, resetPostList } = postsSlice.actions
 export default postsSlice.reducer

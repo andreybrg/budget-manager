@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { authAPI } from './authAPI'
 import { getAuthLocalStorage, removeAuthLocalStorage, setAuthLocalStorage } from '@shared/utils/localStorage'
 import { checkAuthorization } from '@app'
+import { resetPostList } from '@modules/posts'
 
 
 export const userCreateAccountProfile = createAsyncThunk(
@@ -86,6 +87,7 @@ export const userLogout = createAsyncThunk(
     async (_, {dispatch}) => {
         removeAuthLocalStorage()
         dispatch(checkAuthorization())
+        dispatch(resetPostList())
     }
 )
 

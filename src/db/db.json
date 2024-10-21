@@ -133,6 +133,33 @@
       "postTypeId": 2
     }
   ],
+  "dayFilters": [
+    {
+      "id": 1,
+      "name": "Сегодня",
+      "label": "today"
+    },
+    {
+      "id": 2,
+      "name": "Вчера",
+      "label": "yesterday"
+    },
+    {
+      "id": 3,
+      "name": "Текущая неделя",
+      "label": "currentweek"
+    },
+    {
+      "id": 4,
+      "name": "Текущий месяц",
+      "label": "currentmonth"
+    },
+    {
+      "id": 5,
+      "name": "Последние 30 дней",
+      "label": "last30"
+    }
+  ],
   "posts": [
     {
       "id": 1,
@@ -141,7 +168,7 @@
       "categoryId": 1,
       "volume": 25000,
       "title": "Замена задней левой стойки в BMW Service S12",
-      "date": "2024-10-21"
+      "date": "2024-08-15"
     },
     {
       "id": 2,
@@ -149,25 +176,43 @@
       "postType": 1,
       "categoryId": 1,
       "volume": 2000,
-      "title": null,
-      "date": "2024-10-21"
+      "title": "Куранах",
+      "date": "2024-10-15"
     },
     {
       "id": 3,
       "userId": 1,
-      "postType": 2,
+      "postType": 1,
       "categoryId": 1,
-      "volume": 500,
-      "title": "Замена задней левой стойки в BMW Service S12",
-      "date": "2024-10-21"
+      "volume": 2000,
+      "title": "Куранах",
+      "date": "2024-10-20"
     },
     {
       "id": 4,
       "userId": 1,
       "postType": 2,
       "categoryId": 1,
+      "volume": 500,
+      "title": "Замена задней левой",
+      "date": "2024-10-21"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 1,
       "volume": 6000,
       "title": null,
+      "date": "2024-10-21"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 1,
+      "volume": 200,
+      "title": "Какой-то заголовок",
       "date": "2024-10-21"
     }
   ]

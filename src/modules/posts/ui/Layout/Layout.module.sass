@@ -43,6 +43,10 @@
     width: 100%
     span
         @include m.fontInter(22px, var(--text-color), 500, 140%)
+        opacity: 1
+        transition: opacity .15s
 .sumsItemTitle
     @include m.fontInter(14px, var(--text-color), 500, 120%)
     opacity: .4
+.sumsItemFetching
+    opacity: 0 !important

@@ -11,11 +11,7 @@ export const Container = () => {
     const postTypeActiveFilter = useSelector(store => store.filters.filtersData.postType)
 
     useEffect(() => {
-        dispatch(getPostsList(
-            {
-                postType: postTypeActiveFilter
-            }
-        ))
+        dispatch(getPostsList())
     }, [postTypeActiveFilter])
 
     if(!postsData.isInit && postsData.postList) {
