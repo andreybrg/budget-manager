@@ -1,0 +1,22 @@
+@use '@assets/styles/mixins' as m
+
+.panel
+    display: flex
+    justify-content: flex-end
+
+.panelSidebar
+    position: fixed
+    left: 0
+    top: 0
+    width: var(--panel-sidebar-menu-width)
+    height: 100vh
+    background-color: var(--sidebar-menu-background-color)
+    border-right: 1px solid var(--sidebar-menu-border-color)
+    box-sizing: border-box
+    @include m.s900
+        display: none
+
+.content
+    width: calc(100% - var(--panel-sidebar-menu-width))
+    @include m.s900
+        width: 100%

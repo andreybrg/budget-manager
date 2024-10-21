@@ -1,6 +1,5 @@
 import React from 'react'
 import LogoSvg from '@assets/images/logo.svg?react'
-import BurgerMenuSvg from '@assets/images/burger-menu.svg?react'
 import LogoutSvg from '@assets/images/logout.svg?react'
 import style from './Layout.module.sass'
 import commonStyle from '@assets/styles/common.module.sass'
@@ -10,14 +9,15 @@ import { MicroBtn } from '@shared/buttons'
 import { useNavigate } from 'react-router-dom'
 import { userLogout } from '@modules/auth'
 import { useDispatch } from 'react-redux'
+import { BurgerMenuBtn } from '@modules/burgerMenu'
 
-export const Layout = ({ isAuth }) => {
+export const Layout = ({ isAuth, isProfileActivated }) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     return(
-        <div className={cn(style.header, {[style.header_Unauthorized]: !isAuth})}>
+        <div className={cn(style.header, {[style.header_Unauthorized]: !isAuth || !isProfileActivated})}>
             <div className={commonStyle.wrap}>
                 <div className={commonStyle.container}>
                     <div className={style.headerContainer}>
@@ -25,16 +25,8 @@ export const Layout = ({ isAuth }) => {
                             <LogoSvg/>
                         </div>
 
-                        {isAuth
-                            ?
-                            <div className={style.budget}>
-                                <BudgetControl/>
-                            </div>
-                            :
-                            null}
-                        
                         <div className={style.burger}>
-                            <BurgerMenuSvg/>
+                            <BurgerMenuBtn/>
                         </div>
 
                         {!isAuth

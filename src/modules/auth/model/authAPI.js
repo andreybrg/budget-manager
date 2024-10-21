@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-const BASE_API_URL = 'http://localhost:8080/'
+import { BASE_API_URL } from '@shared/constants'
 
 export const authAPI = createApi({
     reducerPath: 'authAPI',
@@ -8,28 +8,41 @@ export const authAPI = createApi({
         userRegister: builder.mutation({
             query: ({ email, password }) => {
                 return {
-                url: 'register',
-                method: 'POST',
-                body: {
-                    email: email,
-                    password: password
-                },
-                // validateStatus: (response, result) =>
-                //     response.status === 201
+                    url: 'register',
+                    method: 'POST',
+                    body: {
+                        email: email,
+                        password: password,
+                    },
+                }
+            },
+        }),
+        userCreateProfile: builder.mutation({
+            query: ({ userId, token }) => {
+                return {
+                    url: '/660/usersProfileData',
+                    method: 'POST',
+                    body: {
+                        id: userId,
+                        isProfileActivated: false,
+                        userId: userId,
+                        currencyId: null,
+                        budget: null,
+                        themeId: 1,
+                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 }
             },
         }),
         userLogin: builder.mutation({
             query: ({ email, password }) => {
                 return {
-                url: 'login',
-                method: 'POST',
-                body: {
-                    email: email,
-                    password: password
-                },
-                // validateStatus: (response, result) =>
-                //     response.status === 201
+                    url: 'login',
+                    method: 'POST',
+                    body: {
+                        email: email,
+                        password: password
+                    },
                 }
             },
         }),
@@ -37,8 +50,18 @@ export const authAPI = createApi({
             query: ({token, id}) => ({
                 url: `600/users/${id}`,
                 headers: { Authorization: `Bearer ${token}` },
-                // validateStatus: (response, result) =>
-                //     response.status === 200 && !result.error
+            }),
+        }),
+        getProfileData: builder.query({
+            query: ({token, userId}) => ({
+                url: `600/users/${userId}?_embed=usersProfileData`,
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+        }),
+        getCategories: builder.query({
+            query: ({ token, userId }) => ({
+                url: `600/catrgories?userId=${userId}`,
+                headers: { Authorization: `Bearer ${token}` },
             }),
         })
     }),
@@ -47,5 +70,7 @@ export const authAPI = createApi({
 export const { 
     useUserRegisterMutation,
     useUserLoginMutation,
-    useCheckAuthorizationQuery
+    useCheckAuthorizationQuery,
+    useUserCreateProfileMutation,
+    useGetProfileDataQuery
 } = authAPI

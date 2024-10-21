@@ -12,9 +12,9 @@ export const Layout = ({ toggleAuthMode, authStyle }) => {
 
     const dispatch = useDispatch()
 
-    const isAuthError = useSelector(store => store.auth.data.isError)
+    const isAuthError = useSelector(store => store.auth.data.isAuthError)
     const authErrorMessage = useSelector(store => store.auth.data.errorMessage)
-    const isAuthFetching = useSelector(store => store.auth.data.isFething)
+    const isAuthFetching = useSelector(store => store.auth.data.inProcess)
 
     const formik = useFormik({
         initialValues: {

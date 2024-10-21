@@ -2,6 +2,8 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from '@app/layout'
 import { Authorization } from '@pages/authorizaton'
 import { AuthProtectedRoute } from '@shared/routes'
+import { FirstSteps } from '@pages/firstSteps'
+import { Panel } from '@pages/panel'
 
 export const AppRouter = ({  }) => {
     return(
@@ -13,12 +15,17 @@ export const AppRouter = ({  }) => {
                     }/>
                     <Route path={'panel'} element={
                         <AuthProtectedRoute>
-                            <>asdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasdasdasda sdasdas dasdasdasdas dasdasdasd</>
+                            <Panel/>
                         </AuthProtectedRoute>
                     }/>
                     <Route path={'auth/:authMode'} element={
                         <AuthProtectedRoute forAuthorizedUser={true}>
                             <Authorization/>
+                        </AuthProtectedRoute>
+                    }/>
+                    <Route path={'first-steps'} element={
+                        <AuthProtectedRoute>
+                            <FirstSteps/>
                         </AuthProtectedRoute>
                     }/>
                     <Route path={'*'} element={<>404</>}/>

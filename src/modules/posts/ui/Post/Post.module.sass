@@ -1,0 +1,29 @@
+@use '@assets/styles/mixins' as m
+
+.post
+    width: 100%
+    padding: 15px
+    box-sizing: border-box
+    border-radius: var(--main-border-radius)
+    border: 1px solid var(--main-ui-border-color)
+    background-color: var(--main-ui-background-color)
+    display: flex
+    align-items: center
+    column-gap: 15px
+
+.info
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+    flex: 1
+.category
+    @include m.fontInter(14px, var(--text-color), 500, 120%)
+.title
+    @include m.fontInter(14px, var(--text-color), 500, 120%)
+.volume
+.controlBtn
+    cursor: pointer
+    font-size: 0
+    svg
+        path
+            fill: var(--main-icon-color)

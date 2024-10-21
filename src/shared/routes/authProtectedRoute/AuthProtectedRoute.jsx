@@ -10,7 +10,7 @@ export const AuthProtectedRoute = ({ children, forAuthorizedUser=false }) => {
         if(isAuth) {
             return children ? children : <Outlet/>
         } else {
-            return <Navigate to={'/auth/signup'}/>
+            return <Navigate to={'/auth/signin'}/>
         }
     } else {
         if(!isAuth) {

@@ -1,11 +1,14 @@
 import { authAPI } from '@modules/auth'
-import { setUserAuth, setUserUnauth } from '@modules/auth/model/authSlice'
+import { getUserProfileData, setUserAuth, setUserUnauth } from '@modules/auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getAuthLocalStorage, removeAuthLocalStorage } from '@shared/utils/localStorage'
+import { appAPI } from './appAPI'
+import { getAuthorizedUserData } from '@modules/auth/model/authSlice'
 
 const initialState = {
     data: {
         isInit: false,
+        appData: null
     },
 
 }
@@ -21,6 +24,7 @@ export const checkAuthorization = createAsyncThunk(
             }))
             if(!response.error) {
                 dispatch(setUserAuth())
+                dispatch(getAuthorizedUserData())
             } else {
                 dispatch(setUserUnauth())
                 removeAuthLocalStorage()
@@ -32,12 +36,34 @@ export const checkAuthorization = createAsyncThunk(
     }
 )
 
+export const getAppData = createAsyncThunk(
+    'app/getAppData',
+    async (_, {dispatch}) => {
+
+        await Promise.all([
+            dispatch(appAPI.endpoints.getCurrencies.initiate()),
+            dispatch(appAPI.endpoints.getPostTypes.initiate()),
+            dispatch(getUserProfileData())
+        ])
+        .then(([currencies, postTypes, b]) => {
+            dispatch(setAppData({
+                currencies: currencies.data,
+                postTypes: postTypes.data,
+            }))
+        })
+    }
+)
+
 export const appInitialization = createAsyncThunk(
     'app/appInitialization',
     async (_, {dispatch}) => {
-        Promise.all([dispatch(checkAuthorization())])
+        await Promise.all([
+                dispatch(checkAuthorization()),
+                dispatch(getAppData()),
+            ])
             .then(() => {
                 dispatch(setAppInit())
+                console.log('init app done')
             })
     }
 )
@@ -49,8 +75,11 @@ const appSlice = createSlice({
         setAppInit(state) {
             state.data.isInit = true
         },
+        setAppData(state, action) {
+            state.data.appData = action.payload
+        },
     }
 })
 
-export const { setAppInit } = appSlice.actions
+export const { setAppInit, setAppData } = appSlice.actions
 export default appSlice.reducer

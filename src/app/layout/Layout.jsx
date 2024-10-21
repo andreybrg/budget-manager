@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom"
 import cn from 'classnames'
 import style from './Layout.module.sass'
 import themeStyle from '@assets/styles/colors.module.sass'
-import commonStyle from '@assets/styles/common.module.sass'
 import { HeaderModule } from "@modules/header"
+import { BurgerMenu } from "@modules/burgerMenu"
 
 export const Layout = ({
 }) => {
@@ -18,12 +18,9 @@ export const Layout = ({
                 <HeaderModule/>
             </header>
             <main className={style.main}>
-                <div className={commonStyle.wrap}>
-                    <div className={commonStyle.container}>
-                        <Outlet/>
-                    </div>
-                </div>
+                <Outlet/>
             </main>
+            <BurgerMenu/>
         </div>
     )
 }

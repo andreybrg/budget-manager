@@ -1,21 +1,32 @@
 {
   "users": [
     {
-      "email": "andreybrg@yandex.ru",
-      "password": "$2a$10$WC4Dqtyy6uwuFKWIa5LxnuhEGuEgRVg3xhZGf93KPiV/zfVWvXfS2",
-      "currencyId": 1,
-      "themeId": 1,
+      "email": "a@a",
+      "password": "$2a$10$UZ3KbN3qOWg9r09iVdFgj.nUqtd33yLM1D6xEsn7EpTnWySGzYvOy",
       "id": 1
     },
     {
-      "email": "a@a",
-      "password": "$2a$10$II1kXvmOrxSvt6JzXyQGJezCmZbX4m47a9sWj0RPswa35Lk8.UMdG",
+      "email": "b@b",
+      "password": "$2a$10$pAXGLGa.fm/q/1c.ZCDX7ugNV1DN1kM6hPKFqNogACAOh1/PSpXTu",
       "id": 2
+    }
+  ],
+  "usersProfileData": [
+    {
+      "id": 1,
+      "isProfileActivated": true,
+      "userId": 1,
+      "currencyId": 2,
+      "budget": 7500,
+      "themeId": 1
     },
     {
-      "email": "a2@a",
-      "password": "$2a$10$vCiSE7iC10m3C2aKf3qTDONdVi5Si1vbMqYzYG.YNnp1Qw/pD28Dy",
-      "id": 3
+      "id": 2,
+      "isProfileActivated": false,
+      "userId": 2,
+      "currencyId": null,
+      "budget": null,
+      "themeId": 1
     }
   ],
   "catrgories": [
@@ -36,22 +47,26 @@
     {
       "id": 1,
       "name": "Российский рубль",
-      "sign": "₽"
+      "sign": "₽",
+      "code": "RUB"
     },
     {
       "id": 2,
       "name": "Доллар США",
-      "sign": "$"
+      "sign": "$",
+      "code": "USD"
     },
     {
       "id": 3,
       "name": "Японская иена",
-      "sign": "¥"
+      "sign": "¥",
+      "code": "JPY"
     },
     {
       "id": 4,
       "name": "Евро",
-      "sign": "€"
+      "sign": "€",
+      "code": "EUR"
     }
   ],
   "postTypes": [
@@ -72,6 +87,24 @@
     {
       "id": 2,
       "name": "Светлая"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 1,
+      "volume": 25000,
+      "title": "Замена задней левой стойки в BMW Service S12"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 1,
+      "volume": 2000,
+      "title": null
     }
   ]
 }

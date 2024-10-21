@@ -1,2 +1,2 @@
-export { appSlice, checkAuthorization } from './model'
+export { appAPI, appSlice, checkAuthorization } from './model'
 export { App } from './App'

@@ -1,17 +1,16 @@
 import React from 'react'
 import { Layout } from './Layout'
+import { useSelector } from 'react-redux'
 
 export const Container = () => {
 
-    const budgetAmount = 780000
     const budgetName = 'Общий бюджет'
-    const currency = 'RUB'
+    const budgetAmount = useSelector(store => store.auth.data.profileData.budget)
 
     return(
         <Layout
             budgetAmount={budgetAmount}
             budgetName={budgetName}
-            currency={currency}
             />
     )
 }
