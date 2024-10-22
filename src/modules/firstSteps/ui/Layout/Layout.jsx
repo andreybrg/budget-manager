@@ -72,7 +72,7 @@ export const Layout = () => {
             </div>
         )
     } else {
-        return <Navigate to={'/panel'}/>
+        return <Navigate to={'/panel/main'}/>
     }
 
     

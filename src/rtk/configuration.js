@@ -6,6 +6,7 @@ import { firstStepsAPI, firstStepsSlice } from "@modules/firstSteps"
 import { burgerMenuSlice } from "@modules/burgerMenu"
 import { postsAPI, postsSlice } from "@modules/posts"
 import { filtersSlice } from "@modules/filters"
+import { categoriesSlice, categoriesAPI } from "@modules/categories"
 
 
 const store = configureStore({
@@ -16,10 +17,13 @@ const store = configureStore({
         burgerMenu: burgerMenuSlice,
         posts: postsSlice,
         filters: filtersSlice,
+        categories: categoriesSlice,
         [authAPI.reducerPath]: authAPI.reducer,
         [appAPI.reducerPath]: appAPI.reducer,
         [firstStepsAPI.reducerPath]: firstStepsAPI.reducer,
         [postsAPI.reducerPath]: postsAPI.reducer,
+        [categoriesAPI.reducerPath]: postsAPI.reducer,
+        
         
     },
     middleware: (getDefaultMiddleware) =>
@@ -28,6 +32,7 @@ const store = configureStore({
             .concat(appAPI.middleware)
             .concat(firstStepsAPI.middleware)
             .concat(postsAPI.middleware)
+            .concat(categoriesAPI.middleware)
 })
 
 

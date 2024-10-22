@@ -1,0 +1,33 @@
+@use '@assets/styles/mixins' as m
+    
+.container
+    display: flex
+    align-items: center
+    position: relative
+    select
+        background-color: unset
+        -webkit-appearance: none
+        -moz-appearance: none
+        appearance: none
+        background: unset
+        border: none
+        @include m.fontInter(16px, var(--text-color), 500, 120%)
+        padding: 0 24px 0 0
+        box-sizing: border-box
+        &::-ms-expand
+            display: none
+        option
+            @include m.fontInter(14px, var(--text-color), 500, 120%)
+            padding: 2px 15px
+            background-color: var(--main-ui-background-color)
+    svg
+        position: absolute
+        right: 0
+        top: 0
+        bottom: 0
+        left: auto
+        margin: auto
+        width: 19px
+        height: 19px
+        path
+            fill: var(--text-color)

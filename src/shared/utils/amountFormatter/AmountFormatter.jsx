@@ -6,7 +6,7 @@ export const AmountFormatter = ({amount}) => {
     const currencies = useSelector(store => store.app.data.appData.currencies)
     const currencyCode = currencies.find(el => el.id === currencyId).code
 
-    const formattedAmount = Number(amount).toLocaleString(
+    const formattedAmount = Number(Math.abs(amount)).toLocaleString(
         'ru-RU',
         {
             style: 'currency', 

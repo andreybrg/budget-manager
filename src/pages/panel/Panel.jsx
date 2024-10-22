@@ -3,7 +3,8 @@ import commonStyle from '@assets/styles/common.module.sass'
 import style from './Panel.module.sass'
 import { PanelModule } from '@modules/panel'
 import cn from 'classnames'
-import { PanelSidebar } from '@modules/panel'
+import { PanelSidebar } from '@modules/sidebar'
+import { Outlet, Route, Routes } from 'react-router-dom'
 
 export const Panel = () => {
 
@@ -13,7 +14,7 @@ export const Panel = () => {
             <PanelSidebar/>
             <div className={cn(commonStyle.wrap, style.content)}>
                 <div className={commonStyle.container}>
-                    <PanelModule/>
+                    <Outlet/>
                 </div>
             </div>
         </div>

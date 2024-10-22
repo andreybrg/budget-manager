@@ -10,7 +10,7 @@ export const Layout = () => {
     return(
         <div className={style.panelSidebar}>
             <div className={style.menu}>
-                <NavLink to='/panel'
+                <NavLink to='/panel/main'
                     className={({ isActive }) =>
                         cn(
                             style.item,
@@ -20,7 +20,7 @@ export const Layout = () => {
                     >
                     <WalletSvg/>
                 </NavLink>
-                <NavLink to='/categories'
+                <NavLink to='/panel/categories'
                     className={({ isActive }) =>
                         cn(
                             style.item,

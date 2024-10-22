@@ -9,9 +9,12 @@ export const InputEmail = ({
     formikFieldProps={},
     formikTouched=false,
     formikErrors=null,
-    disabled=false
+    disabled=false,
+    value
 }) => {
 
+    const valueProp = {}
+    if(value) valueProp.value = value
 
     return(
         <div className={style.container}>
@@ -22,6 +25,7 @@ export const InputEmail = ({
                     placeholder={placeholder} 
                     type={'email'}
                     disabled={disabled}
+                    {...valueProp}
                     />
             </label>
             {formikTouched && formikErrors ? <div className={style.fieldError}>{formikErrors}</div> : null}

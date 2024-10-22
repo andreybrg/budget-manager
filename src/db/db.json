@@ -55,21 +55,91 @@
       "themeId": 1
     }
   ],
-  "catrgories": [
+  "categories": [
     {
       "id": 1,
-      "userId": 1,
       "postType": 1,
-      "name": "Зарплата"
+      "name": "Зарплата",
+      "color": "#90BE6D"
     },
     {
       "id": 2,
-      "userId": 1,
+      "postType": 1,
+      "name": "Бизнес",
+      "color": "#43AA8B"
+    },
+    {
+      "id": 3,
+      "postType": 1,
+      "name": "Входящий перевод",
+      "color": "#4D908E"
+    },
+    {
+      "id": 4,
+      "postType": 1,
+      "name": "Возврат долга",
+      "color": "#577590"
+    },
+    {
+      "id": 5,
+      "postType": 1,
+      "name": "Из инвестиций",
+      "color": "#277DA1"
+    },
+    {
+      "id": 6,
       "postType": 2,
-      "name": "Ремонт"
+      "name": "Супермаркет",
+      "color": "#F94144"
+    },
+    {
+      "id": 7,
+      "postType": 2,
+      "name": "Кафе и рестораны",
+      "color": "#F3722C"
+    },
+    {
+      "id": 8,
+      "postType": 2,
+      "name": "Автомобиль",
+      "color": "#F8961E"
+    },
+    {
+      "id": 9,
+      "postType": 2,
+      "name": "Здоровье",
+      "color": "#F9844A"
+    },
+    {
+      "id": 10,
+      "postType": 2,
+      "name": "Развлечения",
+      "color": "#F9C74F"
     }
   ],
-  "customCatrgories": [],
+  "customCategories": [
+    {
+      "userId": 1,
+      "name": "testName",
+      "color": "#FFFFFF",
+      "postType": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "name": "Проебал",
+      "color": "#FFFFFF",
+      "postType": 2,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "name": "Жумасынба",
+      "color": "#FFFFFF",
+      "postType": 1,
+      "id": 3
+    }
+  ],
   "currencies": [
     {
       "id": 1,
@@ -166,7 +236,7 @@
       "userId": 1,
       "postType": 1,
       "categoryId": 1,
-      "volume": 25000,
+      "volume": 2000,
       "title": "Замена задней левой стойки в BMW Service S12",
       "date": "2024-08-15"
     },
@@ -174,7 +244,7 @@
       "id": 2,
       "userId": 1,
       "postType": 1,
-      "categoryId": 1,
+      "categoryId": 2,
       "volume": 2000,
       "title": "Куранах",
       "date": "2024-10-15"
@@ -183,7 +253,7 @@
       "id": 3,
       "userId": 1,
       "postType": 1,
-      "categoryId": 1,
+      "categoryId": 3,
       "volume": 2000,
       "title": "Куранах",
       "date": "2024-10-20"
@@ -191,18 +261,18 @@
     {
       "id": 4,
       "userId": 1,
-      "postType": 2,
-      "categoryId": 1,
-      "volume": 500,
+      "postType": 1,
+      "categoryId": 4,
+      "volume": 1500,
       "title": "Замена задней левой",
       "date": "2024-10-21"
     },
     {
       "id": 5,
       "userId": 1,
-      "postType": 2,
-      "categoryId": 1,
-      "volume": 6000,
+      "postType": 1,
+      "categoryId": 5,
+      "volume": 3000,
       "title": null,
       "date": "2024-10-21"
     },
@@ -210,10 +280,46 @@
       "id": 6,
       "userId": 1,
       "postType": 2,
-      "categoryId": 1,
-      "volume": 200,
+      "categoryId": 6,
+      "volume": 1200,
       "title": "Какой-то заголовок",
       "date": "2024-10-21"
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 7,
+      "volume": 3200,
+      "title": "Закрытый и амый интересный вопрос для водителей автобуса нолмер 66",
+      "date": "2024-10-22"
+    },
+    {
+      "id": 8,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 8,
+      "volume": 2000,
+      "title": "Какой-то заголовок",
+      "date": "2024-10-21"
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 9,
+      "volume": 2300,
+      "title": "Закрытый и амый интересный вопрос для водителей автобуса нолмер 66",
+      "date": "2024-10-22"
+    },
+    {
+      "id": 10,
+      "userId": 1,
+      "postType": 2,
+      "categoryId": 10,
+      "volume": 1000,
+      "title": "Закрытый и амый интересный вопрос для водителей автобуса нолмер 66",
+      "date": "2024-10-22"
     }
   ]
 }

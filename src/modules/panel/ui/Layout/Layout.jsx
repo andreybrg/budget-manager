@@ -4,6 +4,7 @@ import { BudgetControl } from '@modules/header/budgetControl'
 import { PanelTitle } from '@shared/titles'
 import { PostsModule } from '@modules/posts'
 import { DayFilters, PostTypesFilters } from '@modules/filters'
+import { ChartModule } from '@modules/chart'
 
 export const Layout = () => {
 
@@ -20,6 +21,7 @@ export const Layout = () => {
                 <DayFilters/>
             </div>
             <div className={style.chart}>
+                <ChartModule/>
             </div>
             <div className={style.posts}>
                 <PostsModule/>

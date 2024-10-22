@@ -97,7 +97,8 @@ export const getAuthorizedUserData = createAsyncThunk(
         try {
             await Promise.all([
                 dispatch(getUserProfileData()),
-                dispatch(getUserCategories())
+                dispatch(getUserCategories()),
+                dispatch(getCustomUserCategories())
             ])
             .then(() => true)
         } catch (error) {
@@ -134,15 +135,35 @@ export const getUserCategories = createAsyncThunk(
     'auth/getUserCategories',
     async (_, {dispatch}) => {
         try {
-            const response = await dispatch(authAPI.endpoints.getCategories.initiate({
-                
-            },
+            const response = await dispatch(authAPI.endpoints.getCategories.initiate({},
             {
                 subscribe: false, 
                 forceRefetch: true 
             }))
             const categories = {data: response.data}
             dispatch(setUserCategories(categories))
+            return response
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+)
+
+export const getCustomUserCategories = createAsyncThunk(
+    'auth/getCustomUserCategories',
+    async (_, {dispatch}) => {
+        const [ token, userId ] = getAuthLocalStorage()
+        try {
+            const response = await dispatch(authAPI.endpoints.getCustomCategories.initiate({
+                token: token,
+                userId: userId
+            },
+            {
+                subscribe: false, 
+                forceRefetch: true 
+            }))
+            const categories = {data: response.data}
+            dispatch(setUserCustomCategories(categories))
             return response
         } catch (error) {
             console.log(error.message)
@@ -191,6 +212,12 @@ const authSlice = createSlice({
                 ...state.data.profileData,
                 categories: action.payload.data
             }
+        },
+        setUserCustomCategories(state, action) {
+            state.data.profileData = {
+                ...state.data.profileData,
+                customCategories: action.payload.data
+            }
         }
     },
     extraReducers: builder =>
@@ -224,5 +251,5 @@ const authSlice = createSlice({
             })
 })
 
-export const { setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories } = authSlice.actions
+export const { setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, setUserCustomCategories } = authSlice.actions
 export default authSlice.reducer

@@ -1,5 +1,6 @@
 import React from "react"
 import style from './InputText.module.sass'
+import cn from 'classnames'
 
 export const InputText = ({ 
     label,
@@ -9,22 +10,38 @@ export const InputText = ({
     formikFieldProps={},
     formikTouched=false,
     formikErrors=null,
-    disabled=false
+    disabled=false,
+    value,
+    onChangeFunction,
+    errorAsLabel=false
 }) => {
 
+    const valueProp = {}
+    if(value) {
+        valueProp.value = value
+        valueProp.onChange = onChangeFunction
+    }
 
     return(
         <div className={style.container}>
             <label htmlFor={id || name} className={style.label}>
+                {
+                !errorAsLabel
+                ?
                 <div className={style.title}>{label}</div>
+                :
+                <div className={cn(style.title, {[style.titleError]: formikTouched && formikErrors})}>{formikTouched && formikErrors ? formikErrors : label}</div>
+                }
+
                 <input 
                     {...formikFieldProps}
                     placeholder={placeholder} 
                     type={'text'}
                     disabled={disabled}
+                    {...valueProp}
                     />
             </label>
-            {formikTouched && formikErrors ? <div className={style.fieldError}>{formikErrors}</div> : null}
+            {formikTouched && formikErrors && !errorAsLabel ? <div className={style.fieldError}>{formikErrors}</div> : null}
         </div>
     )
 }

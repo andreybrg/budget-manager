@@ -20,7 +20,7 @@ export const authAPI = createApi({
         userCreateProfile: builder.mutation({
             query: ({ userId, token }) => {
                 return {
-                    url: '/660/usersProfileData',
+                    url: '660/usersProfileData',
                     method: 'POST',
                     body: {
                         id: userId,
@@ -60,7 +60,13 @@ export const authAPI = createApi({
         }),
         getCategories: builder.query({
             query: () => ({
-                url: `/catrgories`,
+                url: `/categories`,
+            }),
+        }),
+        getCustomCategories: builder.query({
+            query: ({token, userId}) => ({
+                url: `600/customCategories?userId=${userId}&_sort=id&_order=desc`,
+                headers: { Authorization: `Bearer ${token}` },
             }),
         })
     }),

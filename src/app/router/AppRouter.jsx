@@ -1,9 +1,11 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { Layout } from '@app/layout'
 import { Authorization } from '@pages/authorizaton'
 import { AuthProtectedRoute } from '@shared/routes'
 import { FirstSteps } from '@pages/firstSteps'
 import { Panel } from '@pages/panel'
+import { PanelModule } from '@modules/panel'
+import { CategoriesModule } from '@modules/categories'
 
 export const AppRouter = ({  }) => {
     return(
@@ -13,9 +15,14 @@ export const AppRouter = ({  }) => {
                     <Route index element={
                         <></>
                     }/>
-                    <Route path={'panel'} element={
+                    <Route path={'panel/*'} element={
                         <AuthProtectedRoute>
-                            <Panel/>
+                            <Routes>
+                                <Route element={<Panel/>}>
+                                    <Route path={'main'} element={<PanelModule/>}/>
+                                    <Route path={'categories'} element={<CategoriesModule/>}/>
+                                </Route>
+                            </Routes>
                         </AuthProtectedRoute>
                     }/>
                     <Route path={'auth/:authMode'} element={

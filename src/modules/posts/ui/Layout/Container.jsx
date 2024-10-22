@@ -14,7 +14,7 @@ export const Container = () => {
         dispatch(getPostsList())
     }, [postTypeActiveFilter])
 
-    if(!postsData.isInit && postsData.postList) {
+    if(postsData.postList) {
         return(
             <Layout 
                 isFetching={postsData.isFetching} 
