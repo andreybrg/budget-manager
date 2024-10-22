@@ -95,8 +95,8 @@ export const Container = () => {
                 data: dataForChart,
                 backgroundColor: chartColors,
                 borderWidth: 0,
-                spacing: !postsList.length ? 0 : 3,
-                borderRadius: !postsList.length ? 0 : 3
+                spacing: postsList && !postsList.length ? 0 : 3,
+                borderRadius: postsList && !postsList.length ? 0 : 3
             }
         ]
     }

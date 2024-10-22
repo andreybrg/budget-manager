@@ -19,6 +19,16 @@
       "email": "d@d",
       "password": "$2a$10$JlzPRS6ROBFAj3XlhrlSm.JsDlY2cmIKdi.w4PsJurKG6G1XjUk6e",
       "id": 4
+    },
+    {
+      "email": "z@z",
+      "password": "$2a$10$5ucWS.GR0jnz0u/mkAt/T.pqd3yAzTQkqwaXTyetWx/oZRy1ZvfiS",
+      "id": 5
+    },
+    {
+      "email": "as@a",
+      "password": "$2a$10$2xQ2b40zlUdLe9A87Alp3.B/lAEClKLTh.BtOmeAHSYahBhLktaHW",
+      "id": 6
     }
   ],
   "usersProfileData": [
