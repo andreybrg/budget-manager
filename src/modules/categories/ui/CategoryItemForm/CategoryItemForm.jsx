@@ -5,35 +5,49 @@ import { InputText } from '@shared/fields/textField'
 import { Controls } from '../Controls/Controls'
 import style from './CategoryItemForm.module.sass'
 
-export const CategoryItemForm = ({ onClose, onSubmit, defaultName=null }) => {
+export const CategoryItemForm = ({ defaultColor, categoryId='', onClose, onSubmitFunction, defaultName=null, isDisabled=false }) => {
 
     const formik = useFormik({
         initialValues: {
-            name: defaultName ? defaultName : ''
+            newName: defaultName ? defaultName : '',
+            categoryColor: defaultColor ? defaultColor : '#FFFFFF',
+            categoryId
         },
         validationSchema: Yup.object({
-            name: Yup.string()
+            newName: Yup.string()
                 .required("Введите название категории")
                 .max(30, "Не более 30 символов"),
         }),
         onSubmit: (values) => {
-            onSubmit(values)
+            onSubmitFunction(values)
         }
     })
+
+    const onChangeColor = (newColor) => {
+        formik.setFieldValue('categoryColor', newColor)
+    }
 
     return(
         <form action="" onSubmit={formik.handleSubmit} className={style.form}>
             <InputText
                     label={'Название категории'}
-                    id={'name'}
-                    name={'name'}
-                    formikFieldProps={{...formik.getFieldProps('name')}}
-                    formikErrors={formik.errors.name}
-                    formikTouched={formik.touched.name}
+                    id={'newName'}
+                    name={'newName'}
+                    formikFieldProps={{...formik.getFieldProps('newName')}}
+                    formikErrors={formik.errors.newName}
+                    formikTouched={formik.touched.newName}
                     errorAsLabel={true}
+                    disabled={isDisabled}
+                    inputTextColor={formik.values.categoryColor}
                     />
+
+            <input type="hidden" name="" />
+            
             <Controls
                 onClose={onClose}
+                disabled={isDisabled}
+                colorPickerBg={formik.values.categoryColor}
+                onChangeColor={onChangeColor}
                 />
         </form>
     )

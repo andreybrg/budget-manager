@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import style from './CategoryItem.module.sass'
 import PostEditSvg from '@assets/images/edit.svg?react'
+import PostDeleteSvg from '@assets/images/delete.svg?react'
 import { CategoryItemForm } from '../CategoryItemForm/CategoryItemForm'
+import cn from 'classnames'
+import { BuiltinPreloader } from '@modules/preloader/builtinPreloader'
 
-export const CategoryItem = ({ data, isDefaultCategory=false }) => {
+export const CategoryItem = memo(function CategoryItem({ data, isDefaultCategory=false, isFetching, isSuccess, onEditCategory, onDeleteCategory }) {
 
     const [ isEditMode, setIsEditMode ] = useState(false)
-
+    
     const onEditModeOn = () => {
         setIsEditMode(prev => true)
     }
@@ -15,9 +18,22 @@ export const CategoryItem = ({ data, isDefaultCategory=false }) => {
         setIsEditMode(prev => false)
     }
 
+    const onSubmitFunction = (values) => {
+        setIsEditMode(false)
+        onEditCategory(values)
+    }
+
+    const onDeleteCategoryItem = (categoryId) => {
+        onDeleteCategory(categoryId)
+    }
+
     return(
         
-        <div className={style.item}>
+        <div className={cn(
+                    style.item, 
+                    {[style.item_fetching]: isFetching},
+                    {[style.item_success]: isSuccess}
+                )}>
             {!isEditMode
             ?
             <div className={style.content}>
@@ -25,20 +41,34 @@ export const CategoryItem = ({ data, isDefaultCategory=false }) => {
                 <div style={{color: data.color}} className={style.title}>
                     {data.name}
                 </div>
-                {!isDefaultCategory
+                {!isDefaultCategory && !isFetching
                 ?
-                <button type={'button'} onClick={() => onEditModeOn()} className={style.controlBtn}>
-                    <PostEditSvg/>
-                </button>
+                <div className={style.controls}>
+                    <button type={'button'} onClick={() => onEditModeOn()} className={style.controlBtn}>
+                        <PostEditSvg/>
+                    </button>
+                    <button type={'button'} onClick={() => onDeleteCategoryItem(data.id)} className={style.controlBtn}>
+                        <PostDeleteSvg/>
+                    </button>
+                </div>
                 :
+                null}
+
+                {isFetching
+                ?
+                <div className={style.preloader}><BuiltinPreloader width={'24px'}/></div>
+                : 
                 null}
             </div>
             :
             <CategoryItemForm
                 onClose={onEditModeOff}
                 defaultName={data.name}
+                defaultColor={data.color}
+                onSubmitFunction={onSubmitFunction}
+                categoryId={data.id}
                 />
             }
         </div>
     )
-}
+})

@@ -151,7 +151,7 @@ export const getUserCategories = createAsyncThunk(
 
 export const getCustomUserCategories = createAsyncThunk(
     'auth/getCustomUserCategories',
-    async (_, {dispatch}) => {
+    async (_, {dispatch, fulfillWithValue}) => {
         const [ token, userId ] = getAuthLocalStorage()
         try {
             const response = await dispatch(authAPI.endpoints.getCustomCategories.initiate({
@@ -162,9 +162,16 @@ export const getCustomUserCategories = createAsyncThunk(
                 subscribe: false, 
                 forceRefetch: true 
             }))
-            const categories = {data: response.data}
-            dispatch(setUserCustomCategories(categories))
-            return response
+            if(!response.error) {
+                const categories = {data: response.data}
+                dispatch(setUserCustomCategories(categories))
+                return response
+            } else {
+                if(response.error.status === 403) {
+                    dispatch(setUserCustomCategories({data: []}))
+                    return fulfillWithValue(true)
+                }
+            }
         } catch (error) {
             console.log(error.message)
         }
@@ -248,6 +255,13 @@ const authSlice = createSlice({
                 state.data.inProcess = false
                 state.data.isAuthError = true
                 state.data.errorMessage = action.payload
+            })
+
+            .addCase(getCustomUserCategories.pending, (state) => {
+                state.data.inProcess = true
+            })
+            .addCase(getCustomUserCategories.fulfilled, (state) => {
+                state.data.inProcess = false
             })
 })
 

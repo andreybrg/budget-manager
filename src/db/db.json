@@ -9,26 +9,6 @@
       "email": "b@b",
       "password": "$2a$10$pAXGLGa.fm/q/1c.ZCDX7ugNV1DN1kM6hPKFqNogACAOh1/PSpXTu",
       "id": 2
-    },
-    {
-      "email": "c@c",
-      "password": "$2a$10$xdflcZNPhNT9pI/aDGZ1Z.2UOb8Z.XHTwizS2zoIkjrpV7eOKyhRq",
-      "id": 3
-    },
-    {
-      "email": "d@d",
-      "password": "$2a$10$JlzPRS6ROBFAj3XlhrlSm.JsDlY2cmIKdi.w4PsJurKG6G1XjUk6e",
-      "id": 4
-    },
-    {
-      "email": "z@z",
-      "password": "$2a$10$5ucWS.GR0jnz0u/mkAt/T.pqd3yAzTQkqwaXTyetWx/oZRy1ZvfiS",
-      "id": 5
-    },
-    {
-      "email": "as@a",
-      "password": "$2a$10$2xQ2b40zlUdLe9A87Alp3.B/lAEClKLTh.BtOmeAHSYahBhLktaHW",
-      "id": 6
     }
   ],
   "usersProfileData": [
@@ -38,30 +18,6 @@
       "userId": 1,
       "currencyId": 2,
       "budget": 7500,
-      "themeId": 1
-    },
-    {
-      "id": 2,
-      "isProfileActivated": false,
-      "userId": 2,
-      "currencyId": null,
-      "budget": null,
-      "themeId": 1
-    },
-    {
-      "id": 3,
-      "isProfileActivated": true,
-      "userId": 3,
-      "currencyId": 3,
-      "budget": 10000,
-      "themeId": 1
-    },
-    {
-      "id": 4,
-      "isProfileActivated": true,
-      "userId": 4,
-      "currencyId": 1,
-      "budget": 0,
       "themeId": 1
     }
   ],
@@ -130,24 +86,10 @@
   "customCategories": [
     {
       "userId": 1,
-      "name": "testName",
-      "color": "#FFFFFF",
+      "name": "Акции",
+      "color": "#5af8ff",
       "postType": 1,
       "id": 1
-    },
-    {
-      "userId": 1,
-      "name": "Проебал",
-      "color": "#FFFFFF",
-      "postType": 2,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "name": "Жумасынба",
-      "color": "#FFFFFF",
-      "postType": 1,
-      "id": 3
     }
   ],
   "currencies": [
@@ -200,17 +142,17 @@
     {
       "id": 1,
       "name": "Баланс",
-      "postTypeId": 0
+      "ptId": 0
     },
     {
       "id": 2,
       "name": "Доходы",
-      "postTypeId": 1
+      "ptId": 1
     },
     {
       "id": 3,
       "name": "Расходы",
-      "postTypeId": 2
+      "ptId": 2
     }
   ],
   "dayFilters": [
@@ -283,7 +225,7 @@
       "postType": 1,
       "categoryId": 5,
       "volume": 3000,
-      "title": null,
+      "title": "",
       "date": "2024-10-21"
     },
     {

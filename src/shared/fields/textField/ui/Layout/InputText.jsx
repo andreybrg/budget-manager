@@ -13,7 +13,8 @@ export const InputText = ({
     disabled=false,
     value,
     onChangeFunction,
-    errorAsLabel=false
+    errorAsLabel=false,
+    inputTextColor=null
 }) => {
 
     const valueProp = {}
@@ -39,6 +40,7 @@ export const InputText = ({
                     type={'text'}
                     disabled={disabled}
                     {...valueProp}
+                    style={{color: inputTextColor ? inputTextColor : null}}
                     />
             </label>
             {formikTouched && formikErrors && !errorAsLabel ? <div className={style.fieldError}>{formikErrors}</div> : null}

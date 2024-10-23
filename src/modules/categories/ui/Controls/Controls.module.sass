@@ -5,7 +5,9 @@
     display: flex
     column-gap: 5px
     margin: 0 0 0 5px
+    position: relative
     button
+        position: relative
         background-color: var(--theme-color)
         cursor: pointer
         font-size: 0
@@ -24,3 +26,25 @@
                 height: 19px
             path
                 fill: var(--theme-content-color)
+        &[disabled]
+            opacity: .5
+            cursor: default
+
+.colorBtn
+    width: 20px
+    height: 20px
+    cursor: pointer
+    font-size: 0
+    border-radius: 5px
+    position: absolute
+    left: -40px
+    padding: 0
+    bottom: 0
+    top: 0
+    margin: auto
+
+.colorPicker
+    position: absolute
+    z-index: 100
+    top: 65px
+    left: -40px

@@ -6,5 +6,6 @@ export {
     setUserAuth, 
     setUserUnauth, 
     getUserProfileData,
-    unsetUserProfileData
+    unsetUserProfileData,
+    getCustomUserCategories
  } from "./model"

@@ -9,5 +9,6 @@ export {
     setUserUnauth, 
     resetAuthError, 
     getUserProfileData, 
-    unsetUserProfileData 
+    unsetUserProfileData,
+    getCustomUserCategories
 } from './authSlice'

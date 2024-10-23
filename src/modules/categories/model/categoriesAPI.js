@@ -17,6 +17,24 @@ export const categoriesAPI = createApi({
                 }
             }),
         }),
+        editCustomCategory: builder.mutation({
+            query: ({ categoryId, newName, color, token }) => ({
+                url: `/600/customCategories/${categoryId}`,
+                method: 'PATCH',
+                body: {
+                    name: newName,
+                    color
+                },
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+        }),
+        deleteCustomCategory: builder.mutation({
+            query: ({ categoryId, token }) => ({
+                url: `/600/customCategories/${categoryId}`,
+                method: 'DELETE',
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+        }),
     }),
 })
 

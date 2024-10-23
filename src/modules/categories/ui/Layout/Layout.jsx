@@ -15,6 +15,12 @@ export const Layout = ({
     addCategoryMode,
     onToggleAddCategoryMode,
     onAddNewCategory,
+    fetchingIds,
+    deleteFetchingIds,
+    successedIds,
+    onEditCategory,
+    isAddingCategoryFetching,
+    onDeleteCategory
 }) => {
 
     return(
@@ -44,7 +50,8 @@ export const Layout = ({
                         :
                         <CategoryItemForm
                             onClose={onToggleAddCategoryMode}
-                            onSubmit={onAddNewCategory}
+                            onSubmitFunction={onAddNewCategory}
+                            isDisabled={isAddingCategoryFetching}
                             />
                     }
                 </div>
@@ -52,7 +59,14 @@ export const Layout = ({
                 {customCategories?.map(el =>
                     el.postType === postTypeShown
                         ?
-                        <CategoryItem key={el.id} data={el}/>
+                        <CategoryItem
+                            key={el.id}
+                            data={el} 
+                            isFetching={fetchingIds.includes(el.id) || deleteFetchingIds.includes(el.id)}
+                            isSuccess={successedIds.includes(el.id)}
+                            onEditCategory={onEditCategory}
+                            onDeleteCategory={onDeleteCategory}
+                            />
                         :
                         false
                 )}

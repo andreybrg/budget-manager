@@ -9,8 +9,8 @@ export const Layout = ({ filters, postTypeActiveFilter, onChangePostTypeFilter }
             {filters?.map(el =>
                 <MicroActionBtn
                     key={el.id}
-                    isActive={postTypeActiveFilter === el.postTypeId ? true : false}
-                    onClick={() => onChangePostTypeFilter(el.postTypeId)}
+                    isActive={postTypeActiveFilter === el.ptId ? true : false}
+                    onClick={() => onChangePostTypeFilter(el.ptId)}
                     >
                     {el.name}
                 </MicroActionBtn>
