@@ -1,0 +1,1 @@
+export { ModalsContext, ModalsProvider } from "./modalsContext/modalsContext"

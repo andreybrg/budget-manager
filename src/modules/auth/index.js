@@ -7,5 +7,6 @@ export {
     setUserUnauth, 
     getUserProfileData,
     unsetUserProfileData,
-    getCustomUserCategories
+    getUserCategories,
+    updateBudget
  } from "./model"

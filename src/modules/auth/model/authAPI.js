@@ -59,8 +59,9 @@ export const authAPI = createApi({
             }),
         }),
         getCategories: builder.query({
-            query: () => ({
-                url: `/categories`,
+            query: ({token, userId}) => ({
+                url: `600/categories?userId=${userId}&_sort=id&_order=desc`,
+                headers: { Authorization: `Bearer ${token}` },
             }),
         }),
         getCustomCategories: builder.query({

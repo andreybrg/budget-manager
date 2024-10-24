@@ -8,9 +8,8 @@ import { CategoryItemForm } from '../CategoryItemForm/CategoryItemForm'
 import { CategoriesPreloader } from '../CategoriesPreloader/CategoriesPreloader'
 
 export const Layout = ({ 
-    gettingCustomCategories,
+    gettingCategories,
     categories,
-    customCategories,
     postTypeShown, 
     onSetCategoryIdShown, 
     postTypes,
@@ -58,10 +57,10 @@ export const Layout = ({
                     }
                 </div>
                 
-                {!gettingCustomCategories
+                {!gettingCategories
                 ?
                 <>
-                {customCategories?.map(el =>
+                {categories?.map(el =>
                     el.postType === postTypeShown
                         ?
                         <CategoryItem
@@ -71,18 +70,19 @@ export const Layout = ({
                             isSuccess={successedIds.includes(el.id)}
                             onEditCategory={onEditCategory}
                             onDeleteCategory={onDeleteCategory}
+                            isDefaultCategory={el.isDefault}
                             />
                         :
                         false
                 )}
                 
-                {categories?.map(el =>
+                {/* {categories?.map(el =>
                     el.postType === postTypeShown
                         ?
                         <CategoryItem key={el.id} data={el} isDefaultCategory={true}/>
                         :
                         false
-                )}
+                )} */}
                 </>
                 :
                 <CategoriesPreloader/>}

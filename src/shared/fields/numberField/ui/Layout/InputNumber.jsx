@@ -1,5 +1,6 @@
 import React from "react"
 import style from './InputNumber.module.sass'
+import cn from 'classnames'
 
 export const InputNumber = ({ 
     label,
@@ -16,7 +17,7 @@ export const InputNumber = ({
     return(
         <div className={style.container}>
             <label htmlFor={id || name} className={style.label}>
-                <div className={style.title}>{label}</div>
+            <div className={cn(style.title, {[style.titleError]: formikTouched && formikErrors})}>{formikTouched && formikErrors ? formikErrors : label}</div>
                 <input 
                     {...formikFieldProps}
                     placeholder={placeholder} 
@@ -24,7 +25,6 @@ export const InputNumber = ({
                     disabled={disabled}
                     />
             </label>
-            {formikTouched && formikErrors ? <div className={style.fieldError}>{formikErrors}</div> : null}
         </div>
     )
 }

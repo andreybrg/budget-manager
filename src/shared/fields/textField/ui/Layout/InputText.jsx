@@ -13,7 +13,6 @@ export const InputText = ({
     disabled=false,
     value,
     onChangeFunction,
-    errorAsLabel=false,
     inputTextColor=null
 }) => {
 
@@ -26,14 +25,7 @@ export const InputText = ({
     return(
         <div className={style.container}>
             <label htmlFor={id || name} className={style.label}>
-                {
-                !errorAsLabel
-                ?
-                <div className={style.title}>{label}</div>
-                :
                 <div className={cn(style.title, {[style.titleError]: formikTouched && formikErrors})}>{formikTouched && formikErrors ? formikErrors : label}</div>
-                }
-
                 <input 
                     {...formikFieldProps}
                     placeholder={placeholder} 
@@ -43,7 +35,6 @@ export const InputText = ({
                     style={{color: inputTextColor ? inputTextColor : null}}
                     />
             </label>
-            {formikTouched && formikErrors && !errorAsLabel ? <div className={style.fieldError}>{formikErrors}</div> : null}
         </div>
     )
 }

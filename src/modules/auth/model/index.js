@@ -10,5 +10,6 @@ export {
     resetAuthError, 
     getUserProfileData, 
     unsetUserProfileData,
-    getCustomUserCategories
+    getUserCategories,
+    updateBudget
 } from './authSlice'

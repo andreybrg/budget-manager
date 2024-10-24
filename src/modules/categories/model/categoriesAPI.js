@@ -7,19 +7,20 @@ export const categoriesAPI = createApi({
     endpoints: (builder) => ({
         addCustomCategory: builder.mutation({
             query: ({ userId, name, color, postType }) => ({
-                url: `/customCategories`,
+                url: `/categories`,
                 method: 'POST',
                 body: {
                     userId,
                     name,
                     color,
-                    postType
+                    postType,
+                    isDefault: false
                 }
             }),
         }),
         editCustomCategory: builder.mutation({
             query: ({ categoryId, newName, color, token }) => ({
-                url: `/600/customCategories/${categoryId}`,
+                url: `/600/categories/${categoryId}`,
                 method: 'PATCH',
                 body: {
                     name: newName,
@@ -30,7 +31,7 @@ export const categoriesAPI = createApi({
         }),
         deleteCustomCategory: builder.mutation({
             query: ({ categoryId, token }) => ({
-                url: `/600/customCategories/${categoryId}`,
+                url: `/600/categories/${categoryId}`,
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` },
             }),

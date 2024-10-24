@@ -98,7 +98,7 @@ export const getAuthorizedUserData = createAsyncThunk(
             await Promise.all([
                 dispatch(getUserProfileData()),
                 dispatch(getUserCategories()),
-                dispatch(getCustomUserCategories())
+                // dispatch(getCustomUserCategories())
             ])
             .then(() => true)
         } catch (error) {
@@ -134,8 +134,12 @@ export const getUserProfileData = createAsyncThunk(
 export const getUserCategories = createAsyncThunk(
     'auth/getUserCategories',
     async (_, {dispatch}) => {
+        const [ token, userId ] = getAuthLocalStorage()
         try {
-            const response = await dispatch(authAPI.endpoints.getCategories.initiate({},
+            const response = await dispatch(authAPI.endpoints.getCategories.initiate({
+                token: token,
+                userId: userId
+            },
             {
                 subscribe: false, 
                 forceRefetch: true 
@@ -225,6 +229,9 @@ const authSlice = createSlice({
                 ...state.data.profileData,
                 customCategories: action.payload.data
             }
+        },
+        updateBudget(state, action) {
+            state.data.profileData.budget = action.payload.data
         }
     },
     extraReducers: builder =>
@@ -257,13 +264,13 @@ const authSlice = createSlice({
                 state.data.errorMessage = action.payload
             })
 
-            .addCase(getCustomUserCategories.pending, (state) => {
+            .addCase(getUserCategories.pending, (state) => {
                 state.data.inProcess = true
             })
-            .addCase(getCustomUserCategories.fulfilled, (state) => {
+            .addCase(getUserCategories.fulfilled, (state) => {
                 state.data.inProcess = false
             })
 })
 
-export const { setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, setUserCustomCategories } = authSlice.actions
+export const { setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, setUserCustomCategories, updateBudget } = authSlice.actions
 export default authSlice.reducer

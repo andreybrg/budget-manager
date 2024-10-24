@@ -7,7 +7,8 @@ import { burgerMenuSlice } from "@modules/burgerMenu"
 import { postsAPI, postsSlice } from "@modules/posts"
 import { filtersSlice } from "@modules/filters"
 import { categoriesSlice, categoriesAPI } from "@modules/categories"
-
+import { centeredModalSlice } from "@modules/modals/centeredModal"
+import { addPostAPI, addPostSlice } from "@modules/addPost"
 
 const store = configureStore({
     reducer: {
@@ -18,11 +19,14 @@ const store = configureStore({
         posts: postsSlice,
         filters: filtersSlice,
         categories: categoriesSlice,
+        centeredModal: centeredModalSlice,
+        addPost: addPostSlice,
         [authAPI.reducerPath]: authAPI.reducer,
         [appAPI.reducerPath]: appAPI.reducer,
         [firstStepsAPI.reducerPath]: firstStepsAPI.reducer,
         [postsAPI.reducerPath]: postsAPI.reducer,
-        [categoriesAPI.reducerPath]: postsAPI.reducer,
+        [categoriesAPI.reducerPath]: categoriesAPI.reducer,
+        [addPostAPI.reducerPath]: addPostAPI.reducer,
         
         
     },
@@ -33,6 +37,7 @@ const store = configureStore({
             .concat(firstStepsAPI.middleware)
             .concat(postsAPI.middleware)
             .concat(categoriesAPI.middleware)
+            .concat(addPostAPI.middleware)
 })
 
 

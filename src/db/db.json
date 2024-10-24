@@ -22,7 +22,7 @@
       "isProfileActivated": true,
       "userId": 1,
       "currencyId": 2,
-      "budget": 7500,
+      "budget": 650,
       "themeId": 1
     },
     {
@@ -32,101 +32,99 @@
       "currencyId": 1,
       "budget": 650,
       "themeId": 1
-    },
-    {
-      "id": 3,
-      "isProfileActivated": false,
-      "userId": 3,
-      "currencyId": 0,
-      "budget": 0,
-      "themeId": 1
     }
   ],
   "categories": [
     {
       "id": 1,
       "postType": 1,
+      "isDefault": true,
       "name": "Зарплата",
-      "color": "#90BE6D"
+      "color": "#90BE6D",
+      "userId": 1
     },
     {
       "id": 2,
       "postType": 1,
+      "isDefault": true,
       "name": "Бизнес",
-      "color": "#43AA8B"
+      "color": "#43AA8B",
+      "userId": 1
     },
     {
       "id": 3,
       "postType": 1,
+      "isDefault": true,
       "name": "Входящий перевод",
-      "color": "#4D908E"
+      "color": "#4D908E",
+      "userId": 1
     },
     {
       "id": 4,
       "postType": 1,
+      "isDefault": true,
       "name": "Возврат долга",
-      "color": "#577590"
+      "color": "#577590",
+      "userId": 1
     },
     {
       "id": 5,
       "postType": 1,
+      "isDefault": true,
       "name": "Из инвестиций",
-      "color": "#277DA1"
+      "color": "#277DA1",
+      "userId": 1
     },
     {
       "id": 6,
       "postType": 2,
+      "isDefault": true,
       "name": "Супермаркет",
-      "color": "#F94144"
+      "color": "#F94144",
+      "userId": 1
     },
     {
       "id": 7,
       "postType": 2,
+      "isDefault": true,
       "name": "Кафе и рестораны",
-      "color": "#F3722C"
+      "color": "#F3722C",
+      "userId": 1
     },
     {
       "id": 8,
       "postType": 2,
+      "isDefault": true,
       "name": "Автомобиль",
-      "color": "#F8961E"
+      "color": "#F8961E",
+      "userId": 1
     },
     {
       "id": 9,
       "postType": 2,
+      "isDefault": true,
       "name": "Здоровье",
-      "color": "#F9844A"
+      "color": "#F9844A",
+      "userId": 1
     },
     {
       "id": 10,
       "postType": 2,
+      "isDefault": true,
       "name": "Развлечения",
-      "color": "#F9C74F"
-    }
-  ],
-  "customCategories": [
+      "color": "#F9C74F",
+      "userId": 1
+    },
     {
       "userId": 1,
       "name": "Акции",
       "color": "#5af8ff",
       "postType": 1,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "name": "123",
-      "color": "#FFFFFF",
-      "postType": 1,
-      "id": 2
-    },
-    {
-      "userId": 2,
-      "name": "Жумасынба",
-      "color": "#FFFFFF",
-      "postType": 1,
-      "id": 3
+      "isDefault": false,
+      "id": 11
     }
   ],
+  "customCategories": [],
   "currencies": [
     {
       "id": 1,
@@ -219,94 +217,22 @@
   ],
   "posts": [
     {
-      "id": 1,
-      "userId": 1,
+      "userId": "1",
       "postType": 1,
-      "categoryId": 1,
-      "volume": 2000,
-      "title": "Замена задней левой стойки в BMW Service S12",
-      "date": "2024-08-15"
+      "categoryId": 11,
+      "volume": 700,
+      "title": "Дивиденды Газпром",
+      "date": "2024-10-24",
+      "id": 1
     },
     {
-      "id": 2,
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 2,
-      "volume": 2000,
-      "title": "Куранах",
-      "date": "2024-10-15"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 3,
-      "volume": 2000,
-      "title": "Куранах",
-      "date": "2024-10-20"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 4,
-      "volume": 1500,
-      "title": "Замена задней левой",
-      "date": "2024-10-21"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 5,
-      "volume": 3000,
-      "title": "",
-      "date": "2024-10-21"
-    },
-    {
-      "id": 6,
-      "userId": 1,
-      "postType": 2,
-      "categoryId": 6,
-      "volume": 1200,
-      "title": "Какой-то заголовок",
-      "date": "2024-10-21"
-    },
-    {
-      "id": 7,
-      "userId": 1,
-      "postType": 2,
-      "categoryId": 7,
-      "volume": 3200,
-      "title": "Закрытый и амый интересный вопрос для водителей автобуса нолмер 66",
-      "date": "2024-10-22"
-    },
-    {
-      "id": 8,
-      "userId": 1,
-      "postType": 2,
-      "categoryId": 8,
-      "volume": 2000,
-      "title": "Какой-то заголовок",
-      "date": "2024-10-21"
-    },
-    {
-      "id": 9,
-      "userId": 1,
+      "userId": "1",
       "postType": 2,
       "categoryId": 9,
-      "volume": 2300,
-      "title": "Закрытый и амый интересный вопрос для водителей автобуса нолмер 66",
-      "date": "2024-10-22"
-    },
-    {
-      "id": 10,
-      "userId": 1,
-      "postType": 2,
-      "categoryId": 10,
-      "volume": 1000,
-      "title": "Закрытый и амый интересный вопрос для водителей автобуса нолмер 66",
-      "date": "2024-10-22"
+      "volume": 50,
+      "title": "Осмотр у невролога",
+      "date": "2024-10-24",
+      "id": 2
     }
   ]
 }

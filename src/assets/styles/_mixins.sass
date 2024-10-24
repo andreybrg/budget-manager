@@ -44,6 +44,20 @@
         line-height: 120%
         transition: font-size .1s
 
+@mixin selectLabel
+    display: flex
+    flex-direction: column
+    position: relative
+    width: 100%
+    .title
+        bottom: auto
+        box-sizing: border-box
+        font-size: 13px
+        left: 15px
+        top: 10px
+        line-height: 120%
+        transition: font-size .1s
+
 @mixin basicInput
     width: 100%
     background-color: var(--input-bg-color)
@@ -62,6 +76,30 @@
         border-color: var(--input-focused-border-color)
     &[disabled]
         background-color: var(--disabled-input-bg-color)
+
+@mixin basicSelect
+    width: 100%
+    background-color: var(--input-bg-color)
+    border: 1px solid var(--input-border-color)
+    border-radius: var(--main-border-radius)
+    box-sizing: border-box
+    @include fontInter(16px, var(--text-color), 500, 120%)
+    height: 58px
+    outline: none
+    padding: 18px 0 0 15px
+    transition: border-color .2s
+    appearance: none
+    -webkit-appearance: none
+    -moz-appearance: none
+    -ms-progress-appearance: none
+    &:focus-within
+        transition: border-color .2s
+        border-color: var(--input-focused-border-color)
+    &[disabled]
+        background-color: var(--disabled-input-bg-color)
+    option
+        background-color: var(--input-bg-color)
+        @include fontInter(14px, var(--text-color), 500, 140%)
 
 @mixin inputTitle
     -webkit-user-select: none

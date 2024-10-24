@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { PagePreloader } from '@modules/preloader'
 import { addNewCustomCategory, deleteCustomCategory, editCustomCategory } from '@modules/categories/model'
-import { getCustomUserCategories } from '@modules/auth'
+import { getUserCategories } from '@modules/auth'
 export const Container = () => {
 
     const dispatch = useDispatch()
-    const gettingCustomCategories = useSelector(store => store.auth.data.inProcess)
+    const gettingCategories = useSelector(store => store.auth.data.inProcess)
 
     const categories = useSelector(store => store.auth.data.profileData.categories)
-    const customCategories = useSelector(store => store.auth.data.profileData.customCategories)
     const fetchingIds = useSelector(store => store.categories.editCustomCategory.fetchingCategoryIds)
     const deleteFetchingIds = useSelector(store => store.categories.deleteCustomCategory.fetchingCategoryIds)
     const successedIds = useSelector(store => store.categories.successedCategoriesIds)
@@ -22,19 +21,15 @@ export const Container = () => {
     const [ postTypeShown, setPostTypeShow ] = useState(1)
     const [ addCategoryMode, setAddCategoryMode ] = useState(false)
     const [ categoriesList, setCategoriesList ] = useState(undefined)
-    const [ customCategoriesList, setCustomCategoriesList ] = useState(undefined)
 
     useEffect(() => {
-        dispatch(getCustomUserCategories())
+        dispatch(getUserCategories())
     }, [])
 
     useEffect(() => {
         setCategoriesList(categories)
     }, [categories])
 
-    useEffect(() => {
-        setCustomCategoriesList(customCategories)
-    }, [customCategories])
 
     const onSetCategoryIdShown = (postType) => {
         setPostTypeShow(postType)
@@ -54,7 +49,7 @@ export const Container = () => {
         }))
         onToggleAddCategoryMode()
         if(!response.error) {
-            setCustomCategoriesList(prev => 
+            setCategoriesList(prev => 
                  ([
                     response.payload.data,
                     ...prev
@@ -66,7 +61,7 @@ export const Container = () => {
     const onEditCategory = async ({ categoryId, newName, categoryColor }) => {
         const response = await dispatch(editCustomCategory({categoryId, newName, categoryColor}))
         if(!response.error) {
-            setCustomCategoriesList(prev => 
+            setCategoriesList(prev => 
                 prev.map(el => {
                     if(el.id === categoryId) {
                         return {
@@ -85,18 +80,17 @@ export const Container = () => {
     const onDeleteCategory = async (categoryId) => {
         const response = await dispatch(deleteCustomCategory({categoryId}))
         if(!response.error) {
-            setCustomCategoriesList(prev => 
+            setCategoriesList(prev => 
                 prev.filter(el => el.id !== categoryId)
             )
         }
     }
 
-    if(categoriesList && customCategoriesList) {
+    if(categoriesList) {
         return(
             <Layout
-                gettingCustomCategories={gettingCustomCategories}
+                gettingCategories={gettingCategories}
                 categories={categoriesList}
-                customCategories={customCategoriesList}
                 postTypeShown={postTypeShown}
                 onSetCategoryIdShown={onSetCategoryIdShown}
                 postTypes={postTypes}

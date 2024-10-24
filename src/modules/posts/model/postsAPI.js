@@ -13,7 +13,7 @@ export const postsAPI = createApi({
         getPosts: builder.query({
             query: ({token, userId, postType, dayFilter, dateFilterFrom, dateFilterTo, todayDate}) => {
 
-                let queryUrl = `600/posts?userId=${userId}`
+                let queryUrl = `600/posts?userId=${userId}&_sort=id&_order=desc`
                 queryUrl += postType ? `&postType=${postType}` : ``
 
 
