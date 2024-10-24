@@ -7,8 +7,13 @@
     },
     {
       "email": "b@b",
-      "password": "$2a$10$pAXGLGa.fm/q/1c.ZCDX7ugNV1DN1kM6hPKFqNogACAOh1/PSpXTu",
+      "password": "$2a$10$BYhwFsQkhqLHxnrZxJn0Y.X6bUwi1UQxaGfrHFTS3nBHe.58NpTPK",
       "id": 2
+    },
+    {
+      "email": "c@c",
+      "password": "$2a$10$JtHG49/a9wCEi7SKTDpfj.EBU0qSgMQJfY4UkS8nun6Tz.mb/WDCm",
+      "id": 3
     }
   ],
   "usersProfileData": [
@@ -18,6 +23,22 @@
       "userId": 1,
       "currencyId": 2,
       "budget": 7500,
+      "themeId": 1
+    },
+    {
+      "id": 2,
+      "isProfileActivated": true,
+      "userId": 2,
+      "currencyId": 1,
+      "budget": 650,
+      "themeId": 1
+    },
+    {
+      "id": 3,
+      "isProfileActivated": false,
+      "userId": 3,
+      "currencyId": 0,
+      "budget": 0,
       "themeId": 1
     }
   ],
@@ -90,6 +111,20 @@
       "color": "#5af8ff",
       "postType": 1,
       "id": 1
+    },
+    {
+      "userId": 1,
+      "name": "123",
+      "color": "#FFFFFF",
+      "postType": 1,
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "name": "Жумасынба",
+      "color": "#FFFFFF",
+      "postType": 1,
+      "id": 3
     }
   ],
   "currencies": [

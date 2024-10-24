@@ -8,8 +8,7 @@ import { getCustomUserCategories } from '@modules/auth'
 export const Container = () => {
 
     const dispatch = useDispatch()
-    const isProfileActivated = useSelector(store => store.auth.data.profileData.isProfileActivated)
-    const isAuthorizationInProcess = useSelector(store => store.auth.data.inProcess)
+    const gettingCustomCategories = useSelector(store => store.auth.data.inProcess)
 
     const categories = useSelector(store => store.auth.data.profileData.categories)
     const customCategories = useSelector(store => store.auth.data.profileData.customCategories)
@@ -92,30 +91,27 @@ export const Container = () => {
         }
     }
 
-    if(!isAuthorizationInProcess && categoriesList && customCategoriesList) {
-        if(isProfileActivated) {
-            return(
-                <Layout
-                    categories={categoriesList}
-                    customCategories={customCategoriesList}
-                    postTypeShown={postTypeShown}
-                    onSetCategoryIdShown={onSetCategoryIdShown}
-                    postTypes={postTypes}
-                    addCategoryMode={addCategoryMode}
-                    onToggleAddCategoryMode={onToggleAddCategoryMode}
-                    onAddNewCategory={onAddNewCategory}
-                    fetchingIds={fetchingIds}
-                    deleteFetchingIds={deleteFetchingIds}
-                    successedIds={successedIds}
-                    onEditCategory={onEditCategory}
-                    isAddingCategoryFetching={isAddingCategoryFetching}
-                    onDeleteCategory={onDeleteCategory}
-                    />
-            )
-        } else {
-            return <Navigate to={'/first-steps'}/>
-        }
+    if(categoriesList && customCategoriesList) {
+        return(
+            <Layout
+                gettingCustomCategories={gettingCustomCategories}
+                categories={categoriesList}
+                customCategories={customCategoriesList}
+                postTypeShown={postTypeShown}
+                onSetCategoryIdShown={onSetCategoryIdShown}
+                postTypes={postTypes}
+                addCategoryMode={addCategoryMode}
+                onToggleAddCategoryMode={onToggleAddCategoryMode}
+                onAddNewCategory={onAddNewCategory}
+                fetchingIds={fetchingIds}
+                deleteFetchingIds={deleteFetchingIds}
+                successedIds={successedIds}
+                onEditCategory={onEditCategory}
+                isAddingCategoryFetching={isAddingCategoryFetching}
+                onDeleteCategory={onDeleteCategory}
+                />
+        )
     } else {
-        return <PagePreloader/>
+        return <PagePreloader panelMode={true}/>
     }
 }

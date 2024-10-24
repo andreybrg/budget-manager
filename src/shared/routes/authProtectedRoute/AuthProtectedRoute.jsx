@@ -5,6 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 export const AuthProtectedRoute = ({ children, forAuthorizedUser=false }) => {
 
     const isAuth = useSelector(store => store.auth.data.isAuth)
+    const isProfileActivated = useSelector(store => store.auth.data.profileData.isProfileActivated)
     
     if(!forAuthorizedUser)  {
         if(isAuth) {
@@ -16,7 +17,11 @@ export const AuthProtectedRoute = ({ children, forAuthorizedUser=false }) => {
         if(!isAuth) {
             return children ? children : <Outlet/>
         } else {
-            return <Navigate to={'/panel/main'}/>
+            if(isProfileActivated) {
+                return <Navigate to={'/panel/main'}/>
+            } else {
+                return <Navigate to={'/first-steps'}/>
+            }
         }
     }
 }

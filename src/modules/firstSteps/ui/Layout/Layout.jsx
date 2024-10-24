@@ -11,7 +11,6 @@ import { Navigate } from 'react-router-dom'
 
 export const Layout = () => {
 
-    const isProfileActivated = useSelector(store => store.auth.data.profileData.isProfileActivated)
     const dispatch = useDispatch()
     const [ step, setStep ] = useState('currency')
 
@@ -45,35 +44,33 @@ export const Layout = () => {
         console.log(budget)
     }
 
-    if(!isProfileActivated){
-        return(
-            <div className={style.container}>
-                <MainForm onSubmit={formik.handleSubmit}>
-                {step==='currency'
-                    ?
-                    <CurrencyStep
-                        setNextStep={setNextStep}
-                        formik={formik}
-                        />
-                    :
-                    null
-                    }
 
-                    {step==='budget'
-                    ?
-                    <BudgetStep
-                        setInitialBudget={setInitialBudget}
-                        formik={formik}
-                        />
-                    :
-                    null
-                    }
-                </MainForm>
-            </div>
-        )
-    } else {
-        return <Navigate to={'/panel/main'}/>
-    }
+    return(
+        <div className={style.container}>
+            <MainForm onSubmit={formik.handleSubmit}>
+            {step==='currency'
+                ?
+                <CurrencyStep
+                    setNextStep={setNextStep}
+                    formik={formik}
+                    />
+                :
+                null
+                }
+
+                {step==='budget'
+                ?
+                <BudgetStep
+                    setInitialBudget={setInitialBudget}
+                    formik={formik}
+                    />
+                :
+                null
+                }
+            </MainForm>
+        </div>
+    )
+
 
     
 }

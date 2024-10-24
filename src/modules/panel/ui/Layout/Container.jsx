@@ -6,19 +6,10 @@ import { PagePreloader } from '@modules/preloader'
 
 export const Container = () => {
 
-    const isProfileActivated = useSelector(store => store.auth.data.profileData.isProfileActivated)
     const isAuthizizationInProcess = useSelector(store => store.auth.data.inProcess)
 
     if(!isAuthizizationInProcess) {
-        if(isProfileActivated) {
-            return(
-                <Layout
-                    isProfileActivated={isProfileActivated}
-                    />
-            )
-        } else {
-            return <Navigate to={'/first-steps'}/>
-        }
+        return <Layout/>
     } else {
         return <PagePreloader/>
     }

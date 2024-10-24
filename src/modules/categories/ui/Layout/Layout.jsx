@@ -5,8 +5,10 @@ import { MicroActionBtn, SimpleBtn } from '@shared/buttons'
 import { CategoryItem } from '../CategoryItem/CategoryItem'
 import AddSvg from '@assets/images/add.svg?react'
 import { CategoryItemForm } from '../CategoryItemForm/CategoryItemForm'
+import { CategoriesPreloader } from '../CategoriesPreloader/CategoriesPreloader'
 
 export const Layout = ({ 
+    gettingCustomCategories,
     categories,
     customCategories,
     postTypeShown, 
@@ -56,6 +58,9 @@ export const Layout = ({
                     }
                 </div>
                 
+                {!gettingCustomCategories
+                ?
+                <>
                 {customCategories?.map(el =>
                     el.postType === postTypeShown
                         ?
@@ -78,6 +83,9 @@ export const Layout = ({
                         :
                         false
                 )}
+                </>
+                :
+                <CategoriesPreloader/>}
             </div>
         </div>
     )
