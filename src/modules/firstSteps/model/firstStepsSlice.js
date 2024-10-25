@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { firstStepsAPI } from './firstStepsAPI'
 import { getAuthLocalStorage } from '@shared/utils/localStorage'
-import { getUserProfileData } from '@modules/auth'
+import { checkUnauthorizedErrorStatus, getUserProfileData } from '@modules/auth'
 
 export const setUserProfileInitialData = createAsyncThunk(
     'firstSteps/setUserProfileInitialData',
@@ -17,6 +17,7 @@ export const setUserProfileInitialData = createAsyncThunk(
             if(!response.error) {
                 dispatch(getUserProfileData())
             } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
                 throw new Error('Ошибка при активации аккаунта')
             }
         } catch (error) {

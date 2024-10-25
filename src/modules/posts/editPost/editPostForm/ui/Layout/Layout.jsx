@@ -66,7 +66,7 @@ export const Layout = ({
                 disabled={isFormFetching}
             />
             <MainBtn type={'submit'} disabled={isFormFetching}>
-                Добавить в «{postTypes.find(el => el.id === formik.values.postType).name}»
+                Сохранить
             </MainBtn>
         </MainForm>
     )

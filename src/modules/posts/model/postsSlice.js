@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { postsAPI } from './postsAPI'
 import { getAuthLocalStorage } from '@shared/utils/localStorage'
+import { setNewMicroalert } from '@modules/alerts'
+import { mutateBalance } from '@modules/addPost'
+import { checkUnauthorizedErrorStatus } from '@modules/auth'
 
 export const postsListInit = createAsyncThunk(
     'posts/postsListInit',
@@ -15,7 +18,6 @@ export const postsListInit = createAsyncThunk(
 export const getPostsList = createAsyncThunk(
     'posts/getPostsList',
     async (data, {dispatch, getState, fulfillWithValue, rejectWithValue}) => {
-
         const [ token, userId ] = getAuthLocalStorage()
         try {
             const todayDate = getState().app.data.appData.todayDate
@@ -41,6 +43,7 @@ export const getPostsList = createAsyncThunk(
                 }))
                 return fulfillWithValue(true)
             } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
                 if(response.error.status === 403) {
                     dispatch(setPostList({
                         data: []
@@ -59,13 +62,94 @@ export const getPostsList = createAsyncThunk(
     }
 )
 
+export const deletePost = createAsyncThunk(
+    'posts/deletePost',
+    async ({postId, postType, volume}, {dispatch, getState, fulfillWithValue, rejectWithValue}) => {
+        dispatch(addDeletePostFetchingId({id: postId}))
+        const [ token, userId ] = getAuthLocalStorage()
+        try {
+            const response = await dispatch(postsAPI.endpoints.deletePost.initiate({
+                postId,
+                token: token
+            }))
+            if(!response.error) {
+                await dispatch(mutateBalance({postType, volume, inversed: true}))
+                dispatch(setNewMicroalert({text: 'Запись удалена'}))
+                return fulfillWithValue({id: postId})
+            } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
+                dispatch(setNewMicroalert({text: 'Ошибка удаления записи'}))
+                throw new Error('Ощибка удаления записи')
+            }
+        } catch (error) {
+            return rejectWithValue(true)
+        }
+    }
+)
+
+
+
+export const updatePost = createAsyncThunk(
+    'posts/updatePost',
+    async ({postType, categoryId, volume, title, postDate, postId}, {dispatch, fulfillWithValue, rejectWithValue}) => {
+        const [ token, _ ] = getAuthLocalStorage()
+        try {
+            
+            const response = await dispatch(postsAPI.endpoints.updatePost.initiate({
+                token: token,
+                postType,
+                categoryId,
+                volume,
+                title,
+                postDate,
+                postId
+            }))
+            if(!response.error) {
+                return fulfillWithValue(true)
+            } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
+                throw new Error(response.error.message)
+            }
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
+export const updatePostActions = createAsyncThunk(
+    'posts/updatePostActions',
+    async ({postType, categoryId, volume, title, postDate, postId, oldVolume}, {dispatch, fulfillWithValue, rejectWithValue}) => {
+        try {
+            
+            Promise.all([
+                dispatch(updatePost({postType, categoryId, volume, title, postDate, postId})),
+                dispatch(mutateBalance({postType, volume, oldVolume})),
+            ])
+            .then(([updatePost])=>{
+                return fulfillWithValue(true)
+            })
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
+
 const initialState = {
     data: {
         isInit: false,
         isFetching: false,
         isError: false,
         errorMessage: null,
-        postList: null
+        postList: null,
+        deletingPost: {
+            fetchingPostsIds: [],
+        },
+        editingPost: {
+            isFetching: false,
+        }
     }
 }
 
@@ -81,7 +165,10 @@ const postsSlice = createSlice({
         },
         setPostsListInit(state) {
             state.data.isInit = true
-        }
+        },
+        addDeletePostFetchingId(state, action) {
+            state.data.deletingPost.fetchingPostsIds.push(action.payload.id)
+        },
     },
     extraReducers: builder =>
         builder
@@ -100,7 +187,22 @@ const postsSlice = createSlice({
                 state.data.isError = true
                 state.data.errorMessage = action.payload
             })
+
+            .addCase(deletePost.fulfilled, (state, action) => {
+                const index = state.data.deletingPost.fetchingPostsIds.findIndex(el => el === action.payload.id)
+                state.data.deletingPost.fetchingPostsIds.splice(index, 1)
+            })
+
+            .addCase(updatePostActions.pending, (state) => {
+                state.data.editingPost.isFetching = true
+            })
+            .addCase(updatePostActions.fulfilled, (state) => {
+                state.data.editingPost.isFetching = false 
+            })
+            .addCase(updatePostActions.rejected, (state) => {
+                state.data.editingPost.isFetching = false 
+            })
 })
 
-export const { setPostList, setPostsListInit, resetPostList } = postsSlice.actions
+export const { setPostList, setPostsListInit, resetPostList, addDeletePostFetchingId } = postsSlice.actions
 export default postsSlice.reducer

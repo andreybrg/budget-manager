@@ -22,7 +22,7 @@
       "isProfileActivated": true,
       "userId": 1,
       "currencyId": 2,
-      "budget": 650,
+      "budget": 5500,
       "themeId": 1
     },
     {
@@ -77,6 +77,14 @@
     },
     {
       "id": 6,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Другие доходы",
+      "color": "#A3D7C0",
+      "userId": 1
+    },
+    {
+      "id": 7,
       "postType": 2,
       "isDefault": true,
       "name": "Супермаркет",
@@ -84,7 +92,7 @@
       "userId": 1
     },
     {
-      "id": 7,
+      "id": 8,
       "postType": 2,
       "isDefault": true,
       "name": "Кафе и рестораны",
@@ -92,7 +100,7 @@
       "userId": 1
     },
     {
-      "id": 8,
+      "id": 9,
       "postType": 2,
       "isDefault": true,
       "name": "Автомобиль",
@@ -100,7 +108,7 @@
       "userId": 1
     },
     {
-      "id": 9,
+      "id": 10,
       "postType": 2,
       "isDefault": true,
       "name": "Здоровье",
@@ -108,7 +116,7 @@
       "userId": 1
     },
     {
-      "id": 10,
+      "id": 11,
       "postType": 2,
       "isDefault": true,
       "name": "Развлечения",
@@ -116,12 +124,20 @@
       "userId": 1
     },
     {
+      "id": 12,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Другие расходы",
+      "color": "#DFCABE",
+      "userId": 1
+    },
+    {
       "userId": 1,
-      "name": "Акции",
-      "color": "#5af8ff",
+      "name": "asdasdf",
+      "color": "#FFFFFF",
       "postType": 1,
       "isDefault": false,
-      "id": 11
+      "id": 13
     }
   ],
   "customCategories": [],
@@ -217,22 +233,13 @@
   ],
   "posts": [
     {
-      "userId": "1",
+      "userId": 1,
       "postType": 1,
-      "categoryId": 11,
-      "volume": 700,
-      "title": "Дивиденды Газпром",
-      "date": "2024-10-24",
+      "categoryId": 2,
+      "volume": 4800,
+      "title": "Хоть што-та",
+      "date": "2024-10-20",
       "id": 1
-    },
-    {
-      "userId": "1",
-      "postType": 2,
-      "categoryId": 9,
-      "volume": 50,
-      "title": "Осмотр у невролога",
-      "date": "2024-10-24",
-      "id": 2
     }
   ]
 }

@@ -5,7 +5,7 @@ import { Post } from '../Post/Post'
 import { AmountFormatter } from '@shared/utils/amountFormatter'
 import { calculateAmountBalancePostType } from '@shared/utils/calculateAmountBalancePostType'
 
-export const Layout = ({ postList, isFetching, postTypeActiveFilter }) => {
+export const Layout = ({ postList, isFetching, postTypeActiveFilter, onPostDelete, deletingPostsIds, onPostEdit }) => {
 
     return(
         <div className={cn(style.postList, {[style.postListFetching]: isFetching})}>
@@ -28,7 +28,7 @@ export const Layout = ({ postList, isFetching, postTypeActiveFilter }) => {
                 postList.length
                 ?
                 postList.map(el =>
-                    <Post key={el.id} data={el}/>
+                    <Post key={el.id} data={el} onPostDelete={onPostDelete} onPostEdit={onPostEdit} isFetching={deletingPostsIds.includes(el.id)}/>
                 )
                 :
                 <div className={style.emptyPostList}>

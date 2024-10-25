@@ -6,13 +6,13 @@ export const Container = () => {
 
     const modalsContextData = useContext(ModalsContext)
 
-    const mainModal = modalsContextData.mainModalController
     const centeredModal = modalsContextData.centeredModalController
+    const confirmationModal = modalsContextData.confirmationModalController
 
     return(
         <Layout
-            mainModal={mainModal}
             centeredModal={centeredModal}
+            confirmationModal={confirmationModal}
             />
     )
 }

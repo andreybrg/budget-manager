@@ -3,6 +3,7 @@ import { authAPI } from './authAPI'
 import { getAuthLocalStorage, removeAuthLocalStorage, setAuthLocalStorage } from '@shared/utils/localStorage'
 import { checkAuthorization } from '@app'
 import { resetPostList } from '@modules/posts'
+import { setNewMicroalert } from '@modules/alerts'
 
 
 export const userCreateAccountProfile = createAsyncThunk(
@@ -122,9 +123,14 @@ export const getUserProfileData = createAsyncThunk(
                 forceRefetch: true 
             }))
 
-            const pd = {data: response.data.usersProfileData[0]}
-            dispatch(setUserProfileData(pd))
-            return response
+            if(!response.error) {
+                const pd = {data: response.data.usersProfileData[0]}
+                dispatch(setUserProfileData(pd))
+                return response
+            } else {
+                throw new Error('Ошибка получения данных профиля')
+            }
+
         } catch (error) {
             console.log(error.message)
         }
@@ -144,40 +150,28 @@ export const getUserCategories = createAsyncThunk(
                 subscribe: false, 
                 forceRefetch: true 
             }))
-            const categories = {data: response.data}
-            dispatch(setUserCategories(categories))
-            return response
+
+            if(!response.error) {
+                const categories = {data: response.data}
+                dispatch(setUserCategories(categories))
+                return response
+            } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
+                throw new Error('Ошибка получения данных профиля')
+            }
+            
         } catch (error) {
             console.log(error.message)
         }
     }
 )
 
-export const getCustomUserCategories = createAsyncThunk(
-    'auth/getCustomUserCategories',
-    async (_, {dispatch, fulfillWithValue}) => {
-        const [ token, userId ] = getAuthLocalStorage()
-        try {
-            const response = await dispatch(authAPI.endpoints.getCustomCategories.initiate({
-                token: token,
-                userId: userId
-            },
-            {
-                subscribe: false, 
-                forceRefetch: true 
-            }))
-            if(!response.error) {
-                const categories = {data: response.data}
-                dispatch(setUserCustomCategories(categories))
-                return response
-            } else {
-                if(response.error.status === 403) {
-                    dispatch(setUserCustomCategories({data: []}))
-                    return fulfillWithValue(true)
-                }
-            }
-        } catch (error) {
-            console.log(error.message)
+export const checkUnauthorizedErrorStatus = createAsyncThunk(
+    'auth/checkUnauthorizedErrorStatus',
+    async ({status}, {dispatch}) => {
+        if(status===401) {
+            dispatch(setNewMicroalert({text: 'Сессия истекла. Авторизуйтесь заново.'}))
+            dispatch(userLogout())
         }
     }
 )
@@ -190,6 +184,9 @@ const initialState = {
         errorMessage: null,
         isAuth: false,
         profileData: {},
+        categories: {
+            isFetching: false
+        }
     }
 }
 
@@ -265,10 +262,10 @@ const authSlice = createSlice({
             })
 
             .addCase(getUserCategories.pending, (state) => {
-                state.data.inProcess = true
+                state.data.categories.isFetching = true
             })
             .addCase(getUserCategories.fulfilled, (state) => {
-                state.data.inProcess = false
+                state.data.categories.isFetching = false
             })
 })
 

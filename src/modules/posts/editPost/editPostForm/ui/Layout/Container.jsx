@@ -3,41 +3,48 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Layout } from './Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { addPostActions } from '@modules/addPost/model'
+
 import { prepareArrayForSelect } from '@shared/utils/prepareArrayForSelect'
 import { dateToISOString } from '@shared/utils/dateToISOString'
 import { ModalsContext } from '@modules/modals'
 import { getPostsList } from '@modules/posts'
 import { getUserCategories } from '@modules/auth'
+import { updatePostActions } from '@modules/posts/model'
 
-export const Container = () => {
+export const Container = ({ postData, onSubmitCallback }) => {
 
     const dispatch = useDispatch()
     const [ categoriesList, setCategoriesList ] = useState([])
     const { centeredModalController } = useContext(ModalsContext)
     const gettingCategories = useSelector(store => store.auth.data.categories.isFetching)
+    const isFormFetching = useSelector(store => store.posts.data.editingPost.isFetching)
 
-    const onFormSubmit = async ({categoryId, title, postDate, volume, postType}) => {
-        const response = await dispatch(addPostActions({
+    const onFormSubmit = async ({categoryId, title, postDate, volume, postType, postId, oldVolume}) => {
+        const response = await dispatch(updatePostActions({
+            oldVolume,
             categoryId: Number(categoryId),
             title,
             postDate: dateToISOString(postDate),
             volume: Number(volume),
             postType: Number(postType),
+            postId
         }))
-        centeredModalController.unmountCenteredModal()
         if(!response.error) {
+            centeredModalController.unmountCenteredModal()
             dispatch(getPostsList())
         }
+        onSubmitCallback()
     }
 
     const formik = useFormik({
         initialValues: {
-            categoryId: 0,
-            title: '',
-            postDate: new Date(),
-            volume: '',
-            postType: 1
+            categoryId: postData.categoryId,
+            title: postData.title,
+            postDate: new Date(postData.date),
+            volume: postData.volume,
+            postType: postData.postType,
+            postId: postData.id,
+            oldVolume: postData.volume,
         },
         validationSchema: Yup.object({
             categoryId: Yup.number()
@@ -57,10 +64,8 @@ export const Container = () => {
         formik.setFieldValue('postDate', date)
     }
 
-
     const postTypes = useSelector(store => store.app.data.appData.postTypes)
     const categories = useSelector(store => store.auth.data.profileData.categories)
-    const addPostData = useSelector(store => store.addPost.data)
 
     const onChangePostType = (newPostType) => {
         formik.setFieldValue('categoryId', 0)
@@ -87,7 +92,7 @@ export const Container = () => {
             onChangePostType={onChangePostType}
             categoriesList={categoriesList}
             onChangeDate={onChangeDate}
-            isFormFetching={addPostData.isFetching}
+            isFormFetching={isFormFetching}
             gettingCategories={gettingCategories}
             />
     )

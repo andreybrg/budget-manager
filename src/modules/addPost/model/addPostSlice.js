@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { addPostAPI } from './addPostAPI'
 import { getAuthLocalStorage } from '@shared/utils/localStorage'
-import { updateBudget } from '@modules/auth'
+import { checkUnauthorizedErrorStatus, updateBudget } from '@modules/auth'
+import { setNewMicroalert } from '@modules/alerts'
 
 export const addPost = createAsyncThunk(
     'addPost/addPost',
@@ -11,7 +12,7 @@ export const addPost = createAsyncThunk(
             
             const response = await dispatch(addPostAPI.endpoints.addNewPost.initiate({
                 token: token,
-                userId: userId,
+                userId: Number(userId),
                 postType,
                 categoryId,
                 volume,
@@ -22,6 +23,8 @@ export const addPost = createAsyncThunk(
             if(!response.error) {
                 return fulfillWithValue(true)
             } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
+                dispatch(setNewMicroalert({text: 'Ошибка добавления записи'}))
                 throw new Error(response.error.message)
             }
 
@@ -31,29 +34,49 @@ export const addPost = createAsyncThunk(
     }
 )
 
+const getNewBudget = (postType, volume, inversed, currentBudget, oldVolume) => {
+
+    if(oldVolume) {
+        if(volume !== oldVolume) {
+            return currentBudget + (volume - oldVolume)
+        } else {
+            return null
+        }
+    } else {
+        if(!inversed) {
+            return postType===1 ? currentBudget + volume : currentBudget - volume
+        } else {
+            return postType===1 ? currentBudget - volume : currentBudget + volume
+        }
+    }
+}
+
 export const mutateBalance = createAsyncThunk(
     'addPost/mutateBalance',
-    async ({postType, volume}, {dispatch, fulfillWithValue, rejectWithValue, getState}) => {
+    async ({postType, volume, inversed, oldVolume=null}, {dispatch, fulfillWithValue, rejectWithValue, getState}) => {
+        
         const [ token, userId ] = getAuthLocalStorage()
         const currentBudget = getState().auth.data.profileData.budget
-        const newBudget = postType===1 ? currentBudget + volume : currentBudget - volume
-        try {
-            
-            const response = await dispatch(addPostAPI.endpoints.mutateBalance.initiate({
-                token: token,
-                userId: userId,
-                newBudget: newBudget,
-            }))
+        const newBudget = getNewBudget(postType, volume, inversed, currentBudget, oldVolume)
 
-            if(!response.error) {
-                dispatch(updateBudget({data: newBudget}))
-                return fulfillWithValue(true)
-            } else {
-                throw new Error(response.error.message)
+        if(newBudget !== null) {
+            try {
+                const response = await dispatch(addPostAPI.endpoints.mutateBalance.initiate({
+                    token: token,
+                    userId: userId,
+                    newBudget: newBudget,
+                }))
+    
+                if(!response.error) {
+                    dispatch(updateBudget({data: newBudget}))
+                    return fulfillWithValue(true)
+                } else {
+                    throw new Error(response.error.message)
+                }
+    
+            } catch (error) {
+                return rejectWithValue(error.message)
             }
-
-        } catch (error) {
-            return rejectWithValue(error.message)
         }
     }
 )
@@ -61,7 +84,7 @@ export const mutateBalance = createAsyncThunk(
 
 export const addPostActions = createAsyncThunk(
     'addPost/addPostActions',
-    async ({postType, categoryId, volume, title, postDate}, {dispatch, fulfillWithValue, rejectWithValue, getState}) => {
+    async ({postType, categoryId, volume, title, postDate}, {dispatch, fulfillWithValue, rejectWithValue}) => {
         try {
             
             Promise.all([
@@ -69,7 +92,7 @@ export const addPostActions = createAsyncThunk(
                 dispatch(mutateBalance({postType, volume})),
             ])
             .then(([addPost, mutateBalance])=>{
-                fulfillWithValue(true)
+                return fulfillWithValue(true)
             })
 
         } catch (error) {

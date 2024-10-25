@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import { Layout } from './Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
 import { PagePreloader } from '@modules/preloader'
-import { addNewCustomCategory, deleteCustomCategory, editCustomCategory } from '@modules/categories/model'
+import { addNewCustomCategory, deleteCategoryActions, editCustomCategory } from '@modules/categories/model'
 import { getUserCategories } from '@modules/auth'
+import { ModalsContext } from '@modules/modals'
+
 export const Container = () => {
 
     const dispatch = useDispatch()
-    const gettingCategories = useSelector(store => store.auth.data.inProcess)
+    const gettingCategories = useSelector(store => store.auth.data.categories.isFetching)
 
     const categories = useSelector(store => store.auth.data.profileData.categories)
     const fetchingIds = useSelector(store => store.categories.editCustomCategory.fetchingCategoryIds)
@@ -21,6 +22,8 @@ export const Container = () => {
     const [ postTypeShown, setPostTypeShow ] = useState(1)
     const [ addCategoryMode, setAddCategoryMode ] = useState(false)
     const [ categoriesList, setCategoriesList ] = useState(undefined)
+
+    const { confirmationModalController } = useContext(ModalsContext)
 
     useEffect(() => {
         dispatch(getUserCategories())
@@ -77,13 +80,22 @@ export const Container = () => {
         }
     }
 
-    const onDeleteCategory = async (categoryId) => {
-        const response = await dispatch(deleteCustomCategory({categoryId}))
+    const onDeleteCategory = async (categoryId, postType) => {
+        const response = await dispatch(deleteCategoryActions({categoryId, postType}))
         if(!response.error) {
             setCategoriesList(prev => 
                 prev.filter(el => el.id !== categoryId)
             )
         }
+    }
+
+    const onDeleteConfirmation = (categoryId, postType) => {
+        confirmationModalController.mountConfirmationModal(
+            `После удаления категории, все связанные с ней записи будут перемещены в категорию «Другие ${postType === 1 ? 'доходы' : 'расходы'}»`, 
+            'Удаляете категорию?', 
+            () => onDeleteCategory(categoryId, postType), 
+            `Удалить категорию`
+        )
     }
 
     if(categoriesList) {
@@ -102,7 +114,7 @@ export const Container = () => {
                 successedIds={successedIds}
                 onEditCategory={onEditCategory}
                 isAddingCategoryFetching={isAddingCategoryFetching}
-                onDeleteCategory={onDeleteCategory}
+                onDeleteCategory={onDeleteConfirmation}
                 />
         )
     } else {

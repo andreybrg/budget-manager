@@ -8,7 +8,9 @@ import { postsAPI, postsSlice } from "@modules/posts"
 import { filtersSlice } from "@modules/filters"
 import { categoriesSlice, categoriesAPI } from "@modules/categories"
 import { centeredModalSlice } from "@modules/modals/centeredModal"
+import { confirmationModalSlice } from "@modules/modals/confirmationModal"
 import { addPostAPI, addPostSlice } from "@modules/addPost"
+import { alertSlice } from "@modules/alerts"
 
 const store = configureStore({
     reducer: {
@@ -20,7 +22,9 @@ const store = configureStore({
         filters: filtersSlice,
         categories: categoriesSlice,
         centeredModal: centeredModalSlice,
+        confirmationModal: confirmationModalSlice,
         addPost: addPostSlice,
+        alerts: alertSlice,
         [authAPI.reducerPath]: authAPI.reducer,
         [appAPI.reducerPath]: appAPI.reducer,
         [firstStepsAPI.reducerPath]: firstStepsAPI.reducer,

@@ -4,6 +4,7 @@ import { StoreProvider } from './providers/StoreProvider'
 import { AppInitialization } from './initialization'
 import { ModalsModule, ModalsProvider } from '@modules/modals'
 import { ThemeProvider } from './providers/ThemeProvider'
+import { MicroAlert } from '@modules/alerts'
 
 export const App = () => {
   return (
@@ -13,6 +14,7 @@ export const App = () => {
           <ThemeProvider>
             <AppRouter/>
             <ModalsModule/>
+            <MicroAlert/>
           </ThemeProvider>
         </AppInitialization>
       </ModalsProvider>

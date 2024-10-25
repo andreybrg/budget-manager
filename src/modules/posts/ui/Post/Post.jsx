@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import style from './Post.module.sass'
 import PostControlSvg from '@assets/images/more_vert.svg?react'
 import PostEditSvg from '@assets/images/edit.svg?react'
@@ -6,8 +6,10 @@ import PostDeleteSvg from '@assets/images/delete.svg?react'
 import { AmountFormatter } from '@shared/utils/amountFormatter'
 import { GetCategoryName } from '@shared/utils/getCategoryName'
 import cn from 'classnames'
+import { ModalsContext } from '@modules/modals'
+import { BuiltinPreloader } from '@modules/preloader/builtinPreloader'
 
-export const Post = ({ data }) => {
+export const Post = ({ data, onPostDelete, isFetching, onPostEdit }) => {
 
     const volume = <AmountFormatter amount={data.volume}/>
     const [ isControlsOpened, setIsControlsOpened ] = useState(false)
@@ -16,8 +18,24 @@ export const Post = ({ data }) => {
         setIsControlsOpened(prev => !prev)
     }
 
+    const { confirmationModalController } = useContext(ModalsContext)
+
+    const onDeleteConfirmation = (data) => {
+        confirmationModalController.mountConfirmationModal(
+            `Действительно хотиет удалить выбранную запись?`, 
+            'Удаление записи', 
+            () => {
+                onControlsToggle()
+                onPostDelete(data)
+            }, 
+            `Удалить запись`
+        )
+    }
+
+
+
     return(
-        <div className={style.post}>
+        <div className={cn(style.post, {[style.isFetching]: isFetching})}>
             <div className={cn(style.content, {[style.controlsOpened]:isControlsOpened})}>
                 <div className={style.info}>
                     <div className={style.category}>
@@ -37,22 +55,32 @@ export const Post = ({ data }) => {
                 <div className={style.volume}>
                     {data.postType === 1
                     ? 
-                    <>+ <AmountFormatter amount={data.volume}/></>
+                    <>+ {volume}</>
                     : 
-                    <>- <AmountFormatter amount={data.volume}/></>
+                    <>- {volume}</>
                     }
                 </div>
-                <button type={'button'} onClick={() => onControlsToggle()} className={style.controlBtn}>
-                    <PostControlSvg/>
-                </button>
-                <div className={style.controls} id={'post-controls'}>
-                    <button type={'button'} onClick={() => null} className={style.controlEditBtn}>
-                        <PostEditSvg/>
-                    </button>
-                    <button type={'button'} onClick={() => null} className={style.controlDeleteBtn}>
-                        <PostDeleteSvg/>
-                    </button>
-                </div>
+
+                {
+                    !isFetching
+                    ?
+                    <>
+                        <button type={'button'} onClick={() => onControlsToggle()} className={style.controlBtn}>
+                            <PostControlSvg/>
+                        </button>
+                        <div className={style.controls} id={'post-controls'}>
+                            <button type={'button'} onClick={() => onPostEdit(data, onControlsToggle)} className={style.controlEditBtn}>
+                                <PostEditSvg/>
+                            </button>
+                            <button type={'button'} onClick={() => onDeleteConfirmation(data)} className={style.controlDeleteBtn}>
+                                <PostDeleteSvg/>
+                            </button>
+                        </div>
+                    </>
+                    :
+                    <div className={style.preloader}><BuiltinPreloader width={'24px'}/></div>
+                }
+                
             </div>
         </div>
     )

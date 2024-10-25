@@ -8,5 +8,6 @@ export {
     getUserProfileData,
     unsetUserProfileData,
     getUserCategories,
-    updateBudget
+    updateBudget,
+    checkUnauthorizedErrorStatus
  } from "./model"

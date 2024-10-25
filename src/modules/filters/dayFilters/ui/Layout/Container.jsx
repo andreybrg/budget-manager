@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Layout } from './Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setDayFilter, setPostTypeFilter } from '@modules/filters/model'
-import { getPostsList } from '@modules/posts/model'
+import { setDayFilter } from '@modules/filters/model'
 
 export const Container = () => {
 
@@ -13,10 +12,6 @@ export const Container = () => {
     const onChangeDayFilter = (newDayFilter) => {
         dispatch(setDayFilter({data: newDayFilter}))
     }
-
-    useEffect(() => {
-        dispatch(getPostsList())
-    }, [dayActiveFilter])
 
     return(
         <Layout

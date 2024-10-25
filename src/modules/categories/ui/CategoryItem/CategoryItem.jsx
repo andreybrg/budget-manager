@@ -23,8 +23,8 @@ export const CategoryItem = memo(function CategoryItem({ data, isDefaultCategory
         onEditCategory(values)
     }
 
-    const onDeleteCategoryItem = (categoryId) => {
-        onDeleteCategory(categoryId)
+    const onDeleteCategoryItem = (categoryId, postType) => {
+        onDeleteCategory(categoryId, postType)
     }
 
     return(
@@ -47,7 +47,7 @@ export const CategoryItem = memo(function CategoryItem({ data, isDefaultCategory
                     <button type={'button'} onClick={() => onEditModeOn()} className={style.controlBtn}>
                         <PostEditSvg/>
                     </button>
-                    <button type={'button'} onClick={() => onDeleteCategoryItem(data.id)} className={style.controlBtn}>
+                    <button type={'button'} onClick={() => onDeleteCategoryItem(data.id, data.postType)} className={style.controlBtn}>
                         <PostDeleteSvg/>
                     </button>
                 </div>

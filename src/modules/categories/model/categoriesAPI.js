@@ -36,6 +36,23 @@ export const categoriesAPI = createApi({
                 headers: { Authorization: `Bearer ${token}` },
             }),
         }),
+        getPostsForPatch: builder.mutation({
+            query: ({ categoryId, token }) => ({
+                url: `/600/posts?categoryId=${categoryId}`,
+                method: 'GET',
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+        }),
+        movePostsInDefault: builder.mutation({
+            query: ({ id, newCategoryId, token }) => ({
+                url: `/600/posts/${id}`,
+                method: 'PATCH',
+                body: {
+                    categoryId: newCategoryId
+                },
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+        }),
     }),
 })
 

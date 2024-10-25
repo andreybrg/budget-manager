@@ -6,7 +6,7 @@ import { Controls } from '../Controls/Controls'
 import style from './CategoryItemForm.module.sass'
 
 export const CategoryItemForm = ({ defaultColor, categoryId='', onClose, onSubmitFunction, defaultName=null, isDisabled=false }) => {
-
+    
     const formik = useFormik({
         initialValues: {
             newName: defaultName ? defaultName : '',
@@ -15,14 +15,14 @@ export const CategoryItemForm = ({ defaultColor, categoryId='', onClose, onSubmi
         },
         validationSchema: Yup.object({
             newName: Yup.string()
-                .required("Введите название категории")
-                .max(30, "Не более 30 символов"),
+            .required("Введите название категории")
+            .max(30, "Не более 30 символов"),
         }),
         onSubmit: (values) => {
             onSubmitFunction(values)
         }
     })
-
+    
     const onChangeColor = (newColor) => {
         formik.setFieldValue('categoryColor', newColor)
     }

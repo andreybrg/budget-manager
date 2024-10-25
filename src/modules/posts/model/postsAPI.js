@@ -55,6 +55,39 @@ export const postsAPI = createApi({
                 }
             },
         }),
+        deletePost: builder.mutation({
+            query: ({ token, postId }) => {
+                return {
+                    url: `600/posts/${postId}`,
+                    method: 'DELETE',
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            },
+        }),
+        updatePost: builder.mutation({
+            query: ({ 
+                token,
+                postType,
+                categoryId,
+                volume,
+                title,
+                postDate,
+                postId
+            }) => {
+                return {
+                    url: `600/posts/${postId}`,
+                    method: 'PATCH',
+                    body: {
+                        postType,
+                        categoryId,
+                        volume,
+                        title,
+                        date: postDate,
+                    },
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            },
+        }),
     }),
 })
 

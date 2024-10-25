@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import style from './Layout.module.sass'
 import { BudgetControl } from '@modules/header/budgetControl'
 import { PanelTitle } from '@shared/titles'
