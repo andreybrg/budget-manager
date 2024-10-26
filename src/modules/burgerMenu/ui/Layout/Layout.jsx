@@ -27,7 +27,7 @@ export const Layout = () => {
 
     if(isBurgerMenuOpened) {
         return(
-            <div className={style.menu}>
+            <div className={style.menu} id={'burgermenu'}>
                 {
                     !isAuth
                     ?

@@ -15,7 +15,9 @@
             align-items: center
     // input[type="date"]::placeholder
     //     @include m.inputPlaceholder
-        
+    input
+        @include m.basicInput
+
 .title
     @include m.inputTitle
     bottom: auto
@@ -25,6 +27,7 @@
     top: 10px
     line-height: 120%
     transition: font-size .1s
+    z-index: 10
     
 .fieldError
     @include m.inputFieldError
@@ -55,3 +58,7 @@
 
 .dateFiledDisabled
     background-color: var(--disabled-input-bg-color) !important
+
+.titleError
+    color: var(--label-title-error-color)
+    opacity: 1

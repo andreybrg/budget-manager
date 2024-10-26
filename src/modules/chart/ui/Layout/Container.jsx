@@ -13,25 +13,6 @@ export const Container = () => {
     const [ chartColors, setChartColors ] = useState([])
     const [ balanceResult, setBalanceResult ] = useState(null)
     
-    // const prepareDataForChart = (posts) => {
-    //     const categories = [
-    //         ...new Set(posts.map(el => el.categoryId))
-    //     ]
-        
-    //     const resultLlabels = categories.map(el =>
-    //         categoriesData.find(cat => cat.id === el).name
-    //     )
-
-    //     const resultDataForChart = categories.map(el =>
-    //         posts.filter(post => post.categoryId === el)
-    //         .reduce((acc, el) => {
-    //             return acc += el.volume
-    //         }, 0)
-    //     )
-
-    //     return [ resultLlabels, resultDataForChart ]
-    // }
-
     const prepareDataForChart = (posts) => {
         const categories = [
             ...new Set(posts.map(el => el.categoryId))

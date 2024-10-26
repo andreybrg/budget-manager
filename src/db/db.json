@@ -33,7 +33,7 @@
       "userId": 1,
       "currencyId": 2,
       "budget": 41053439,
-      "themeId": 2
+      "themeId": 1
     },
     {
       "id": 2,
@@ -168,7 +168,7 @@
     {
       "userId": 1,
       "name": "asdasdf",
-      "color": "#79ec92",
+      "color": "#314e38",
       "postType": 1,
       "isDefault": false,
       "id": 13
@@ -176,7 +176,7 @@
     {
       "userId": 1,
       "name": "asdf 78 7 87 887 87",
-      "color": "#b6a4e8",
+      "color": "#8e75ff",
       "postType": 1,
       "isDefault": false,
       "id": 14
@@ -368,7 +368,7 @@
       "postType": 1,
       "categoryId": 14,
       "volume": 3313123,
-      "title": "3312",
+      "title": "331",
       "date": "2024-10-26",
       "id": 10
     }

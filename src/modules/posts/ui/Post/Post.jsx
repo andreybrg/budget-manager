@@ -69,10 +69,10 @@ export const Post = ({ data, onPostDelete, isFetching, onPostEdit }) => {
                             <PostControlSvg/>
                         </button>
                         <div className={style.controls} id={'post-controls'}>
-                            <button type={'button'} onClick={() => onPostEdit(data, onControlsToggle)} className={style.controlEditBtn}>
+                            <button tabIndex={!isControlsOpened ? "-1" : null} type={'button'} onClick={() => onPostEdit(data, onControlsToggle)} className={style.controlEditBtn}>
                                 <PostEditSvg/>
                             </button>
-                            <button type={'button'} onClick={() => onDeleteConfirmation(data)} className={style.controlDeleteBtn}>
+                            <button tabIndex={!isControlsOpened ? "-1" : null} type={'button'} onClick={() => onDeleteConfirmation(data)} className={style.controlDeleteBtn}>
                                 <PostDeleteSvg/>
                             </button>
                         </div>

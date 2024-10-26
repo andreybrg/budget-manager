@@ -4,7 +4,6 @@ import { getAuthLocalStorage, removeAuthLocalStorage, setAuthLocalStorage } from
 import { checkAuthorization } from '@app'
 import { resetPostList } from '@modules/posts'
 import { setNewMicroalert } from '@modules/alerts'
-import { PROFILE_CATEGORIES_FOR_USER_REGISTER } from '@shared/constants/constants'
 import { setCurrentTheme } from '@app/model'
 
 

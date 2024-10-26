@@ -47,6 +47,8 @@ export const Container = () => {
             volume: Yup.number()
                 .positive("Введите положительную сумму")
                 .required("Введите сумму"),
+            postDate: Yup.string()
+                .required("Укажите дату записи")
         }),
         onSubmit: (values) => {
             onFormSubmit(values)
@@ -56,7 +58,6 @@ export const Container = () => {
     const onChangeDate = (date) => {
         formik.setFieldValue('postDate', date)
     }
-
 
     const postTypes = useSelector(store => store.app.data.appData.postTypes)
     const categories = useSelector(store => store.auth.data.profileData.categories)
