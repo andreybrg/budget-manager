@@ -1,2 +1,2 @@
-export { appAPI, appSlice, checkAuthorization } from './model'
+export { appAPI, appSlice, checkAuthorization, setCurrentTheme } from './model'
 export { App } from './App'

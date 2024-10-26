@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { categoriesAPI } from './categoriesAPI'
 import { getAuthLocalStorage } from '@shared/utils/localStorage'
 import { setNewMicroalert } from '@modules/alerts'
-import { checkUnauthorizedErrorStatus } from '@modules/auth'
+import { checkUnauthorizedErrorStatus, setNewCategory, unsetDeletedCategory, updateCategory } from '@modules/auth'
 
 export const successedCustomCategoryIdSign = createAsyncThunk(
     'categories/successedCustomCategoryIdSign',
@@ -27,6 +27,7 @@ export const addNewCustomCategory = createAsyncThunk(
             
             if(!response.error) {
                 dispatch(successedCustomCategoryIdSign({categoryId: response.data.id}))
+                dispatch(setNewCategory({data: response.data}))
                 return fulfillWithValue({data: response.data})
             } else {
                 dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
@@ -54,6 +55,11 @@ export const editCustomCategory = createAsyncThunk(
                 
             }))
             if(!response.error) {
+                dispatch(updateCategory({
+                    categoryId,
+                    newName,
+                    color: categoryColor,
+                }))
                 dispatch(successedCustomCategoryIdSign({categoryId}))
                 return fulfillWithValue({id: categoryId, newName})
             } else {
@@ -70,7 +76,7 @@ export const editCustomCategory = createAsyncThunk(
 
 export const deleteCustomCategory = createAsyncThunk(
     'categories/deleteCustomCategory',
-    async ({ token, categoryId }, {dispatch, rejectWithValue}) => {
+    async ({ token, categoryId }, {dispatch, rejectWithValue, fulfillWithValue}) => {
         try {
             const response = await dispatch(categoriesAPI.endpoints.deleteCustomCategory.initiate({
                 categoryId,
@@ -80,6 +86,9 @@ export const deleteCustomCategory = createAsyncThunk(
             if(response.error) {
                 dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
                 throw new Error(response.error.message)   
+            } else {
+                dispatch(unsetDeletedCategory({categoryId}))
+                fulfillWithValue(true)
             }
         } catch (error) {
             console.log('Ошибка удаления категории', error.message)
@@ -120,6 +129,10 @@ export const movePostsInDefault = createAsyncThunk(
             })
     }
 )
+
+// Было решено убрать функционал удаления категории из интерфейса. 
+// Всё из-за невозможности корректно переместить записи в другую категорию после её удаления. 
+// Json server не способен на массовые изменения
 
 export const deleteCategoryActions = createAsyncThunk(
     'categories/deleteCategoryActions',

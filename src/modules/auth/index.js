@@ -9,5 +9,9 @@ export {
     unsetUserProfileData,
     getUserCategories,
     updateBudget,
-    checkUnauthorizedErrorStatus
+    checkUnauthorizedErrorStatus,
+
+    updateCategory,
+    setNewCategory,
+    unsetDeletedCategory
  } from "./model"

@@ -47,9 +47,14 @@ export const CategoryItem = memo(function CategoryItem({ data, isDefaultCategory
                     <button type={'button'} onClick={() => onEditModeOn()} className={style.controlBtn}>
                         <PostEditSvg/>
                     </button>
-                    <button type={'button'} onClick={() => onDeleteCategoryItem(data.id, data.postType)} className={style.controlBtn}>
+
+                    {/* Было решено убрать функционал удаления категории из интерфейса. 
+                    Всё из-за невозможности корректно переместить записи в другую категорию после её удаления. 
+                    Json server не способен на массовые изменения */}
+
+                    {/* <button type={'button'} onClick={() => onDeleteCategoryItem(data.id, data.postType)} className={style.controlBtn}>
                         <PostDeleteSvg/>
-                    </button>
+                    </button> */}
                 </div>
                 :
                 null}

@@ -19,6 +19,11 @@
       "email": "v@v",
       "password": "$2a$10$Y1K0mWSt/yP7cu4tHt0CzugSAe7lElcbeY9NTXHuBuTxK3VEHXHEO",
       "id": 4
+    },
+    {
+      "email": "vv@aa",
+      "password": "$2a$10$qdASAtPNdoKOfJ/opZx6OeHHE8i9z9GLo.fLLjQwbfXNzsoeOq8Ki",
+      "id": 5
     }
   ],
   "usersProfileData": [
@@ -28,7 +33,7 @@
       "userId": 1,
       "currencyId": 2,
       "budget": 41053439,
-      "themeId": 1
+      "themeId": 2
     },
     {
       "id": 2,
@@ -52,6 +57,14 @@
       "userId": 4,
       "currencyId": 3,
       "budget": 8000,
+      "themeId": 1
+    },
+    {
+      "id": 5,
+      "isProfileActivated": true,
+      "userId": 5,
+      "currencyId": 1,
+      "budget": 30000,
       "themeId": 1
     }
   ],
@@ -155,7 +168,7 @@
     {
       "userId": 1,
       "name": "asdasdf",
-      "color": "#FFFFFF",
+      "color": "#79ec92",
       "postType": 1,
       "isDefault": false,
       "id": 13
@@ -163,7 +176,7 @@
     {
       "userId": 1,
       "name": "asdf 78 7 87 887 87",
-      "color": "#FFFFFF",
+      "color": "#b6a4e8",
       "postType": 1,
       "isDefault": false,
       "id": 14

@@ -75,14 +75,6 @@ export const Layout = ({
                         :
                         false
                 )}
-                
-                {/* {categories?.map(el =>
-                    el.postType === postTypeShown
-                        ?
-                        <CategoryItem key={el.id} data={el} isDefaultCategory={true}/>
-                        :
-                        false
-                )} */}
                 </>
                 :
                 <CategoriesPreloader/>}

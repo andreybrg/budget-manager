@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './Layout.module.sass'
 import { NavLink } from 'react-router-dom'
 import WalletSvg from '@assets/images/wallet.svg?react'
 import CategoriesSvg from '@assets/images/list_alt.svg?react'
 import cn from 'classnames'
+import { changeUserTheme } from '@app/model/appSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { ChangeThemeBtn } from '../ChangeThemeBtn/ChangeThemeBtn'
 
 export const Layout = () => {
 
+    const dispatch = useDispatch()
+    
+    const currentTheme = useSelector(store => store.app.data.currentTheme)
+
+    const [ theme, setTheme ] = useState(currentTheme)
+
+    const onThemeChange = async (themeId) => {
+        const response = await dispatch(changeUserTheme({themeId}))
+        if(!response.error) {
+            setTheme(prev => themeId)
+        }
+    }
+    
     return(
         <div className={style.panelSidebar}>
             <div className={style.menu}>
@@ -31,6 +47,8 @@ export const Layout = () => {
                     <CategoriesSvg/>
                 </NavLink>
             </div>
+            <ChangeThemeBtn onThemeChange={onThemeChange} theme={theme}/>
+            
         </div>
     )
 }

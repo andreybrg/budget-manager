@@ -25,10 +25,12 @@ export const Container = () => {
 
     const { confirmationModalController } = useContext(ModalsContext)
 
+    // При загрузке страницы получаем всегда актуальные категории из базы
     useEffect(() => {
         dispatch(getUserCategories())
     }, [])
 
+    // При получении категорий устанавливаем их в стейт
     useEffect(() => {
         setCategoriesList(categories)
     }, [categories])
@@ -44,49 +46,22 @@ export const Container = () => {
     }
 
     const onAddNewCategory = async ({ newName, categoryColor }) => {
-        const response = await dispatch(addNewCustomCategory({
+        await dispatch(addNewCustomCategory({
             userId: userId,
             name: newName,
             postType: postTypeShown,
             color: categoryColor
         }))
         onToggleAddCategoryMode()
-        if(!response.error) {
-            setCategoriesList(prev => 
-                 ([
-                    response.payload.data,
-                    ...prev
-                ])
-            )
-        }
     }
 
     const onEditCategory = async ({ categoryId, newName, categoryColor }) => {
-        const response = await dispatch(editCustomCategory({categoryId, newName, categoryColor}))
-        if(!response.error) {
-            setCategoriesList(prev => 
-                prev.map(el => {
-                    if(el.id === categoryId) {
-                        return {
-                            ...el,
-                            name: newName,
-                            color: categoryColor
-                        }
-                    } else {
-                        return el
-                    }
-                })
-            )
-        }
+        dispatch(editCustomCategory({categoryId, newName, categoryColor}))
     }
 
+    // Не подключено. Смотри в categoriesSlice
     const onDeleteCategory = async (categoryId, postType) => {
-        const response = await dispatch(deleteCategoryActions({categoryId, postType}))
-        if(!response.error) {
-            setCategoriesList(prev => 
-                prev.filter(el => el.id !== categoryId)
-            )
-        }
+        dispatch(deleteCategoryActions({categoryId, postType}))
     }
 
     const onDeleteConfirmation = (categoryId, postType) => {
@@ -98,11 +73,11 @@ export const Container = () => {
         )
     }
 
-    if(categoriesList) {
+    if(categories) {
         return(
             <Layout
                 gettingCategories={gettingCategories}
-                categories={categoriesList}
+                categories={categories}
                 postTypeShown={postTypeShown}
                 onSetCategoryIdShown={onSetCategoryIdShown}
                 postTypes={postTypes}

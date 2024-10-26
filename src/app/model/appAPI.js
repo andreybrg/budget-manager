@@ -25,6 +25,23 @@ export const appAPI = createApi({
                 url: `/dayFilters`,
             }),
         }),
+        getThemes: builder.query({
+            query: () => ({
+                url: `/themes`,
+            }),
+        }),
+        setNewTheme: builder.mutation({
+            query: ({ themeId, userId, token }) => {
+                return {
+                    url: `/660/usersProfileData/${userId}`,
+                    method: 'PATCH',
+                    body: {
+                        themeId
+                    },
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            },
+        }),
     }),
 })
 

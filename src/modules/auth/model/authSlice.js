@@ -5,6 +5,7 @@ import { checkAuthorization } from '@app'
 import { resetPostList } from '@modules/posts'
 import { setNewMicroalert } from '@modules/alerts'
 import { PROFILE_CATEGORIES_FOR_USER_REGISTER } from '@shared/constants/constants'
+import { setCurrentTheme } from '@app/model'
 
 
 export const userCreateAccountProfile = createAsyncThunk(
@@ -136,6 +137,7 @@ export const getUserProfileData = createAsyncThunk(
             if(!response.error) {
                 const pd = {data: response.data.usersProfileData[0]}
                 dispatch(setUserProfileData(pd))
+                dispatch(setCurrentTheme({themeId: pd.data.themeId}))
                 return Promise.resolve()
             } else {
                 throw new Error('Ошибка получения данных профиля')
@@ -187,7 +189,6 @@ export const checkUnauthorizedErrorStatus = createAsyncThunk(
         }
     }
 )
-
 
 const initialState = {
     data: {
@@ -241,6 +242,26 @@ const authSlice = createSlice({
         },
         updateBudget(state, action) {
             state.data.profileData.budget = action.payload.data
+        },
+
+        updateCategory(state, action) {
+            state.data.profileData.categories = state.data.profileData.categories.map(el => {
+                if(el.id === action.payload.categoryId) {
+                    return {
+                        ...el,
+                        name: action.payload.newName,
+                        color: action.payload.color
+                    }
+                } else {
+                    return el
+                }
+            })
+        },
+        setNewCategory(state, action) {
+            state.data.profileData.categories.unshift(action.payload.data)
+        },
+        unsetDeletedCategory(state, action) {
+            state.data.profileData.categories = state.data.profileData.categories.filter(el => el.id !== action.payload.categoryId)
         }
     },
     extraReducers: builder =>
@@ -281,5 +302,5 @@ const authSlice = createSlice({
             })
 })
 
-export const { setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, setUserCustomCategories, updateBudget } = authSlice.actions
+export const { unsetDeletedCategory, setNewCategory, updateCategory, setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, setUserCustomCategories, updateBudget } = authSlice.actions
 export default authSlice.reducer

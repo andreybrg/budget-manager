@@ -4,11 +4,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getAuthLocalStorage, removeAuthLocalStorage } from '@shared/utils/localStorage'
 import { appAPI } from './appAPI'
 import { getAuthorizedUserData } from '@modules/auth/model/authSlice'
+import { setNewMicroalert } from '@modules/alerts'
 
 const initialState = {
     data: {
         isInit: false,
-        appData: null
+        appData: null,
+        currentTheme: 1,
+        changeThemeStatus: {
+            isFetching: false
+        }
     },
 
 }
@@ -60,16 +65,18 @@ export const getAppData = createAsyncThunk(
             dispatch(appAPI.endpoints.getPostTypes.initiate()),
             dispatch(appAPI.endpoints.getFilters.initiate()),
             dispatch(appAPI.endpoints.getDayFilters.initiate()),
+            dispatch(appAPI.endpoints.getThemes.initiate()),
             dispatch(getUserProfileData()),
             dispatch(getCurrentDate())
         ])
-        .then(([currencies, postTypes, filters, dayFilters, b]) => {
+        .then(([currencies, postTypes, filters, dayFilters, themes, b]) => {
             dispatch(setAppData({
                 data: {
                     currencies: currencies.data,
                     postTypes: postTypes.data,
                     filters: filters.data,
-                    dayFilters: dayFilters.data
+                    dayFilters: dayFilters.data,
+                    themes: themes.data
                 }
             }))
         })
@@ -84,6 +91,32 @@ export const getCurrentDate = createAsyncThunk(
             data: today
         }))
         return true
+    }
+)
+
+export const changeUserTheme = createAsyncThunk(
+    'app/changeUserTheme',
+    async ({themeId}, {dispatch, fulfillWithValue, rejectWithValue}) => {
+        try {
+            const [ token, userId ] = getAuthLocalStorage()
+            const response = dispatch(appAPI.endpoints.setNewTheme.initiate({
+                themeId,
+                userId: userId,
+                token: token
+            }))
+            if(!response.error) {
+                dispatch(setCurrentTheme({themeId}))
+                fulfillWithValue(true)
+            } else {
+                dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
+                throw new Error('Ошибка установки темы')
+            }
+        } catch (error) {
+            dispatch(setNewMicroalert({text: 'Ошибка установки темы'}))
+            console.log(error.message)
+            rejectWithValue(true)
+        }
+        
     }
 )
 
@@ -106,8 +139,22 @@ const appSlice = createSlice({
                 todayDate: action.payload.data
             }
         },
-    }
+        setCurrentTheme(state, action) {
+            state.data.currentTheme = action.payload.themeId
+        }
+    },
+    extraReducers: builder =>
+        builder
+            .addCase(changeUserTheme.pending, (state) => {
+                state.data.changeThemeStatus.isFetching = true
+            })
+            .addCase(changeUserTheme.fulfilled, (state) => {
+                state.data.changeThemeStatus.isFetching = false
+            })
+            .addCase(changeUserTheme.rejected, (state) => {
+                state.data.changeThemeStatus.isFetching = false
+            })
 })
 
-export const { setAppInit, setAppData, setCurrentDate } = appSlice.actions
+export const { setCurrentTheme, setAppInit, setAppData, setCurrentDate } = appSlice.actions
 export default appSlice.reducer
