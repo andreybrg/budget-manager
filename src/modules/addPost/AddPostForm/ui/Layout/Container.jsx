@@ -78,7 +78,7 @@ export const Container = () => {
         setCategoriesList(
             prepareArrayForSelect(categoriesFiltered, 'name', 'id')
         )
-    }, [formik.values.postType])
+    }, [formik.values.postType, categories])
 
     return(
         <Layout

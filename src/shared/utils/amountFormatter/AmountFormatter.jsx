@@ -14,6 +14,6 @@ export const AmountFormatter = ({amount}) => {
             minimumFractionDigits: 0 
         }
     )
-
     return formattedAmount
+    
 }

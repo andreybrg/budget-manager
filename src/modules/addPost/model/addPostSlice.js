@@ -87,7 +87,7 @@ export const addPostActions = createAsyncThunk(
     async ({postType, categoryId, volume, title, postDate}, {dispatch, fulfillWithValue, rejectWithValue}) => {
         try {
             
-            Promise.all([
+            await Promise.all([
                 dispatch(addPost({postType, categoryId, volume, title, postDate})),
                 dispatch(mutateBalance({postType, volume})),
             ])
@@ -117,16 +117,19 @@ const addPostSlice = createSlice({
         builder
             .addCase(addPostActions.pending, (state) => {
                 state.data.isFetching = true
+                state.data.isSuccess = false
                 state.data.isError = false
                 state.data.errorMessage = null
             })
             .addCase(addPostActions.fulfilled, (state) => {
-                state.data.isFetching = false 
-                state.data.isError = false  
+                state.data.isFetching = false
+                state.data.isSuccess = true
+                state.data.isError = false
                 state.data.errorMessage  = null
             })
             .addCase(addPostActions.rejected, (state, action) => {
-                state.data.isFetching = false 
+                state.data.isFetching = false
+                state.data.isSuccess = false
                 state.data.isError = true
                 state.data.errorMessage = action.payload
             })

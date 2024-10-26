@@ -29,8 +29,8 @@ export const Container = ({ postData, onSubmitCallback }) => {
             postType: Number(postType),
             postId
         }))
+        centeredModalController.unmountCenteredModal()
         if(!response.error) {
-            centeredModalController.unmountCenteredModal()
             dispatch(getPostsList())
         }
         onSubmitCallback()

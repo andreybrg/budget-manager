@@ -3,7 +3,6 @@ import LogoSvg from '@assets/images/logo.svg?react'
 import LogoutSvg from '@assets/images/logout.svg?react'
 import style from './Layout.module.sass'
 import commonStyle from '@assets/styles/common.module.sass'
-import { BudgetControl } from '@modules/header/budgetControl'
 import cn from 'classnames'
 import { MicroBtn } from '@shared/buttons'
 import { useNavigate } from 'react-router-dom'
@@ -17,7 +16,10 @@ export const Layout = ({ isAuth, isProfileActivated }) => {
     const dispatch = useDispatch()
 
     return(
-        <div className={cn(style.header, {[style.header_Unauthorized]: !isAuth || !isProfileActivated})}>
+        <div className={cn(
+                style.header, 
+                {[style.header_Unauthorized]: !isAuth || !isProfileActivated},
+            )}>
             <div className={commonStyle.wrap}>
                 <div className={commonStyle.container}>
                     <div className={style.headerContainer}>

@@ -15,6 +15,9 @@
         background-color: var(--header-bg-color)
         padding: 20px 0
         z-index: 19
+        -webkit-box-shadow: 4px 18px 14px 0px rgba(var(--rgb-header-shadow-color), 0.2)
+        -moz-box-shadow: 4px 18px 14px 0px rgba(var(--rgb-header-shadow-color), 0.2)
+        box-shadow: 4px 18px 14px 0px rgba(var(--rgb-header-shadow-color), 0.2)
 
 .content
     display: flex
@@ -22,6 +25,11 @@
     row-gap: 5px
     align-items: flex-start
     width: fit-content
+    transition: .3s
+    &_scrolled
+        @include m.s900
+            row-gap: 0px
+            transition: .3s
     @include m.s900
         align-items: center
 
@@ -31,6 +39,15 @@
     display: flex
     align-items: center
     column-gap: 5px
+    max-height: 30px
+    opacity: 1
+    transition: .3s
+    &_scrolled
+        @include m.s900
+            transition: .3s
+            max-height: 0
+            overflow: hidden
+            opacity: 0
     svg
         width: 17px
         height: 17px
@@ -38,5 +55,11 @@
             fill: var(--main-icon-color)
 .amount
     @include m.fontInter(32px, var(--text-color), 500, 120%)
+    transition: .3s
     @include m.s900
         font-size: 26px
+        transition: .3s
+    &_scrolled
+        @include m.s900
+            transition: .3s
+            font-size: 20px !important

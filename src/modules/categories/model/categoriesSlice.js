@@ -183,6 +183,12 @@ const categoriesSlice = createSlice({
             .addCase(addNewCustomCategory.pending, (state) => {
                 state.addCustomCategory.isFetching = true
             })
+            .addCase(addNewCustomCategory.fulfilled, (state) => {
+                state.addCustomCategory.isFetching = false
+            })
+            .addCase(addNewCustomCategory.rejected, (state) => {
+                state.addCustomCategory.isFetching = false
+            })
             .addCase(editCustomCategory.fulfilled, (state, action) => {
                 const index = state.editCustomCategory.fetchingCategoryIds.findIndex(el => el === action.payload.id)
                 state.editCustomCategory.fetchingCategoryIds.splice(index, 1)

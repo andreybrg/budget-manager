@@ -2,26 +2,26 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 
-export const AuthProtectedRoute = ({ children, forAuthorizedUser=false }) => {
+export const AuthProtectedRoute = ({ children, inversed=false }) => {
 
     const isAuth = useSelector(store => store.auth.data.isAuth)
-    const isProfileActivated = useSelector(store => store.auth.data.profileData.isProfileActivated)
     
-    if(!forAuthorizedUser)  {
-        if(isAuth) {
-            return children ? children : <Outlet/>
-        } else {
+    if(!inversed) {
+        if(!isAuth) {
+            // Если юзер не авторизован
             return <Navigate to={'/auth/signin'}/>
+        } else {
+            // Если юзер авторизован
+            return children ? children : <Outlet/>
         }
     } else {
-        if(!isAuth) {
-            return children ? children : <Outlet/>
+        if(isAuth) {
+            // Если юзер авторизован
+            return <Navigate to={'/panel/main'}/>
         } else {
-            if(isProfileActivated) {
-                return <Navigate to={'/panel/main'}/>
-            } else {
-                return <Navigate to={'/first-steps'}/>
-            }
+            // Если юзер не авторизован
+            return children ? children : <Outlet/>
         }
     }
+
 }

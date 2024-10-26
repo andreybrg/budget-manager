@@ -1,0 +1,1 @@
+export { ActivatedProfileProtectedRoute } from "./ActivatedProfileProtectedRoute"

@@ -4,10 +4,11 @@ import { getAuthLocalStorage, removeAuthLocalStorage, setAuthLocalStorage } from
 import { checkAuthorization } from '@app'
 import { resetPostList } from '@modules/posts'
 import { setNewMicroalert } from '@modules/alerts'
+import { PROFILE_CATEGORIES_FOR_USER_REGISTER } from '@shared/constants/constants'
 
 
 export const userCreateAccountProfile = createAsyncThunk(
-    '',
+    'auth/userCreateAccountProfile',
     async (data, {dispatch}) => {
         try {
             const response = await dispatch(authAPI.endpoints.userCreateProfile.initiate({
@@ -16,13 +17,21 @@ export const userCreateAccountProfile = createAsyncThunk(
             }))
             if(response.error) {
                 throw new Error(`Ошибка создания профиля ${response.error.message}`)
+            } else {
+                return true
             }
         } catch (error) {
             console.log(error.message)
+            return false
         }
         
     }
 )
+
+const setAuthLocalStorageWithPromice = (accessToken, id) => {
+    setAuthLocalStorage(accessToken, id)
+    return Promise.resolve()
+}
 
 export const userRegister = createAsyncThunk(
     'auth/userRegister',
@@ -35,9 +44,11 @@ export const userRegister = createAsyncThunk(
             if(!response.error) {
                 await Promise.all([
                     dispatch(userCreateAccountProfile({userId: response.data.user.id, token: response.data.accessToken})),
-                    setAuthLocalStorage(response.data.accessToken, response.data.user.id),
-                    dispatch(getAuthorizedUserData())
+                    setAuthLocalStorageWithPromice(response.data.accessToken, response.data.user.id),
                 ])
+                .then(() => {
+                    dispatch(getAuthorizedUserData())
+                })
                 .then(() => {
                     dispatch(setUserAuth())
                     return fulfillWithValue(true)
@@ -99,7 +110,6 @@ export const getAuthorizedUserData = createAsyncThunk(
             await Promise.all([
                 dispatch(getUserProfileData()),
                 dispatch(getUserCategories()),
-                // dispatch(getCustomUserCategories())
             ])
             .then(() => true)
         } catch (error) {
@@ -126,13 +136,14 @@ export const getUserProfileData = createAsyncThunk(
             if(!response.error) {
                 const pd = {data: response.data.usersProfileData[0]}
                 dispatch(setUserProfileData(pd))
-                return response
+                return Promise.resolve()
             } else {
                 throw new Error('Ошибка получения данных профиля')
             }
 
         } catch (error) {
             console.log(error.message)
+            return Promise.reject()
         }
     }
 )
@@ -154,7 +165,7 @@ export const getUserCategories = createAsyncThunk(
             if(!response.error) {
                 const categories = {data: response.data}
                 dispatch(setUserCategories(categories))
-                return response
+                return Promise.resolve()
             } else {
                 dispatch(checkUnauthorizedErrorStatus({status: response.error.status}))
                 throw new Error('Ошибка получения данных профиля')
@@ -162,6 +173,7 @@ export const getUserCategories = createAsyncThunk(
             
         } catch (error) {
             console.log(error.message)
+            return Promise.reject()
         }
     }
 )

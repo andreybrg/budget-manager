@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MainBtn, SecondBtn } from '@shared/buttons'
 import { useNavigate } from 'react-router-dom'
 import { closeBurgerMenu } from '@modules/burgerMenu/model'
+import { userLogout } from '@modules/auth'
 
 export const Layout = () => {
 
@@ -12,9 +13,16 @@ export const Layout = () => {
     const isBurgerMenuOpened = useSelector(store => store.burgerMenu.data.isOpened)
     const isAuth = useSelector(store => store.auth.data.isAuth)
 
-    const onMenuElemClick = (callback) => {
+    const onMenuElemClick = (callback=null) => {
         dispatch(closeBurgerMenu())
-        callback()
+        if(callback) {
+            callback()
+        }
+    }
+
+    const onLogoutClick = () => {
+        dispatch(closeBurgerMenu())
+        dispatch(userLogout())
     }
 
     if(isBurgerMenuOpened) {
@@ -32,7 +40,17 @@ export const Layout = () => {
                         </SecondBtn>
                     </div>
                     :
-                    null
+                    <div className={style.menuContent}>
+                        <div className={style.item}>
+                            <button type={'button'} onClick={() => onMenuElemClick(() => navigate('/panel/main'))}>Финансы</button>
+                        </div>
+                        <div className={style.item}>
+                            <button type={'button'} onClick={() => onMenuElemClick(() => navigate('/panel/categories'))}>Категории</button>
+                        </div>
+                        <div className={style.item}>
+                            <button type={'button'} onClick={() => onLogoutClick()}>Выход</button>
+                        </div>
+                    </div>
                 }
             </div>
         )

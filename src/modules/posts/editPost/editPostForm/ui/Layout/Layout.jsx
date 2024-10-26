@@ -46,6 +46,15 @@ export const Layout = ({
                 formikErrors={formik.errors.title}
                 disabled={isFormFetching}
             />
+            <InputNumber
+                label={"Сумма"}
+                id={'volume'}
+                name={'volume'}
+                formikFieldProps={{...formik.getFieldProps('volume')}}
+                formikTouched={formik.touched.volume}
+                formikErrors={formik.errors.volume}
+                disabled={isFormFetching}
+            />
             <InputDate
                 label={"Дата"}
                 id={'postDate'}
@@ -54,15 +63,6 @@ export const Layout = ({
                 formikErrors={formik.errors.postDate}
                 fieldValue={formik.values.postDate}
                 onChangeFunction={onChangeDate}
-                disabled={isFormFetching}
-            />
-            <InputNumber
-                label={"Сумма"}
-                id={'volume'}
-                name={'volume'}
-                formikFieldProps={{...formik.getFieldProps('volume')}}
-                formikTouched={formik.touched.volume}
-                formikErrors={formik.errors.volume}
                 disabled={isFormFetching}
             />
             <MainBtn type={'submit'} disabled={isFormFetching}>

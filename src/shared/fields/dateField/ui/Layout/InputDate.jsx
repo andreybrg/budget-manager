@@ -4,6 +4,7 @@ import DatePickerSvg from '@assets/images/calendar_month.svg?react'
 import { dateFormatter } from "@shared/utils/dateFormatter"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
+import cn from "classnames"
 
 export const InputDate = ({ 
     label,
@@ -24,7 +25,7 @@ export const InputDate = ({
         ({ value, onClick, className }, ref) => (
           <button type={'button'} className={className} onClick={onClick} ref={ref}>
             <div className={style.title}>{label}</div>
-            <div className={style.dateValue}>
+            <div className={cn(style.dateValue, {[style.dateFiledDisabled]: disabled})}>
                 {value}
             </div>
           </button>
@@ -36,6 +37,7 @@ export const InputDate = ({
         <label htmlFor={id || name} className={style.label}>
             
             <DatePicker 
+                disabled={disabled}
                 selected={fieldValue} 
                 dateFormat="dd.MM.yyy" 
                 onChange={(date) => onChangeFunction(date)} 

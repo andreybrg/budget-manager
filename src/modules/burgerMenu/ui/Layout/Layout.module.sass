@@ -11,6 +11,7 @@
     background-color: var(--body-color)
     padding: 20px
     box-sizing: border-box
+    z-index: 21
     @include m.s900
         display: flex
 
@@ -19,3 +20,21 @@
     flex-direction: column
     margin: auto 0 0 0
     row-gap: 20px
+
+.menuContent
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 100%
+    padding: 100px 0 0 0
+    row-gap: 20px
+.item
+    display: flex
+    button
+        margin: 0
+        padding: 0
+        background-color: unset
+        border: none
+        outline: none
+        @include m.fontInter(20px, var(--text-color), 500, 120%)

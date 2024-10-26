@@ -122,11 +122,11 @@ export const updatePostActions = createAsyncThunk(
     async ({postType, categoryId, volume, title, postDate, postId, oldVolume}, {dispatch, fulfillWithValue, rejectWithValue}) => {
         try {
             
-            Promise.all([
+            await Promise.all([
                 dispatch(updatePost({postType, categoryId, volume, title, postDate, postId})),
                 dispatch(mutateBalance({postType, volume, oldVolume})),
             ])
-            .then(([updatePost])=>{
+            .then(([updatePost, mutateBalance])=>{
                 return fulfillWithValue(true)
             })
 

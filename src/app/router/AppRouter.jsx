@@ -6,6 +6,8 @@ import { FirstSteps } from '@pages/firstSteps'
 import { Panel } from '@pages/panel'
 import { PanelModule } from '@modules/panel'
 import { CategoriesModule } from '@modules/categories'
+import { IndexPage } from '@pages/index'
+import { ActivatedProfileProtectedRoute } from '@shared/routes/activatedProfileProtectedRoute'
 
 export const AppRouter = ({  }) => {
     return(
@@ -13,20 +15,22 @@ export const AppRouter = ({  }) => {
             <Routes>
                 <Route psth={'/'} element={<Layout/>}>
                     <Route index element={
-                        <></>
+                        <IndexPage/>
                     }/>
                     <Route path={'panel/*'} element={
-                        <AuthProtectedRoute>
-                            <Routes>
-                                <Route element={<Panel/>}>
-                                    <Route path={'main'} element={<PanelModule/>}/>
-                                    <Route path={'categories'} element={<CategoriesModule/>}/>
-                                </Route>
-                            </Routes>
-                        </AuthProtectedRoute>
+                        <ActivatedProfileProtectedRoute>
+                            <AuthProtectedRoute>
+                                <Routes>
+                                    <Route element={<Panel/>}>
+                                        <Route path={'main'} element={<PanelModule/>}/>
+                                        <Route path={'categories'} element={<CategoriesModule/>}/>
+                                    </Route>
+                                </Routes>
+                            </AuthProtectedRoute>
+                        </ActivatedProfileProtectedRoute>
                     }/>
                     <Route path={'auth/:authMode'} element={
-                        <AuthProtectedRoute forAuthorizedUser={true}>
+                        <AuthProtectedRoute inversed={true}>
                             <Authorization/>
                         </AuthProtectedRoute>
                     }/>

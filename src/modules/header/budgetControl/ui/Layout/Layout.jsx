@@ -7,16 +7,26 @@ import cn from 'classnames'
 export const Layout = ({ 
     budgetAmount,
     budgetName,
+    scrolledHeader,
 }) => {
     
     return(
         <div className={style.container}>
-            <div className={style.content}>
-                <div className={style.title}>
+            <div className={cn(
+                        style.content,
+                        {[style.content_scrolled]: scrolledHeader}
+                    )}>
+                <div className={cn(
+                        style.title,
+                        {[style.title_scrolled]: scrolledHeader}
+                    )}>
                     {budgetName}
                     {/* <SettingsSvg/> */}
                 </div>
-                <div className={style.amount}>
+                <div className={cn(
+                            style.amount,
+                            {[style.amount_scrolled]: scrolledHeader}
+                        )}>
                     {<AmountFormatter amount={budgetAmount}/>}
                 </div>
             </div>

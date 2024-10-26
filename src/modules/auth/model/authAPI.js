@@ -34,6 +34,16 @@ export const authAPI = createApi({
                 }
             },
         }),
+        userCreateDefaultCategories: builder.mutation({
+            query: ({ token, category }) => {
+                return {
+                    url: '660/categories',
+                    method: 'POST',
+                    body: category,
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            },
+        }),
         userLogin: builder.mutation({
             query: ({ email, password }) => {
                 return {
@@ -60,13 +70,7 @@ export const authAPI = createApi({
         }),
         getCategories: builder.query({
             query: ({token, userId}) => ({
-                url: `600/categories?userId=${userId}&_sort=id&_order=desc`,
-                headers: { Authorization: `Bearer ${token}` },
-            }),
-        }),
-        getCustomCategories: builder.query({
-            query: ({token, userId}) => ({
-                url: `600/customCategories?userId=${userId}&_sort=id&_order=desc`,
+                url: `660/categories?userId=${userId}&userId=0&_sort=id&_order=desc`,
                 headers: { Authorization: `Bearer ${token}` },
             }),
         })

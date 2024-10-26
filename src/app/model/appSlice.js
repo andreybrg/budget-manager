@@ -38,13 +38,16 @@ export const checkAuthorization = createAsyncThunk(
             if(!response.error) {
                 dispatch(getAuthorizedUserData())
                 dispatch(setUserAuth())
+                return true
             } else {
                 dispatch(setUserUnauth())
                 removeAuthLocalStorage()
+                return true
             }
         } else {
             dispatch(setUserUnauth())
             removeAuthLocalStorage()
+            return true
         }
     }
 )
@@ -80,6 +83,7 @@ export const getCurrentDate = createAsyncThunk(
         dispatch(setCurrentDate({
             data: today
         }))
+        return true
     }
 )
 
