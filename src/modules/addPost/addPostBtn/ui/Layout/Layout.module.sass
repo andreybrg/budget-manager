@@ -6,6 +6,7 @@
     bottom: 20px
     height: 50px
     z-index: 50
+    transition: .2s
     @include m.s900
         width: 50px
     button
@@ -26,6 +27,7 @@
             padding: 0
         span
             @include m.fontInter(16px, var(--theme-content-color), 500, 140px)
+            overflow: hidden
             @include m.s900
                 display: none
         svg
@@ -33,3 +35,12 @@
             height: 30px
             path
                 fill: var(--theme-content-color)
+
+.addPostOnBottom
+    @include m.s900
+    width: calc(100% - 40px)
+    transition: .2s
+    button
+        span
+            @include m.s900
+                display: block
