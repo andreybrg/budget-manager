@@ -16,7 +16,7 @@ export const Layout = () => {
     const [ scrolledBtn, setScrolledBtn] = useState(false)
 
     const handleScroll = () => {
-        if(window.innerHeight + (window.pageYOffset || document.documentElement.scrollTop) >= document.documentElement.offsetHeight - 50) {
+        if(window.innerHeight + (window.scrollY || document.documentElement.scrollTop) >= document.documentElement.offsetHeight - 50) {
             setScrolledBtn(true)
         } else {
             setScrolledBtn(false)
