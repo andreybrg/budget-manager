@@ -4,7 +4,7 @@ import { MainForm } from '@shared/forms'
 import { MainBtn } from '@shared/buttons'
 import { InputNumber } from '@shared/fields/numberField'
 
-export const Layout = ({ formik }) => {
+export const Layout = ({ formik, isFetching }) => {
     return(
         <>
             <div className={style.title}>Введите начальный бюджет</div>
@@ -16,8 +16,9 @@ export const Layout = ({ formik }) => {
                 formikFieldProps={{...formik.getFieldProps('budget')}}
                 formikErrors={formik.errors.budget}
                 formikTouched={formik.touched.budget}
+                disabled={isFetching}
                 />
-            <MainBtn type={'submit'}>
+            <MainBtn type={'submit'} disabled={isFetching}>
                 Завершить настройку
             </MainBtn>
         </>

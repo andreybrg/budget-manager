@@ -1,6 +1,6 @@
 import React from "react"
 import style from './Layout.module.sass'
-import CloseSvg from '@assets/images/close.svg?react'
+import CloseSvg from '@assets/images/close.svg'
 
 export const Layout = ({
     children,

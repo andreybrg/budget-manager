@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import style from './Controls.module.sass'
-import CloseSvg from '@assets/images/close.svg?react'
-import DoneSvg from '@assets/images/done.svg?react'
+import CloseSvg from '@assets/images/close.svg'
+import DoneSvg from '@assets/images/done.svg'
 import { HexColorPicker } from 'react-colorful'
 import { useOutsideClickHandler } from '@shared/hook'
 

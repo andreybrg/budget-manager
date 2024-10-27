@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import style from './InputPassword.module.sass'
-import VisibilitySvg from '@assets/images/visibility.svg?react'
-import VisibilityOffSvg from '@assets/images/visibility_off.svg?react'
+import VisibilitySvg from '@assets/images/visibility.svg'
+import VisibilityOffSvg from '@assets/images/visibility_off.svg'
 
 export const InputPassword = ({ 
     label,

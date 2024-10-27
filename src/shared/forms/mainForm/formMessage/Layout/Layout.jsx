@@ -1,6 +1,6 @@
 import React from "react"
 import style from './Layout.module.sass'
-import AlertSvg from '@assets/images/brightness_alert.svg?react'
+import AlertSvg from '@assets/images/brightness_alert.svg'
 
 export const Layout = ({ children, isSuccess=false, isError=false }) => {
     return(

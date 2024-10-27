@@ -3,7 +3,7 @@ import style from './Layout.module.sass'
 import { PanelTitle } from '@shared/titles'
 import { MicroActionBtn, SimpleBtn } from '@shared/buttons'
 import { CategoryItem } from '../CategoryItem/CategoryItem'
-import AddSvg from '@assets/images/add.svg?react'
+import AddSvg from '@assets/images/add.svg'
 import { CategoryItemForm } from '../CategoryItemForm/CategoryItemForm'
 import { CategoriesPreloader } from '../CategoriesPreloader/CategoriesPreloader'
 

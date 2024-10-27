@@ -1,6 +1,6 @@
 import React from "react"
 import style from './SimpleSelect.module.sass'
-import ArrowSvg from '@assets/images/arrow_down.svg?react'
+import ArrowSvg from '@assets/images/arrow_down.svg'
 
 export const SimpleSelect = ({ 
     selectData=[],

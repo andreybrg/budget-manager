@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { authAPI } from './authAPI'
 import { getAuthLocalStorage, removeAuthLocalStorage, setAuthLocalStorage } from '@shared/utils/localStorage'
-import { checkAuthorization } from '@app'
+import { checkAuthorization } from '@app/model'
 import { resetPostList } from '@modules/posts'
 import { setNewMicroalert } from '@modules/alerts'
 import { setCurrentTheme } from '@app/model'
@@ -233,12 +233,6 @@ const authSlice = createSlice({
                 categories: action.payload.data
             }
         },
-        setUserCustomCategories(state, action) {
-            state.data.profileData = {
-                ...state.data.profileData,
-                customCategories: action.payload.data
-            }
-        },
         updateBudget(state, action) {
             state.data.profileData.budget = action.payload.data
         },
@@ -301,5 +295,5 @@ const authSlice = createSlice({
             })
 })
 
-export const { unsetDeletedCategory, setNewCategory, updateCategory, setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, setUserCustomCategories, updateBudget } = authSlice.actions
+export const { unsetDeletedCategory, setNewCategory, updateCategory, setUserAuth, setUserUnauth, setAuthError, resetAuthError, setUserProfileData, unsetUserProfileData, setUserCategories, updateBudget } = authSlice.actions
 export default authSlice.reducer

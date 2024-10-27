@@ -1,6 +1,6 @@
 import React from "react"
 import style from './Layout.module.sass'
-import CloseSvg from '@assets/images/close.svg?react'
+import CloseSvg from '@assets/images/close.svg'
 import { MainBtn } from "@shared/buttons"
 
 export const Layout = ({

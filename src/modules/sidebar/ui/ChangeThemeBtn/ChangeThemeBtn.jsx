@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './ChangeThemeBtn.module.sass'
 import { useSelector } from 'react-redux'
-import LightSvg from '@assets/images/brightness_high.svg?react'
-import DarkSvg from '@assets/images/dark_mode.svg?react'
+import LightSvg from '@assets/images/brightness_high.svg'
+import DarkSvg from '@assets/images/dark_mode.svg'
 
 export const ChangeThemeBtn = ({ onThemeChange, theme }) => {
 

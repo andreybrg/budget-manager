@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { appInitialization } from "../model"
-import AppLogo from '@assets/images/logo.svg?react'
+import AppLogo from '@assets/images/logo.svg'
 import style from './AppInitialization.module.sass'
 
 export const AppInitialization = ({ children }) => {

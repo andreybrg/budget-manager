@@ -5,7 +5,7 @@ export const getMonthStartEnd = (date) => {
     const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1, 20);
 
     // Определяем конец месяца
-    const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0, 10);
 
     return {
         monthStart: monthStart.toISOString().split('T')[0],

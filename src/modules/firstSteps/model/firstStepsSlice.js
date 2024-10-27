@@ -29,25 +29,23 @@ export const setUserProfileInitialData = createAsyncThunk(
 
 const initialState = {
     data: {
-        isPending: false
+        isFetching: false
     }
 }
 
 const firstStepsSlice = createSlice({
-    name: 'name',
+    name: 'firstSteps',
     initialState,
-    reducers: {
-    },
     extraReducers: builder =>
         builder
             .addCase(setUserProfileInitialData.pending, (state) => {
-                state.data.isFething = true
+                state.data.isFetching = true
             })
             .addCase(setUserProfileInitialData.fulfilled, (state) => {
-                state.data.isFething = false
+                state.data.isFetching = false
             })
             .addCase(setUserProfileInitialData.rejected, (state) => {
-                state.data.isFething = false
+                state.data.isFetching = false
             })
 })
 

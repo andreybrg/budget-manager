@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react"
 import style from './InputDate.module.sass'
-import DatePickerSvg from '@assets/images/calendar_month.svg?react'
+import DatePickerSvg from '@assets/images/calendar_month.svg'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import cn from "classnames"

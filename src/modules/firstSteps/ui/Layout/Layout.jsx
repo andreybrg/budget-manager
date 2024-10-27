@@ -12,6 +12,7 @@ import { Navigate } from 'react-router-dom'
 export const Layout = () => {
 
     const isProfileActivated = useSelector(store => store.auth.data.profileData.isProfileActivated)
+    const isFetching = useSelector(store => store.firstSteps.data.isFetching)
 
     const dispatch = useDispatch()
     const [ step, setStep ] = useState('currency')
@@ -68,6 +69,7 @@ export const Layout = () => {
                     <BudgetStep
                         setInitialBudget={setInitialBudget}
                         formik={formik}
+                        isFetching={isFetching}
                         />
                     :
                     null

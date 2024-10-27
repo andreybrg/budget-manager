@@ -6,7 +6,6 @@ export const InputText = ({
     label,
     id,
     name,
-    placeholder='',
     formikFieldProps={},
     formikTouched=false,
     formikErrors=null,
@@ -28,7 +27,6 @@ export const InputText = ({
                 <div className={cn(style.title, {[style.titleError]: formikTouched && formikErrors})}>{formikTouched && formikErrors ? formikErrors : label}</div>
                 <input 
                     {...formikFieldProps}
-                    placeholder={placeholder} 
                     type={'text'}
                     disabled={disabled}
                     {...valueProp}

@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './Layout.module.sass'
-import BurgerMenuSvg from '@assets/images/burger-menu.svg?react'
-import CloseMenuSvg from '@assets/images/close.svg?react'
+import BurgerMenuSvg from '@assets/images/burger-menu.svg'
+import CloseMenuSvg from '@assets/images/close.svg'
 import { closeBurgerMenu, openBurgerMenu } from '@modules/burgerMenu/model'
 import { useDispatch, useSelector } from 'react-redux'
 

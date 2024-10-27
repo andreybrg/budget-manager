@@ -106,13 +106,22 @@ const initialState = {
         isFetching: false,
         isSuccess: false,
         isError: false,
-        errorMessage: null
+        errorMessage: null,
+        addPostBtnFullShown: false
     }
 }
 
 const addPostSlice = createSlice({
     name: 'addPost',
     initialState,
+    reducers: {
+        setAddPostBtnShown(state) {
+            state.data.addPostBtnFullShown = true
+        },
+        unsetAddPostBtnShown(state) {
+            state.data.addPostBtnFullShown = false
+        }
+    },
     extraReducers: builder =>
         builder
             .addCase(addPostActions.pending, (state) => {
@@ -137,5 +146,5 @@ const addPostSlice = createSlice({
 
 
 
-export const { } = addPostSlice.actions
+export const { setAddPostBtnShown, unsetAddPostBtnShown } = addPostSlice.actions
 export default addPostSlice.reducer

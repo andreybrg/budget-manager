@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './Layout.module.sass'
 import { AmountFormatter } from '@shared/utils/amountFormatter'
-import SettingsSvg from '@assets/images/settings.svg?react'
+import SettingsSvg from '@assets/images/settings.svg'
 import cn from 'classnames'
 
 export const Layout = ({ 
