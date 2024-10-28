@@ -1,72 +1,7 @@
 {
   "users": [
-    {
-      "email": "a@a",
-      "password": "$2a$10$UZ3KbN3qOWg9r09iVdFgj.nUqtd33yLM1D6xEsn7EpTnWySGzYvOy",
-      "id": 1
-    },
-    {
-      "email": "b@b",
-      "password": "$2a$10$0oxJEWF.zTcjRfeqtE9QH./gZXolh3bp1pGOTBF7HwCpDYMYFCjuy",
-      "id": 2
-    },
-    {
-      "email": "c@c",
-      "password": "$2a$10$a7QdjOW1fPzdlsvFGbXMl.Sr8LvXi6IsJL8vN5yVfiklZ.K2FTq1K",
-      "id": 3
-    },
-    {
-      "email": "v@v",
-      "password": "$2a$10$Y1K0mWSt/yP7cu4tHt0CzugSAe7lElcbeY9NTXHuBuTxK3VEHXHEO",
-      "id": 4
-    },
-    {
-      "email": "vv@aa",
-      "password": "$2a$10$qdASAtPNdoKOfJ/opZx6OeHHE8i9z9GLo.fLLjQwbfXNzsoeOq8Ki",
-      "id": 5
-    }
   ],
   "usersProfileData": [
-    {
-      "id": 1,
-      "isProfileActivated": true,
-      "userId": 1,
-      "currencyId": 2,
-      "budget": 41053439,
-      "themeId": 1
-    },
-    {
-      "id": 2,
-      "isProfileActivated": true,
-      "userId": 2,
-      "currencyId": 1,
-      "budget": 100,
-      "themeId": 1
-    },
-    {
-      "id": 3,
-      "isProfileActivated": true,
-      "userId": 3,
-      "currencyId": 2,
-      "budget": 123,
-      "themeId": 1
-    },
-    {
-      "id": 4,
-      "isProfileActivated": true,
-      "userId": 4,
-      "currencyId": 3,
-      "budget": 8000,
-      "themeId": 1
-    },
-    {
-      "id": 5,
-      "isProfileActivated": true,
-      "userId": 5,
-      "currencyId": 1,
-      "budget": 30000,
-      "themeId": 1
-    }
   ],
   "categories": [
     {
@@ -164,33 +99,8 @@
       "name": "Другие расходы",
       "color": "#DFCABE",
       "userId": 0
-    },
-    {
-      "userId": 1,
-      "name": "asdasdf",
-      "color": "#314e38",
-      "postType": 1,
-      "isDefault": false,
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "name": "asdf 78 7 87 887 87",
-      "color": "#8e75ff",
-      "postType": 1,
-      "isDefault": false,
-      "id": 14
-    },
-    {
-      "userId": 4,
-      "name": "Жумасынба",
-      "color": "#FFFFFF",
-      "postType": 1,
-      "isDefault": false,
-      "id": 15
     }
   ],
-  "customCategories": [],
   "currencies": [
     {
       "id": 1,
@@ -282,95 +192,5 @@
     }
   ],
   "posts": [
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 2,
-      "volume": 4800,
-      "title": "Хоть што-та",
-      "date": "2024-10-20",
-      "id": 1
-    },
-    {
-      "userId": 4,
-      "postType": 1,
-      "categoryId": 15,
-      "volume": 1500,
-      "title": "Что та",
-      "date": "2024-10-18",
-      "id": 2
-    },
-    {
-      "userId": 4,
-      "postType": 1,
-      "categoryId": 1,
-      "volume": 5000,
-      "title": "НУ ХОТЬ ЧТО ТА НАКОНЕЦ",
-      "date": "2024-10-26",
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 14,
-      "volume": 123123,
-      "title": "123",
-      "date": "2024-10-10",
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 6,
-      "volume": 1231213,
-      "title": "1123",
-      "date": "2024-10-26",
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 5,
-      "volume": 3123123,
-      "title": "11312",
-      "date": "2024-10-26",
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 4,
-      "volume": 33123123,
-      "title": "3123",
-      "date": "2024-10-26",
-      "id": 7
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 5,
-      "volume": 11111,
-      "title": "1231",
-      "date": "2024-10-26",
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 6,
-      "volume": 123123,
-      "title": "123123",
-      "date": "2024-10-26",
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "postType": 1,
-      "categoryId": 14,
-      "volume": 3313123,
-      "title": "331",
-      "date": "2024-10-26",
-      "id": 10
-    }
   ]
 }
