@@ -32,9 +32,24 @@
 .item
     display: flex
     button
+        cursor: pointer
         margin: 0
         padding: 0
         background-color: unset
         border: none
         outline: none
-        @include m.fontInter(20px, var(--text-color), 500, 120%)
+        @include m.fontInter(26px, var(--text-color), 500, 120%)
+
+.theme
+    width: fit-content
+    margin: 0 0 30px 0
+    button
+        background: unset
+        border: none
+        outline: none
+        padding: 0
+        margin: 0
+        cursor: pointer
+        svg
+            path
+                fill: var(--text-color)
