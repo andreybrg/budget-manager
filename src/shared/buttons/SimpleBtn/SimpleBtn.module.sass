@@ -1,0 +1,98 @@
+@use '@assets/styles/mixins' as m
+
+.btn
+    position: relative
+    border: none
+    outline: none
+    width: fit-content
+    box-sizing: border-box
+    display: flex
+    align-items: center
+    cursor: pointer
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    transition: .2s
+    background: unset
+    border: none
+    outline: none
+    padding: 0
+    margin: 0
+    &:hover
+        .content
+            opacity: .8
+            transition: .2s
+    &[disabled]
+        cursor: default
+        .content
+            opacity: .2
+    &:focus
+        outline: none
+    &:focus-visible
+        &::before
+            content: ""
+            width: calc(100% + 6px)
+            height: calc(100% + 6px)
+            border: 2px solid rgba(var(--rgb-text-color), .3)
+            position: absolute
+            left: -5px
+            top: -5px
+            border-radius: 11px
+.content
+    display: flex
+    align-items: center
+    column-gap: 5px
+    position: relative
+    @include m.fontInter(14px, var(--text-color), 500, 140% )
+    white-space: nowrap
+    opacity: 1
+    transition: .2s
+    svg path 
+        fill: var(--text-color)
+
+.fetching
+    width: 10px
+    height: 10px
+    border-radius: 0
+    border-radius: 50%
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    margin: auto
+    animation: rotate 1.5s linear infinite
+    &::before
+        content: ""
+        box-sizing: border-box
+        position: absolute
+        inset: 0px
+        border-radius: 0
+        border-radius: 50%
+        border: 2px solid #000
+        animation: prixClipFix 1.5s linear infinite 
+
+@keyframes rotate
+    100%
+        transform: rotate(360deg)
+
+@keyframes prixClipFix
+    0%
+        clip-path: polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)
+    12%
+        clip-path: polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)
+    25%
+        clip-path: polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)
+    37%
+        clip-path: polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)
+    50%
+        clip-path: polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)
+    62%
+        clip-path: polygon(50% 50%,100% 0,100% 0,100% 100%,0 100%,0 0)
+    75%
+        clip-path: polygon(50% 50%,100% 100%,100% 100%,100% 100%,0 100%,0 0)
+    87%
+        clip-path: polygon(50% 50%,0 100%,0 100%,0 100%,0 100%,0 0)
+    100%
+        clip-path: polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)

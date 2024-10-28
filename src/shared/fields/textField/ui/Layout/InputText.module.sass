@@ -1,0 +1,19 @@
+@use '@assets/styles/mixins' as m
+    
+.container
+    width: 100%
+    
+.label
+    @include m.inputLabel
+    input[type="text"]
+        @include m.basicInput
+        
+.title
+    @include m.inputTitle
+    
+.fieldError
+    @include m.inputFieldError
+
+.titleError
+    color: var(--label-title-error-color)
+    opacity: 1

@@ -1,0 +1,64 @@
+@use '@assets/styles/mixins' as m
+    
+.label
+    @include m.inputLabel
+    button.inputFaker
+        cursor: pointer
+        background: unset
+        border: none
+        padding: 0
+        margin: 0
+        width: 100%
+        .dateValue
+            @include m.basicInput
+            display: flex
+            align-items: center
+    // input[type="date"]::placeholder
+    //     @include m.inputPlaceholder
+    input
+        @include m.basicInput
+
+.title
+    @include m.inputTitle
+    bottom: auto
+    box-sizing: border-box
+    font-size: 13px
+    left: 15px
+    top: 10px
+    line-height: 120%
+    transition: font-size .1s
+    z-index: 10
+    
+.fieldError
+    @include m.inputFieldError
+
+.date
+    position: absolute
+    width: 24px
+    height: 24px
+    right: 15px
+    top: 0
+    bottom: 0
+    left: auto
+    background-color: var(--input-bg-color)
+    margin: auto
+    display: flex
+    align-items: center
+    pointer-events: none
+    cursor: pointer
+    &[disabled]
+        background-color: var(--disabled-input-bg-color)
+        svg
+            opacity: .4
+    svg
+        width: 100%
+        height: 100%
+        path
+            fill: var(--text-color)
+
+.dateFiledDisabled
+    background-color: var(--disabled-input-bg-color) !important
+
+.titleError
+    color: var(--label-title-error-color)
+    opacity: 1

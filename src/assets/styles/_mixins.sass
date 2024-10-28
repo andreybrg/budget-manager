@@ -1,0 +1,125 @@
+@font-face
+    font-family: "Inter"
+    src: local("Inter"),
+    src: url("./../fonts/Inter-Regular.ttf") format('truetype')
+    font-weight: 400
+
+@font-face
+    font-family: "Inter"
+    src: local("Inter"),
+    src: url("./../fonts/Inter-Medium.ttf") format('truetype')
+    font-weight: 500
+
+@mixin fontInter($size: false, $color: false, $weight: false, $lh: false)
+    font-family: 'Inter', sans-serif
+    @if $size
+        font-size: $size
+    @if $color 
+        color: $color 
+    @if $weight
+        font-weight: $weight
+    @if $lh
+        line-height: $lh
+
+@mixin s900
+    @media screen and (max-width: 900px)
+        @content
+
+@mixin s1500
+    @media screen and (max-width: 1500px)
+        @content
+
+@mixin inputLabel
+    display: flex
+    flex-direction: column
+    position: relative
+    width: 100%
+    &:has(>input:focus) .title,
+    &:has(>input:not(:placeholder-shown)) .title
+        bottom: auto
+        box-sizing: border-box
+        font-size: 13px
+        left: 15px
+        top: 10px
+        line-height: 120%
+        transition: font-size .1s
+
+@mixin selectLabel
+    display: flex
+    flex-direction: column
+    position: relative
+    width: 100%
+    .title
+        bottom: auto
+        box-sizing: border-box
+        font-size: 13px
+        left: 15px
+        top: 10px
+        line-height: 120%
+        transition: font-size .1s
+
+@mixin basicInput
+    width: 100%
+    background-color: var(--input-bg-color)
+    border: 1px solid var(--input-border-color)
+    border-radius: var(--main-border-radius)
+    box-sizing: border-box
+    @include fontInter(16px, var(--text-color), 500, 120%)
+    height: 58px
+    outline: none
+    padding: 18px 0 0 15px
+    transition: border-color .2s
+    &::placeholder
+        opacity: 0
+    &:focus-within
+        transition: border-color .2s
+        border-color: var(--input-focused-border-color)
+    &[disabled]
+        background-color: var(--disabled-input-bg-color)
+
+@mixin basicSelect
+    width: 100%
+    background-color: var(--input-bg-color)
+    border: 1px solid var(--input-border-color)
+    border-radius: var(--main-border-radius)
+    box-sizing: border-box
+    @include fontInter(16px, var(--text-color), 500, 120%)
+    height: 58px
+    outline: none
+    padding: 18px 0 0 15px
+    transition: border-color .2s
+    appearance: none
+    -webkit-appearance: none
+    -moz-appearance: none
+    -ms-progress-appearance: none
+    &:focus-within
+        transition: border-color .2s
+        border-color: var(--input-focused-border-color)
+    &[disabled]
+        background-color: var(--disabled-input-bg-color)
+        opacity: 1
+    option
+        background-color: var(--input-bg-color)
+        @include fontInter(14px, var(--text-color), 500, 140%)
+
+@mixin inputTitle
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    @include fontInter(16px, var(--text-color), 500, 140%)
+    height: fit-content
+    margin: auto
+    opacity: .4
+    pointer-events: none
+    position: absolute
+    top: 0
+    right: auto
+    left: 15px
+    bottom: 0
+    transition: font-size .1s
+
+@mixin inputFieldError
+    @include fontInter(12px, var(--text-color), 500, 120%)
+    position: relative
+    margin: 5px 0 0 0

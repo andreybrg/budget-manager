@@ -1,0 +1,1 @@
+export { Layout as MainFormMessage } from './Layout/Layout'

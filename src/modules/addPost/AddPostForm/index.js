@@ -1,0 +1,1 @@
+export { Container as AddPostForm } from './ui/Layout/Container'

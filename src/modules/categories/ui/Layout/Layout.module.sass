@@ -1,0 +1,35 @@
+@use '@assets/styles/mixins' as m
+
+.categoriesContent
+    display: flex
+    flex-direction: column
+    row-gap: 40px
+    padding: 22px 0 20px 0
+    width: 50%
+    position: relative
+    z-index: 20
+    @include m.s900
+        padding: 83px 0 20px 0px
+        width: 100%
+
+.filters
+    display: flex
+    column-gap: 10px
+    align-items: center
+    @include m.s900
+        width: 100dvw
+        left: -20px
+        position: relative
+        overflow-x: auto
+        padding: 0 20px
+        box-sizing: border-box
+
+.categoriesList
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+
+.addArea
+    width: 100%
+    margin: 0 0 10px 0
+    display: flex

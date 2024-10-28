@@ -1,0 +1,1 @@
+export { GetCategoryName } from './GetCategoryName'

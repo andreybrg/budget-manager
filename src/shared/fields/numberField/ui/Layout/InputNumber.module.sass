@@ -1,0 +1,27 @@
+@use '@assets/styles/mixins' as m
+    
+.container
+    width: 100%
+    
+.label
+    @include m.inputLabel
+    input[type="number"]
+        @include m.basicInput
+        -webkit-appearance: none
+        appearance: none
+        -moz-appearance: textfield
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button
+            -webkit-appearance: none
+            margin: 0
+        
+        
+.title
+    @include m.inputTitle
+    
+.fieldError
+    @include m.inputFieldError
+
+.titleError
+    color: var(--label-title-error-color)
+    opacity: 1

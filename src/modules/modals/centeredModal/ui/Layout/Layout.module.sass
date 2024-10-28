@@ -1,0 +1,59 @@
+@use '@assets/styles/mixins' as m
+
+.modal
+    position: fixed
+    left: 0
+    bottom: 0
+    right: 0
+    overflow-y: auto
+    height: 100vh
+    background-color: rgba(var(--rgb-modal-bg-color), .8)
+    display: flex
+    justify-content: center
+    align-items: flex-start
+    z-index: 100
+    padding: 50px 0
+    box-sizing: border-box
+    @include m.s900
+        padding: 90px 0 50px 0
+.container
+    padding: 20px
+    box-sizing: border-box
+    background: var(--body-color)
+    border-radius: 10px
+    width: 500px
+    display: flex
+    flex-direction: column
+    position: relative
+    @include m.s900
+        width: calc(100% - 40px)
+.header
+    position: relative
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    column-gap: 10px
+    margin: 0 0 30px 0
+    &Title
+        @include m.fontInter(22px, var(--text-color), 500, 120%)
+        @include m.s900
+            width: calc(100% - 30px)
+    &Close
+        font-size: 0
+        position: absolute
+        right: -30px
+        top: 0px
+        cursor: pointer
+        padding: 0
+        background: unset
+        border: none
+        path
+            fill: var(--main-icon-color)
+        @include m.s900
+            right: 20px
+            top: 20px
+            path
+                fill: var(--text-color)
+
+.content
+    height: 100%

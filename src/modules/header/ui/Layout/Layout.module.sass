@@ -1,0 +1,42 @@
+@use '@assets/styles/mixins' as m
+
+.header
+    width: 100%
+    padding: 20px 0
+    border-radius: 0 0 20px 20px
+    &_Unauthorized
+
+.headerContainer
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+
+.logo
+    font-size: 0
+    width: fit-content
+    svg
+        width: 30px
+        height: 30px
+        path
+            fill: var(--main-icon-color)
+
+.burger
+    display: none
+    @include m.s900
+        display: block
+
+.authBtns
+    display: flex
+    align-items: center
+    column-gap: 10px
+    @include m.s900
+        display: none
+
+.logout
+    cursor: pointer
+    font-size: 0
+    @include m.s900
+        display: none
+    svg
+        path
+            fill: var(--main-icon-color)

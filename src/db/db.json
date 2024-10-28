@@ -1,0 +1,376 @@
+{
+  "users": [
+    {
+      "email": "a@a",
+      "password": "$2a$10$UZ3KbN3qOWg9r09iVdFgj.nUqtd33yLM1D6xEsn7EpTnWySGzYvOy",
+      "id": 1
+    },
+    {
+      "email": "b@b",
+      "password": "$2a$10$0oxJEWF.zTcjRfeqtE9QH./gZXolh3bp1pGOTBF7HwCpDYMYFCjuy",
+      "id": 2
+    },
+    {
+      "email": "c@c",
+      "password": "$2a$10$a7QdjOW1fPzdlsvFGbXMl.Sr8LvXi6IsJL8vN5yVfiklZ.K2FTq1K",
+      "id": 3
+    },
+    {
+      "email": "v@v",
+      "password": "$2a$10$Y1K0mWSt/yP7cu4tHt0CzugSAe7lElcbeY9NTXHuBuTxK3VEHXHEO",
+      "id": 4
+    },
+    {
+      "email": "vv@aa",
+      "password": "$2a$10$qdASAtPNdoKOfJ/opZx6OeHHE8i9z9GLo.fLLjQwbfXNzsoeOq8Ki",
+      "id": 5
+    }
+  ],
+  "usersProfileData": [
+    {
+      "id": 1,
+      "isProfileActivated": true,
+      "userId": 1,
+      "currencyId": 2,
+      "budget": 41053439,
+      "themeId": 1
+    },
+    {
+      "id": 2,
+      "isProfileActivated": true,
+      "userId": 2,
+      "currencyId": 1,
+      "budget": 100,
+      "themeId": 1
+    },
+    {
+      "id": 3,
+      "isProfileActivated": true,
+      "userId": 3,
+      "currencyId": 2,
+      "budget": 123,
+      "themeId": 1
+    },
+    {
+      "id": 4,
+      "isProfileActivated": true,
+      "userId": 4,
+      "currencyId": 3,
+      "budget": 8000,
+      "themeId": 1
+    },
+    {
+      "id": 5,
+      "isProfileActivated": true,
+      "userId": 5,
+      "currencyId": 1,
+      "budget": 30000,
+      "themeId": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Зарплата",
+      "color": "#90BE6D",
+      "userId": 0
+    },
+    {
+      "id": 2,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Бизнес",
+      "color": "#43AA8B",
+      "userId": 0
+    },
+    {
+      "id": 3,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Входящий перевод",
+      "color": "#4D908E",
+      "userId": 0
+    },
+    {
+      "id": 4,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Возврат долга",
+      "color": "#577590",
+      "userId": 0
+    },
+    {
+      "id": 5,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Из инвестиций",
+      "color": "#277DA1",
+      "userId": 0
+    },
+    {
+      "id": 6,
+      "postType": 1,
+      "isDefault": true,
+      "name": "Другие доходы",
+      "color": "#A3D7C0",
+      "userId": 0
+    },
+    {
+      "id": 7,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Супермаркет",
+      "color": "#F94144",
+      "userId": 0
+    },
+    {
+      "id": 8,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Кафе и рестораны",
+      "color": "#F3722C",
+      "userId": 0
+    },
+    {
+      "id": 9,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Автомобиль",
+      "color": "#F8961E",
+      "userId": 0
+    },
+    {
+      "id": 10,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Здоровье",
+      "color": "#F9844A",
+      "userId": 0
+    },
+    {
+      "id": 11,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Развлечения",
+      "color": "#F9C74F",
+      "userId": 0
+    },
+    {
+      "id": 12,
+      "postType": 2,
+      "isDefault": true,
+      "name": "Другие расходы",
+      "color": "#DFCABE",
+      "userId": 0
+    },
+    {
+      "userId": 1,
+      "name": "asdasdf",
+      "color": "#314e38",
+      "postType": 1,
+      "isDefault": false,
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "name": "asdf 78 7 87 887 87",
+      "color": "#8e75ff",
+      "postType": 1,
+      "isDefault": false,
+      "id": 14
+    },
+    {
+      "userId": 4,
+      "name": "Жумасынба",
+      "color": "#FFFFFF",
+      "postType": 1,
+      "isDefault": false,
+      "id": 15
+    }
+  ],
+  "customCategories": [],
+  "currencies": [
+    {
+      "id": 1,
+      "name": "Российский рубль",
+      "sign": "₽",
+      "code": "RUB"
+    },
+    {
+      "id": 2,
+      "name": "Доллар США",
+      "sign": "$",
+      "code": "USD"
+    },
+    {
+      "id": 3,
+      "name": "Японская иена",
+      "sign": "¥",
+      "code": "JPY"
+    },
+    {
+      "id": 4,
+      "name": "Евро",
+      "sign": "€",
+      "code": "EUR"
+    }
+  ],
+  "postTypes": [
+    {
+      "id": 1,
+      "name": "Доходы"
+    },
+    {
+      "id": 2,
+      "name": "Расходы"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "name": "Тёмная"
+    },
+    {
+      "id": 2,
+      "name": "Светлая"
+    }
+  ],
+  "filters": [
+    {
+      "id": 1,
+      "name": "Баланс",
+      "ptId": 0
+    },
+    {
+      "id": 2,
+      "name": "Доходы",
+      "ptId": 1
+    },
+    {
+      "id": 3,
+      "name": "Расходы",
+      "ptId": 2
+    }
+  ],
+  "dayFilters": [
+    {
+      "id": 1,
+      "name": "Сегодня",
+      "label": "today"
+    },
+    {
+      "id": 2,
+      "name": "Вчера",
+      "label": "yesterday"
+    },
+    {
+      "id": 3,
+      "name": "Текущая неделя",
+      "label": "currentweek"
+    },
+    {
+      "id": 4,
+      "name": "Текущий месяц",
+      "label": "currentmonth"
+    },
+    {
+      "id": 5,
+      "name": "Последние 30 дней",
+      "label": "last30"
+    }
+  ],
+  "posts": [
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 2,
+      "volume": 4800,
+      "title": "Хоть што-та",
+      "date": "2024-10-20",
+      "id": 1
+    },
+    {
+      "userId": 4,
+      "postType": 1,
+      "categoryId": 15,
+      "volume": 1500,
+      "title": "Что та",
+      "date": "2024-10-18",
+      "id": 2
+    },
+    {
+      "userId": 4,
+      "postType": 1,
+      "categoryId": 1,
+      "volume": 5000,
+      "title": "НУ ХОТЬ ЧТО ТА НАКОНЕЦ",
+      "date": "2024-10-26",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 14,
+      "volume": 123123,
+      "title": "123",
+      "date": "2024-10-10",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 6,
+      "volume": 1231213,
+      "title": "1123",
+      "date": "2024-10-26",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 5,
+      "volume": 3123123,
+      "title": "11312",
+      "date": "2024-10-26",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 4,
+      "volume": 33123123,
+      "title": "3123",
+      "date": "2024-10-26",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 5,
+      "volume": 11111,
+      "title": "1231",
+      "date": "2024-10-26",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 6,
+      "volume": 123123,
+      "title": "123123",
+      "date": "2024-10-26",
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "postType": 1,
+      "categoryId": 14,
+      "volume": 3313123,
+      "title": "331",
+      "date": "2024-10-26",
+      "id": 10
+    }
+  ]
+}

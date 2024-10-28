@@ -1,0 +1,23 @@
+@use '@assets/styles/mixins' as m
+
+.message
+    width: 100%
+    margin: 0
+    padding: 20px 15px
+    box-sizing: border-box
+    border-radius: var(--main-border-radius)
+    background-color: var(--main-form-error-bg-color)
+    position: relative
+    span
+        display: block
+        text-indent: 30px
+        @include m.fontInter(16px, var(--main-form-error-text-color), 500, 140%)
+        word-wrap: break-word
+
+.errorSvg
+    font-size: 0
+    line-height: 0
+    width: fit-content
+    position: absolute
+    svg path
+        fill: var(--main-form-error-icon-color)

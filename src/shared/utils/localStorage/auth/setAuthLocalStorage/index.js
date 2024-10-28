@@ -1,0 +1,1 @@
+export { setAuthLocalStorage } from './setAuthLocalStorage'

@@ -1,0 +1,10 @@
+@use '@assets/styles/mixins' as m
+
+.panel
+    display: flex
+    justify-content: flex-end
+
+.content
+    width: calc(100% - var(--panel-sidebar-menu-width))
+    @include m.s900
+        width: 100%

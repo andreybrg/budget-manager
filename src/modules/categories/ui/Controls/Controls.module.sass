@@ -1,0 +1,51 @@
+@use '@assets/styles/mixins' as m
+
+.controls
+    height: 58px
+    display: flex
+    column-gap: 5px
+    margin: 0 0 0 5px
+    position: relative
+    button
+        position: relative
+        background-color: var(--theme-color)
+        cursor: pointer
+        font-size: 0
+        margin: 0
+        padding: 0
+        border: unset
+        height: 100%
+        width: 100%
+        padding: 0 17px
+        border-radius: var(--main-border-radius)
+        @include m.s900
+            padding: 0 10px
+        svg
+            @include m.s900
+                width: 19px
+                height: 19px
+            path
+                fill: var(--theme-content-color)
+        &[disabled]
+            opacity: .5
+            cursor: default
+
+.colorBtn
+    width: 20px
+    height: 20px
+    cursor: pointer
+    font-size: 0
+    border-radius: 5px
+    position: absolute
+    left: -40px
+    padding: 0
+    bottom: 0
+    top: 0
+    margin: auto
+
+.colorPicker
+    position: absolute
+    z-index: 100
+    top: 65px
+    left: 0
+    transform: translateX(-70%)
