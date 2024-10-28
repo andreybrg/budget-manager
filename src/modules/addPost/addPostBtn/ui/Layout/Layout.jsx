@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from './Layout.module.sass'
 import AddSvg from '@assets/images/add.svg'
 import { ModalsContext } from '@modules/modals'
-import { AddPostForm } from '@modules/addPost/AddPostForm'
+import { AddPostForm } from '@modules/addPost/addPostForm'
 import cn from 'classnames'
 import { useSelector } from 'react-redux'
 
